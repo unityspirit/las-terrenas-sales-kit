@@ -1668,51 +1668,59 @@
 .g3, .g7, .g11 { background-image: url('') !important; background-size: cover !important; background-position: center !important; }
 .g4, .g8, .g12 { background-image: url('') !important; background-size: cover !important; background-position: center !important; }
 </style>
-<style id="cinematic-css">
+<style id="final-fix">
+/* === CINEMATIC CANVAS === */
 #gl-canvas {
   position: fixed !important;
   top: 0 !important; left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100% !important; height: 100% !important;
   z-index: 0 !important;
   pointer-events: none !important;
   display: block !important;
 }
-html { background: #060a14 !important; }
-body {
+/* === TRANSPARENCY CHAIN === */
+html { background: #04080f !important; }
+body { background: transparent !important; background-color: transparent !important; }
+/* All containers must be transparent so canvas shows through */
+.hero-bg, .hero-overlay, .hero-section-bg,
+.hero-waves, .section-bg, .bg-overlay, .overlay-bg,
+#hero-bg, #hero-overlay { 
   background: transparent !important;
   background-color: transparent !important;
+  background-image: none !important;
 }
-/* All sections sit above canvas */
-section, header, footer, nav, .hero, main, .hero-section,
-#hero, #services, #gallery, #booking, #contact, #rooms, #experiences,
-#properties, #listings, #activities, #wellness, #tours,
-.page, .section-wrapper {
+/* Sections: transparent bg, sit above canvas */
+section, main, footer {
   position: relative !important;
   z-index: 10 !important;
   background: transparent !important;
   background-color: transparent !important;
 }
 /* Navbar always on top */
-#navbar, .navbar, nav {
+nav, header, #navbar, .navbar {
   z-index: 1000 !important;
-  background: transparent !important;
 }
-.navbar.scrolled, #navbar.scrolled {
-  background: rgba(6,10,20,0.92) !important;
+/* Keep semi-transparent card backgrounds */
+.card, .room-card, .property-card, .exp-card, .masonry-item,
+.stat-card, .feat-card, .testimonial-card, .pricing-card,
+[class*="-card"], [class*="card-"] {
+  background: rgba(0,0,0,0.45) !important;
+  backdrop-filter: blur(8px) !important;
 }
-/* Remove white line: borders on sections */
+/* Remove white lines: kill any border on sections */
 section { border: none !important; outline: none !important; }
-</style>
-<style id="gallery-images">
-.g1,.g5,.g9  { background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.g2,.g6,.g10 { background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.g3,.g7,.g11 { background-image: url('https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.g4,.g8,.g12 { background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.room-img-ocean  { background-image: url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.room-img-garden { background-image: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.room-img-beach  { background-image: url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80') !important; background-size: cover !important; background-position: center !important; }
-.gallery-img, .g1, .g2, .g3, .g4, .g5, .g6, .g7, .g8, .g9, .g10, .g11, .g12 { min-height: 200px !important; }
+/* Wave overlay in wellness - hide */
+.wave-overlay { display: none !important; }
+/* Gallery items need min-height */
+.gallery-img, [class^="g"][class$=" "], .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10,.g11,.g12 {
+  min-height: 200px !important;
+}
+/* Wellness hero text: ensure it appears above video */
+.hero-content, .hero h1, .hero-title, .hero p, .hero-sub,
+.hero-ctas, .hero-badge, .hero-subtitle {
+  position: relative !important;
+  z-index: 20 !important;
+}
 </style>
 </head>
 <body>
@@ -1873,7 +1881,7 @@ section { border: none !important; outline: none !important; }
 
         <!-- Ocean Suite -->
         <div class="room-card reveal reveal-delay-1">
-          <div class="room-img room-img-ocean">
+          <div class="room-img room-img-ocean" style="background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80');background-size:cover;background-position:center;">
             <div class="room-pattern"></div>
             <div class="room-img-overlay"></div>
             <span class="room-badge">Most Popular</span>
@@ -1902,7 +1910,7 @@ section { border: none !important; outline: none !important; }
 
         <!-- Garden Villa -->
         <div class="room-card reveal reveal-delay-2">
-          <div class="room-img room-img-garden">
+          <div class="room-img room-img-garden" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80');background-size:cover;background-position:center;">
             <div class="room-pattern"></div>
             <div class="room-img-overlay"></div>
             <span class="room-badge">Romantic Escape</span>
@@ -1931,7 +1939,7 @@ section { border: none !important; outline: none !important; }
 
         <!-- Beachfront Bungalow -->
         <div class="room-card reveal reveal-delay-3">
-          <div class="room-img room-img-beach">
+          <div class="room-img room-img-beach" style="background-image:url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80');background-size:cover;background-position:center;">
             <div class="room-pattern"></div>
             <div class="room-img-overlay"></div>
             <span class="room-badge">Beachfront</span>
@@ -2044,39 +2052,39 @@ section { border: none !important; outline: none !important; }
       </div>
       <div class="masonry-grid">
         <div class="gallery-item reveal">
-          <div class="gallery-img g1"><div class="gallery-label">Ocean Suite Pool</div></div>
+          <div class="gallery-img g1" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Ocean Suite Pool</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-1">
-          <div class="gallery-img g2"><div class="gallery-label">Tropical Gardens</div></div>
+          <div class="gallery-img g2" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Tropical Gardens</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-2">
-          <div class="gallery-img g3"><div class="gallery-label">Chef's Table</div></div>
+          <div class="gallery-img g3" style="background-image:url('https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Chef's Table</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-3">
-          <div class="gallery-img g4"><div class="gallery-label">Playa Bonita</div></div>
+          <div class="gallery-img g4" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Playa Bonita</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal">
-          <div class="gallery-img g5"><div class="gallery-label">Sunset Bar</div></div>
+          <div class="gallery-img g5" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Sunset Bar</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-1">
-          <div class="gallery-img g6"><div class="gallery-label">Spa &amp; Wellness</div></div>
+          <div class="gallery-img g6" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Spa &amp; Wellness</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-2">
-          <div class="gallery-img g7"><div class="gallery-label">Pool at Night</div></div>
+          <div class="gallery-img g7" style="background-image:url('https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Pool at Night</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-3">
-          <div class="gallery-img g8"><div class="gallery-label">Breakfast Terrace</div></div>
+          <div class="gallery-img g8" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Breakfast Terrace</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal">
-          <div class="gallery-img g9"><div class="gallery-label">Snorkeling</div></div>
+          <div class="gallery-img g9" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80');background-size:cover;background-position:center;"><div class="gallery-label">Snorkeling</div></div>
           <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal reveal-delay-1">
@@ -2542,7 +2550,6 @@ document.querySelectorAll('a, button').forEach(el => {
   var CONCURRENCY = 48;
   var isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent) || window.innerWidth < 768;
   var FRAME_DIR = isMobile ? 'frames-mobile' : 'frames-webp';
-
   var glCanvas = document.getElementById('gl-canvas');
   if (!glCanvas) {
     glCanvas = document.createElement('canvas');
@@ -2550,94 +2557,59 @@ document.querySelectorAll('a, button').forEach(el => {
     document.body.insertBefore(glCanvas, document.body.firstChild);
   }
   var glCtx = glCanvas.getContext('2d');
-  var glCanvasDpr = 1;
-
+  var glDpr = 1;
   function resizeGl() {
-    glCanvasDpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
-    glCanvas.width  = window.innerWidth  * glCanvasDpr;
-    glCanvas.height = window.innerHeight * glCanvasDpr;
-    glCanvas.style.width  = window.innerWidth  + 'px';
+    glDpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+    glCanvas.width = window.innerWidth * glDpr;
+    glCanvas.height = window.innerHeight * glDpr;
+    glCanvas.style.width = window.innerWidth + 'px';
     glCanvas.style.height = window.innerHeight + 'px';
-    glCtx.setTransform(glCanvasDpr, 0, 0, glCanvasDpr, 0, 0);
+    glCtx.setTransform(glDpr, 0, 0, glDpr, 0, 0);
   }
   window.addEventListener('resize', resizeGl);
   resizeGl();
-
   var frames = new Array(TOTAL_FRAMES);
-  var loadedCount = 0;
-  var isReady = false;
-
-  function frameName(i) {
-    var n = String(i + 1);
-    while (n.length < 6) n = '0' + n;
-    return FRAME_DIR + '/frame_' + n + '.webp';
-  }
-
-  function loadAll() {
-    var queue = [];
-    for (var j = 0; j < TOTAL_FRAMES; j++) queue.push(j);
-
+  var loaded = 0, ready = false;
+  function pad(i) { var s = String(i+1); while(s.length<6) s='0'+s; return s; }
+  function frameName(i) { return FRAME_DIR + '/frame_' + pad(i) + '.webp'; }
+  function loadFrames() {
+    var q = []; for(var j=0;j<TOTAL_FRAMES;j++) q.push(j);
     function worker() {
-      if (queue.length === 0) return Promise.resolve();
-      var i = queue.shift();
-      return new Promise(function(resolve) {
-        var img = new Image();
-        img.onload = img.onerror = function() {
-          frames[i] = img;
-          loadedCount++;
-          if (loadedCount === 1) { isReady = true; startAnim(); }
-          resolve();
-          worker();
-        };
-        img.src = frameName(i);
-      });
+      if(!q.length) return;
+      var i = q.shift();
+      var img = new Image();
+      img.onload = img.onerror = function() {
+        frames[i] = img; loaded++;
+        if(loaded===1){ready=true;startAnim();}
+        worker();
+      };
+      img.src = frameName(i);
     }
-
-    var workers = [];
-    for (var w = 0; w < Math.min(CONCURRENCY, TOTAL_FRAMES); w++) {
-      workers.push(worker());
-    }
-    return Promise.all(workers);
+    for(var w=0;w<Math.min(CONCURRENCY,TOTAL_FRAMES);w++) worker();
   }
-
-  var glCurrentFrame = 0;
-  var glTargetFrame  = 0;
-
+  var cur=0, tgt=0;
   window.addEventListener('scroll', function() {
-    if (!isReady) return;
-    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    var progress  = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-    glTargetFrame = progress * (TOTAL_FRAMES - 1);
-  }, { passive: true });
-
-  function drawFrame(idx) {
-    var img = frames[Math.max(0, Math.min(Math.round(idx), TOTAL_FRAMES - 1))];
-    if (!img || !img.complete || !img.naturalWidth) return;
-    var W = window.innerWidth;
-    var H = window.innerHeight;
-    var r  = Math.max(W / img.naturalWidth, H / img.naturalHeight);
-    var iw = img.naturalWidth  * r;
-    var ih = img.naturalHeight * r;
-    var x  = (W - iw) / 2;
-    var y  = (H - ih) / 2;
-    glCtx.clearRect(0, 0, W, H);
-    glCtx.drawImage(img, x, y, iw, ih);
-    var vig = glCtx.createRadialGradient(W/2, H/2, H*0.18, W/2, H/2, H*0.85);
-    vig.addColorStop(0, 'rgba(6,4,10,0)');
-    vig.addColorStop(1, 'rgba(6,4,10,0.78)');
-    glCtx.fillStyle = vig;
-    glCtx.fillRect(0, 0, W, H);
+    if(!ready) return;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    tgt = (max>0 ? window.scrollY/max : 0) * (TOTAL_FRAMES-1);
+  }, {passive:true});
+  function draw(idx) {
+    var img = frames[Math.max(0,Math.min(Math.round(idx),TOTAL_FRAMES-1))];
+    if(!img||!img.complete||!img.naturalWidth) return;
+    var W=window.innerWidth, H=window.innerHeight;
+    var r=Math.max(W/img.naturalWidth,H/img.naturalHeight);
+    var iw=img.naturalWidth*r, ih=img.naturalHeight*r;
+    glCtx.clearRect(0,0,W,H);
+    glCtx.drawImage(img,(W-iw)/2,(H-ih)/2,iw,ih);
+    var v=glCtx.createRadialGradient(W/2,H/2,H*.18,W/2,H/2,H*.85);
+    v.addColorStop(0,'rgba(4,8,15,0)');
+    v.addColorStop(1,'rgba(4,8,15,0.75)');
+    glCtx.fillStyle=v; glCtx.fillRect(0,0,W,H);
   }
-
   function startAnim() {
-    (function loop() {
-      requestAnimationFrame(loop);
-      glCurrentFrame += (glTargetFrame - glCurrentFrame) * LERP;
-      if (isReady) drawFrame(glCurrentFrame);
-    })();
+    (function loop(){ requestAnimationFrame(loop); cur+=(tgt-cur)*LERP; if(ready) draw(cur); })();
   }
-
-  loadAll();
+  loadFrames();
 })();
 </script>
 </body>
