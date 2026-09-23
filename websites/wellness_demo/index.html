@@ -624,9 +624,26 @@ select option{background:#0d2a2a;color:#fff}
   .masonry-grid{columns:1}
   .hero-ctas{flex-direction:column;align-items:center}
 }
-</style>
+    #gl-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+    .grain-overlay {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+    body { background: transparent !important; }
+    section, .hero, .footer, header { background: transparent !important; background-color: transparent !important; }
+  </style>
 </head>
 <body>
+  <canvas id="gl-canvas"></canvas>
+  <div class="grain-overlay"></div>
 
 <!-- ===== FLOATING ELEMENTS ===== -->
 <div class="demo-watermark">DEMO BY <a href="https://unityspiritpartners.com" target="_blank">UNITY SPIRIT PARTNERS</a> ✦ unityspiritpartners.com</div>
@@ -1434,5 +1451,99 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+  <script>
+    const TOTAL_FRAMES = 340; 
+    const LERP = 0.04;
+    const CONCURRENCY = 48;
+    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent) || innerWidth < 768;
+    const FRAME_DIR = isMobile ? 'frames-mobile' : 'frames-webp';
+    const glCanvas = document.getElementById('gl-canvas');
+    const glCtx = glCanvas.getContext('2d');
+    let glCanvasDpr = 1;
+
+    function resizeGl() {
+      glCanvasDpr = Math.min(devicePixelRatio || 1, isMobile ? 1.5 : 2);
+      glCanvas.width  = innerWidth * glCanvasDpr;
+      glCanvas.height = innerHeight * glCanvasDpr;
+      glCanvas.style.width  = innerWidth + 'px';
+      glCanvas.style.height = innerHeight + 'px';
+      glCtx.setTransform(glCanvasDpr, 0, 0, glCanvasDpr, 0, 0);
+    }
+    window.addEventListener('resize', resizeGl);
+    resizeGl();
+
+    const frames = new Array(TOTAL_FRAMES);
+    let loadedCount = 0;
+    let isReady = false;
+
+    function frameName(i) {
+      return `/frame_.webp`;
+    }
+
+    async function loadAllFrames() {
+      const queue = Array.from({length: TOTAL_FRAMES}, (_, i) => i);
+      async function worker() {
+        while (queue.length) {
+          const i = queue.shift();
+          await new Promise(resolve => {
+            const img = new Image();
+            img.onload = img.onerror = () => {
+              frames[i] = img;
+              loadedCount++;
+              if (loadedCount === 1) {
+                isReady = true;
+                startAnim();
+              }
+              resolve();
+            };
+            img.src = frameName(i);
+          });
+        }
+      }
+      await Promise.all(Array.from({length: CONCURRENCY}, worker));
+    }
+
+    let glCurrentFrame = 0;
+    let glTargetFrame  = 0;
+
+    window.addEventListener('scroll', () => {
+      if (!isReady) return;
+      const maxScroll = document.documentElement.scrollHeight - innerHeight;
+      const progress  = maxScroll > 0 ? scrollY / maxScroll : 0;
+      glTargetFrame = progress * (TOTAL_FRAMES - 1);
+    }, { passive: true });
+
+    function drawFrame(idx) {
+      const img = frames[Math.max(0, Math.min(idx, TOTAL_FRAMES - 1))];
+      if (!img || !img.complete) return;
+      
+      const W = innerWidth;
+      const H = innerHeight;
+      const r  = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+      const iw = img.naturalWidth * r;
+      const ih = img.naturalHeight * r;
+      const x  = (W - iw) / 2;
+      const y  = (H - ih) / 2;
+      
+      glCtx.clearRect(0, 0, W, H);
+      glCtx.drawImage(img, x, y, iw, ih);
+      
+      const vig = glCtx.createRadialGradient(W/2, H/2, H*0.18, W/2, H/2, H*0.85);
+      vig.addColorStop(0, 'rgba(6,4,10,0)');
+      vig.addColorStop(1, 'rgba(6,4,10,0.85)');
+      glCtx.fillStyle = vig;
+      glCtx.fillRect(0, 0, W, H);
+    }
+
+    function startAnim() {
+      function loop() {
+        requestAnimationFrame(loop);
+        glCurrentFrame += (glTargetFrame - glCurrentFrame) * LERP;
+        if (isReady) drawFrame(Math.round(glCurrentFrame));
+      }
+      loop();
+    }
+    loadAllFrames();
+  </script>
 </body>
 </html>
