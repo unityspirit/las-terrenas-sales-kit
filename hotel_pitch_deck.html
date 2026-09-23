@@ -52,7 +52,7 @@
 
   .slide {
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -144,7 +144,7 @@
   .slide::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-image:
       linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
@@ -156,7 +156,7 @@
   .slide::after {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
     background-size: 200px 200px;
     opacity: 0.4;
@@ -1251,7 +1251,7 @@
       <div class="pricing-grid">
         <div class="price-card">
           <div class="price-tier">Starter</div>
-          <div class="price-amount"><sup>$</sup>1,500</div>
+          <div class="price-amount"><sup>$</sup>890</div>
           <div class="price-divider"></div>
           <ul class="price-features">
             <li>5-page cinematic website</li>
@@ -1266,7 +1266,7 @@
         <div class="price-card featured">
           <div class="price-badge">Most Popular</div>
           <div class="price-tier">Professional</div>
-          <div class="price-amount"><sup>$</sup>2,800</div>
+          <div class="price-amount"><sup>$</sup>1,490</div>
           <div class="price-divider"></div>
           <ul class="price-features">
             <li>10-page cinematic website</li>
@@ -1281,7 +1281,7 @@
         </div>
         <div class="price-card">
           <div class="price-tier">Premium</div>
-          <div class="price-amount"><sup>$</sup>4,500</div>
+          <div class="price-amount"><sup>$</sup>2,490</div>
           <div class="price-divider"></div>
           <ul class="price-features">
             <li>Unlimited pages + custom features</li>

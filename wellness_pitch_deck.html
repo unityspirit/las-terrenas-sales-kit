@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unity Spirit Partners — Wellness Pitch Deck</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;490&display=swap');
 
   :root {
     --navy: #0A0F1E;
@@ -41,7 +41,7 @@
   /* ── SLIDES ── */
   .slide {
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -111,7 +111,7 @@
 
   .grid-lines {
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-image:
       linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
@@ -486,7 +486,7 @@
     background: var(--gold);
     color: var(--navy);
     font-size: 9px;
-    font-weight: 800;
+    font-weight: 490;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     padding: 3px 12px;
@@ -563,7 +563,7 @@
   .special-banner::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%);
     pointer-events: none;
   }
@@ -621,7 +621,7 @@
   /* CTA SLIDE */
   .cta-slide-inner {
     text-align: center;
-    max-width: 800px;
+    max-width: 490px;
     width: 100%;
   }
 
@@ -1236,7 +1236,7 @@
       <div class="pricing-grid">
         <div class="price-card">
           <span class="price-tier">Starter</span>
-          <span class="price-amount">$800</span>
+          <span class="price-amount">$490</span>
           <span class="price-period">one-time setup</span>
           <ul class="price-features">
             <li>5-page showcase website</li>
@@ -1250,7 +1250,7 @@
         <div class="price-card featured">
           <div class="price-tag">⭐ Most Popular</div>
           <span class="price-tier">Pro</span>
-          <span class="price-amount">$1,600</span>
+          <span class="price-amount">$790</span>
           <span class="price-period">one-time setup</span>
           <ul class="price-features">
             <li>Everything in Starter</li>
@@ -1264,7 +1264,7 @@
         </div>
         <div class="price-card">
           <span class="price-tier">Premium</span>
-          <span class="price-amount">$2,500</span>
+          <span class="price-amount">$1,290</span>
           <span class="price-period">one-time setup</span>
           <ul class="price-features">
             <li>Everything in Pro</li>
