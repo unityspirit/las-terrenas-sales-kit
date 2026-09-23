@@ -1414,7 +1414,7 @@
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         to.style.transition = '';
-        to.classList.add('active');
+        to.style.transform = ''; to.style.opacity = ''; to.style.pointerEvents = ''; to.classList.add('active');
 
         setTimeout(() => {
           from.classList.remove('exit');
