@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1215,7 +1215,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
+      z-index: 1;
       pointer-events: none;
     }
     .grain-overlay {
@@ -1224,7 +1224,7 @@
       opacity: 0.35;
     }
     html, body { background: transparent !important; background-color: transparent !important; }
-    section, .hero, .footer, header { background: transparent !important; background-color: transparent !important; }
+    section, .hero, .footer, header { background: transparent !important; background-color: transparent !important; position: relative; z-index: 10; }
   </style>
 <style>
 .prop-bg-1 { background-image: url('') !important; background-size: cover !important; background-position: center !important; }
@@ -2091,9 +2091,7 @@
     let loadedCount = 0;
     let isReady = false;
 
-    function frameName(i) {
-      return `/frame_.webp`;
-    }
+    function frameName(i) { return FRAME_DIR + '/frame_' + String(i + 1).padStart(6, '0') + '.webp'; }
 
     async function loadAllFrames() {
       const queue = Array.from({length: TOTAL_FRAMES}, (_, i) => i);
@@ -2170,5 +2168,21 @@ document.querySelectorAll('a, button').forEach(el => {
   }
 });
 </script>
-</body>
+<style id="gallery-img-fix">
+.g1{background-image:url('https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g2{background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g3{background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g4{background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g5{background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g6{background-image:url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g7{background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g8{background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g9{background-image:url('https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g10{background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g11{background-image:url('https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+.g12{background-image:url('https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
+#gl-canvas{z-index:1!important}
+html,body{background:transparent!important;background-color:transparent!important}
+section,header,footer,.hero{background:transparent!important;position:relative;z-index:10}
+</style></body>
 </html>
