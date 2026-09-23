@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Caribé Kite & Wellness — El Portillo Beach, Las Terrenas, Samaná</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00BFA5;
+  --teal-dark:#008c78;
+  --teal-light:#4dd9c7;
+  --navy:#0A0F1E;
+  --navy2:#111827;
+  --orange:#FF6B35;
+  --orange-light:#ff8c5a;
+  --gold:#D4AF37;
+  --white:#ffffff;
+  --offwhite:#f4f8f7;
+  --gray:#8a9aaa;
+  --lightgray:#e8eef2;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Nunito',sans-serif;
+  background:#fff;
+  color:var(--navy);
+  overflow-x:hidden;
+  line-height:1.7;
+}
+h1,h2,h3,h4,h5{font-family:'Raleway',sans-serif;font-weight:800;line-height:1.15}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section{position:relative}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+
+/* ===== DEMO WATERMARK ===== */
+.demo-watermark{
+  position:fixed;bottom:22px;right:22px;z-index:9999;
+  background:rgba(10,15,30,0.88);color:var(--gold);
+  font-family:'Raleway',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;
+  padding:8px 16px;border-radius:30px;border:1px solid var(--gold);
+  backdrop-filter:blur(8px);white-space:nowrap;
+  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+}
+.demo-watermark a{color:var(--gold);text-decoration:underline}
+
+/* ===== FLOATING WHATSAPP ===== */
+.whatsapp-float{
+  position:fixed;bottom:70px;right:22px;z-index:9998;
+  width:52px;height:52px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);cursor:pointer;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.whatsapp-float:hover{transform:scale(1.12);box-shadow:0 6px 28px rgba(37,211,102,0.55)}
+.whatsapp-float svg{width:28px;height:28px;fill:#fff}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 28px;height:70px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,15,30,0);backdrop-filter:blur(0px);
+  border-bottom:1px solid rgba(255,255,255,0);
+  transition:background 0.4s,backdrop-filter 0.4s,border-color 0.4s;
+}
+.navbar.scrolled{
+  background:rgba(10,15,30,0.92);backdrop-filter:blur(16px);
+  border-bottom-color:rgba(0,191,165,0.18);
+}
+.nav-logo{
+  font-family:'Raleway',sans-serif;font-weight:900;font-size:1.25rem;
+  color:#fff;letter-spacing:-0.5px;display:flex;align-items:center;gap:10px;
+}
+.nav-logo .kite-icon{font-size:1.4rem}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  color:rgba(255,255,255,0.88);font-family:'Raleway',sans-serif;font-weight:600;
+  font-size:0.82rem;letter-spacing:0.8px;padding:7px 12px;border-radius:6px;
+  text-transform:uppercase;transition:color 0.2s,background 0.2s;
+}
+.nav-links a:hover{color:#fff;background:rgba(0,191,165,0.15)}
+.nav-links .cta-nav{
+  background:var(--teal);color:#fff!important;padding:8px 18px;border-radius:25px;
+  margin-left:8px;transition:background 0.2s,transform 0.2s!important;
+}
+.nav-links .cta-nav:hover{background:var(--teal-dark);transform:scale(1.04)}
+.lang-switch{display:flex;gap:4px;margin-left:16px}
+.lang-switch button{
+  background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);
+  font-family:'Raleway',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1px;
+  padding:4px 8px;border-radius:4px;cursor:pointer;transition:all 0.2s;
+}
+.lang-switch button.active,.lang-switch button:hover{
+  border-color:var(--teal);color:var(--teal);background:rgba(0,191,165,0.1);
+}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.hamburger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:all 0.3s}
+.mobile-menu{
+  display:none;position:fixed;top:70px;left:0;right:0;z-index:999;
+  background:rgba(10,15,30,0.97);backdrop-filter:blur(16px);
+  padding:20px 28px;flex-direction:column;gap:4px;
+  border-bottom:1px solid rgba(0,191,165,0.2);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  color:rgba(255,255,255,0.88);font-family:'Raleway',sans-serif;font-weight:600;
+  font-size:1rem;letter-spacing:1px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.07);
+  text-transform:uppercase;
+}
+.mobile-menu a:last-child{border:none}
+
+/* ===== HERO ===== */
+.hero{
+  height:100vh;min-height:640px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#0A0F1E 0%,#0d2a2a 30%,#00BFA5 70%,#0A4040 100%);
+}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+canvas#waveCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.35}
+.hero-particles{position:absolute;inset:0;overflow:hidden;z-index:1}
+.particle{
+  position:absolute;border-radius:50%;animation:floatParticle linear infinite;
+  background:rgba(0,191,165,0.4);
+}
+@keyframes floatParticle{
+  0%{transform:translateY(100vh) translateX(0) scale(0);opacity:0}
+  10%{opacity:1}
+  90%{opacity:0.6}
+  100%{transform:translateY(-20vh) translateX(var(--drift)) scale(1.2);opacity:0}
+}
+.kite-svg{
+  position:absolute;z-index:2;animation:kiteFloat 12s ease-in-out infinite;
+  filter:drop-shadow(0 0 24px rgba(0,191,165,0.5));
+  right:8%;top:15%;
+}
+@keyframes kiteFloat{
+  0%,100%{transform:translateY(0) rotate(-8deg)}
+  30%{transform:translateY(-30px) rotate(3deg)}
+  60%{transform:translateY(-15px) rotate(-5deg)}
+  80%{transform:translateY(20px) rotate(6deg)}
+}
+.kite-string{
+  position:absolute;z-index:2;right:calc(8% + 90px);top:calc(15% + 70px);
+  width:160px;height:160px;pointer-events:none;
+  animation:kiteFloat 12s ease-in-out infinite;
+}
+.wave-overlay{
+  position:absolute;bottom:-2px;left:0;right:0;z-index:3;
+  height:120px;overflow:hidden;
+}
+.wave-overlay svg{width:100%;height:100%}
+.hero-content{position:relative;z-index:4;text-align:center;padding:0 20px;max-width:860px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,191,165,0.15);border:1px solid rgba(0,191,165,0.4);
+  color:var(--teal-light);font-family:'Raleway',sans-serif;font-weight:700;
+  font-size:0.72rem;letter-spacing:2.5px;padding:7px 20px;border-radius:20px;
+  margin-bottom:24px;text-transform:uppercase;backdrop-filter:blur(8px);
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:0.5}}
+.hero h1{
+  font-size:clamp(2.8rem,7vw,5.5rem);color:#fff;
+  letter-spacing:-1.5px;margin-bottom:18px;
+  text-shadow:0 4px 40px rgba(0,0,0,0.5);
+}
+.hero h1 .accent{color:var(--teal)}
+.hero h1 .accent2{color:var(--orange)}
+.hero-sub{
+  font-size:clamp(0.95rem,2.2vw,1.2rem);color:rgba(255,255,255,0.78);
+  font-weight:400;margin-bottom:40px;letter-spacing:0.5px;
+}
+.hero-sub strong{color:var(--teal-light);font-weight:700}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{
+  font-family:'Raleway',sans-serif;font-weight:700;letter-spacing:0.8px;
+  padding:14px 36px;border-radius:40px;font-size:0.9rem;
+  cursor:pointer;transition:all 0.25s;border:none;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 30px rgba(0,191,165,0.4)}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,191,165,0.55)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5)}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:#fff;transform:translateY(-2px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 6px 30px rgba(255,107,53,0.35)}
+.btn-orange:hover{background:var(--orange-light);transform:translateY(-2px)}
+.scroll-hint{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  z-index:4;display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:rgba(255,255,255,0.5);font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;
+}
+.scroll-arrow{width:20px;height:30px;border:2px solid rgba(255,255,255,0.3);border-radius:10px;position:relative}
+.scroll-arrow::after{
+  content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);
+  width:3px;height:7px;background:rgba(255,255,255,0.6);border-radius:2px;
+  animation:scrollBounce 1.8s infinite;
+}
+@keyframes scrollBounce{0%,100%{top:5px;opacity:1}50%{top:12px;opacity:0.4}}
+
+/* ===== SECTION LABELS ===== */
+.section-label{
+  font-family:'Raleway',sans-serif;font-weight:700;font-size:0.7rem;
+  letter-spacing:3px;text-transform:uppercase;color:var(--teal);
+  margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--teal),transparent)}
+.section-title{font-size:clamp(1.9rem,4vw,3rem);margin-bottom:16px}
+.section-sub{font-size:1rem;color:var(--gray);max-width:560px}
+
+/* ===== ACTIVITIES SECTION ===== */
+.activities{padding:100px 0 80px;background:var(--offwhite)}
+.activities-header{text-align:center;margin-bottom:56px}
+.activities-header .section-sub{margin:0 auto}
+.activities-header .section-label{justify-content:center}
+.activities-header .section-label::after{display:none}
+.activities-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+}
+.activity-card{
+  border-radius:20px;overflow:hidden;position:relative;
+  min-height:360px;cursor:pointer;
+  box-shadow:0 8px 32px rgba(0,0,0,0.12);
+  transition:transform 0.35s cubic-bezier(.22,.68,0,1.2),box-shadow 0.35s;
+}
+.activity-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 56px rgba(0,0,0,0.22)}
+.activity-card:hover .card-overlay{opacity:0.85}
+.activity-card:hover .card-cta{opacity:1;transform:translateY(0)}
+.card-bg{position:absolute;inset:0;width:100%;height:100%}
+.card-bg-kite{background:linear-gradient(145deg,#00BFA5 0%,#006d5f 40%,#0A2020 100%)}
+.card-bg-yoga{background:linear-gradient(145deg,#FF6B8A 0%,#D4357A 40%,#5c1a3d 100%)}
+.card-bg-limón{background:linear-gradient(145deg,#56ab2f 0%,#2d6a18 50%,#0f3306 100%)}
+.card-bg-ocean{background:linear-gradient(145deg,#1a3c6e 0%,#0d2244 50%,#080f1e 100%)}
+.card-pattern{
+  position:absolute;inset:0;opacity:0.08;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.3) 0,rgba(255,255,255,0.3) 1px,transparent 0,transparent 50%);
+  background-size:20px 20px;
+}
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0) 55%);
+  transition:opacity 0.35s;
+}
+.card-icon{
+  position:absolute;top:28px;right:28px;
+  font-size:2.8rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  transition:transform 0.35s;
+}
+.activity-card:hover .card-icon{transform:scale(1.15) rotate(5deg)}
+.card-content{position:absolute;bottom:0;left:0;right:0;padding:28px 28px 32px;z-index:2}
+.card-tag{
+  display:inline-block;font-family:'Raleway',sans-serif;font-weight:700;
+  font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;
+  background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);
+  color:#fff;padding:4px 12px;border-radius:12px;margin-bottom:12px;
+  border:1px solid rgba(255,255,255,0.25);
+}
+.card-content h3{
+  font-size:1.6rem;color:#fff;margin-bottom:8px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.4);
+}
+.card-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0}
+.card-feat{
+  font-size:0.72rem;color:rgba(255,255,255,0.78);font-weight:600;
+  display:flex;align-items:center;gap:4px;
+}
+.card-feat::before{content:'✦';font-size:0.5rem;color:rgba(255,255,255,0.5)}
+.card-cta{
+  position:absolute;bottom:28px;right:28px;z-index:2;
+  background:rgba(255,255,255,0.2);backdrop-filter:blur(8px);
+  color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:0.75rem;
+  letter-spacing:1px;padding:9px 18px;border-radius:20px;border:1px solid rgba(255,255,255,0.35);
+  opacity:0;transform:translateY(8px);transition:opacity 0.3s,transform 0.3s;
+}
+
+/* ===== PACKAGES ===== */
+.packages{padding:100px 0;background:var(--navy)}
+.packages-header{text-align:center;margin-bottom:60px;color:#fff}
+.packages-header .section-label{justify-content:center;color:var(--gold)}
+.packages-header .section-label::after{display:none}
+.packages-header .section-title{color:#fff}
+.packages-header .section-sub{color:rgba(255,255,255,0.58);margin:0 auto}
+.packages-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.pkg-card{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);
+  border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;
+  transition:transform 0.35s,border-color 0.35s,box-shadow 0.35s;
+  display:flex;flex-direction:column;
+}
+.pkg-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--teal),transparent);
+  opacity:0;transition:opacity 0.35s;
+}
+.pkg-card:hover{transform:translateY(-8px);border-color:rgba(0,191,165,0.35);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.pkg-card:hover::before{opacity:1}
+.pkg-card.featured{
+  border-color:var(--gold);background:rgba(212,175,55,0.07);
+}
+.pkg-card.featured::before{background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:1}
+.pkg-badge{
+  position:absolute;top:-1px;right:28px;
+  background:var(--gold);color:var(--navy);font-family:'Raleway',sans-serif;
+  font-weight:800;font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;
+  padding:6px 16px;border-radius:0 0 10px 10px;
+}
+.pkg-icon{font-size:2.4rem;margin-bottom:20px}
+.pkg-name{font-size:1.3rem;color:#fff;margin-bottom:4px}
+.pkg-duration{font-size:0.82rem;color:var(--teal);font-weight:700;letter-spacing:1px;margin-bottom:20px}
+.pkg-price{
+  font-family:'Raleway',sans-serif;font-weight:900;font-size:2.8rem;
+  color:#fff;line-height:1;margin-bottom:6px;
+}
+.pkg-price span{font-size:1.2rem;font-weight:400;color:rgba(255,255,255,0.5)}
+.pkg-note{font-size:0.78rem;color:rgba(255,255,255,0.42);margin-bottom:28px}
+.pkg-divider{height:1px;background:rgba(255,255,255,0.08);margin-bottom:24px}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1}
+.pkg-features li{
+  display:flex;align-items:flex-start;gap:10px;
+  color:rgba(255,255,255,0.78);font-size:0.88rem;line-height:1.4;
+}
+.pkg-features li .check{color:var(--teal);font-size:1rem;flex-shrink:0;margin-top:1px}
+.pkg-features li.gold-feat .check{color:var(--gold)}
+.pkg-cta{margin-top:28px}
+.pkg-cta .btn{width:100%;justify-content:center}
+
+/* ===== BOOKING ===== */
+.booking{padding:100px 0;background:linear-gradient(135deg,#0a2020 0%,#003030 50%,#0A0F1E 100%);position:relative;overflow:hidden}
+.booking::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 20% 50%,rgba(0,191,165,0.08) 0%,transparent 50%),
+                   radial-gradient(circle at 80% 50%,rgba(255,107,53,0.06) 0%,transparent 50%);
+}
+.booking-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center}
+.booking-left{color:#fff}
+.booking-left .section-label{color:var(--orange)}
+.booking-left .section-title{color:#fff}
+.booking-left p{color:rgba(255,255,255,0.65);margin-bottom:24px;font-size:0.95rem}
+.booking-info{display:flex;flex-direction:column;gap:16px}
+.binfo-item{display:flex;align-items:center;gap:14px;color:rgba(255,255,255,0.75);font-size:0.9rem}
+.binfo-icon{
+  width:44px;height:44px;border-radius:12px;
+  background:rgba(0,191,165,0.12);border:1px solid rgba(0,191,165,0.25);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+}
+.booking-form{
+  background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;
+}
+.form-title{font-family:'Raleway',sans-serif;font-weight:800;color:#fff;font-size:1.4rem;margin-bottom:28px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+label{font-size:0.78rem;font-weight:700;color:var(--teal);letter-spacing:1px;text-transform:uppercase}
+input,select,textarea{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  color:#fff;font-family:'Nunito',sans-serif;font-size:0.92rem;
+  padding:12px 16px;border-radius:10px;outline:none;
+  transition:border-color 0.2s,background 0.2s;
+  -webkit-appearance:none;appearance:none;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.35)}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--teal);background:rgba(0,191,165,0.07);
+}
+select option{background:#0d2a2a;color:#fff}
+.form-submit{margin-top:8px}
+.form-submit .btn{width:100%;justify-content:center;font-size:1rem;padding:16px}
+.form-note{text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:12px}
+
+/* ===== INSTRUCTORS ===== */
+.instructors{padding:100px 0;background:#fff}
+.instructors-header{text-align:center;margin-bottom:60px}
+.instructors-header .section-label{justify-content:center}
+.instructors-header .section-label::after{display:none}
+.instructors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.instructor-card{
+  border-radius:20px;overflow:hidden;background:var(--offwhite);
+  border:1px solid rgba(0,191,165,0.12);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.instructor-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,191,165,0.15)}
+.instructor-avatar{
+  height:200px;display:flex;align-items:center;justify-content:center;
+  font-size:4rem;position:relative;overflow:hidden;
+}
+.av-bg-1{background:linear-gradient(135deg,#00BFA5,#006d5f)}
+.av-bg-2{background:linear-gradient(135deg,#FF6B35,#c44b20)}
+.av-bg-3{background:linear-gradient(135deg,#1a3c6e,#0d2244)}
+.instructor-flag{
+  position:absolute;top:16px;right:16px;font-size:1.5rem;
+  background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+.instructor-cert{
+  position:absolute;bottom:16px;left:16px;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);
+  color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:0.65rem;
+  letter-spacing:1.5px;padding:4px 12px;border-radius:10px;border:1px solid rgba(0,191,165,0.4);
+  color:var(--teal-light);
+}
+.instructor-body{padding:24px}
+.instructor-body h3{font-size:1.2rem;margin-bottom:4px}
+.instructor-specialty{font-size:0.8rem;color:var(--teal);font-weight:700;letter-spacing:0.5px;margin-bottom:12px}
+.instructor-langs{
+  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;
+}
+.lang-tag{
+  font-size:0.7rem;font-weight:700;background:rgba(0,191,165,0.1);
+  color:var(--teal-dark);padding:3px 10px;border-radius:8px;
+  border:1px solid rgba(0,191,165,0.2);letter-spacing:0.5px;
+}
+.instructor-bio{font-size:0.84rem;color:var(--gray);line-height:1.6}
+
+/* ===== GALLERY ===== */
+.gallery{padding:100px 0;background:var(--navy2)}
+.gallery-header{text-align:center;margin-bottom:56px;color:#fff}
+.gallery-header .section-label{justify-content:center;color:var(--teal)}
+.gallery-header .section-label::after{display:none}
+.gallery-header .section-title{color:#fff}
+.masonry-grid{
+  columns:3;column-gap:16px;
+}
+.masonry-item{
+  break-inside:avoid;margin-bottom:16px;border-radius:14px;overflow:hidden;
+  position:relative;cursor:pointer;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.masonry-item:hover{transform:scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+.gallery-img{
+  width:100%;display:block;
+  transition:transform 0.5s;
+}
+.masonry-item:hover .gallery-img{transform:scale(1.06)}
+.gallery-caption{
+  position:absolute;inset:0;display:flex;align-items:flex-end;
+  background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 50%);
+  padding:20px;opacity:0;transition:opacity 0.3s;
+}
+.masonry-item:hover .gallery-caption{opacity:1}
+.gallery-caption span{color:#fff;font-family:'Raleway',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:1px}
+.g1{background:linear-gradient(135deg,#00BFA5,#006d5f);height:240px}
+.g2{background:linear-gradient(135deg,#FF6B35,#c44b20);height:180px}
+.g3{background:linear-gradient(135deg,#1a3c6e,#070d1e);height:300px}
+.g4{background:linear-gradient(145deg,#56ab2f,#0f3306);height:200px}
+.g5{background:linear-gradient(135deg,#8B5CF6,#4c1d95);height:160px}
+.g6{background:linear-gradient(135deg,#D4AF37,#8a6d10);height:280px}
+.g7{background:linear-gradient(135deg,#00BFA5,#003030);height:180px}
+.g8{background:linear-gradient(135deg,#FF6B8A,#5c1a3d);height:220px}
+.g9{background:linear-gradient(145deg,#0d6efd,#0a3b8a);height:190px}
+.gallery-img-inner{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:2.5rem;opacity:0.5;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials{padding:100px 0;background:var(--offwhite);overflow:hidden}
+.testimonials-header{text-align:center;margin-bottom:60px}
+.testimonials-header .section-label{justify-content:center}
+.testimonials-header .section-label::after{display:none}
+.testi-track-wrap{overflow:hidden;position:relative}
+.testi-track-wrap::before,.testi-track-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+}
+.testi-track-wrap::before{left:0;background:linear-gradient(to right,var(--offwhite),transparent)}
+.testi-track-wrap::after{right:0;background:linear-gradient(to left,var(--offwhite),transparent)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:12px 0}
+.testi-card{
+  background:#fff;border-radius:20px;padding:32px;
+  border:1px solid rgba(0,191,165,0.12);
+  box-shadow:0 4px 24px rgba(0,0,0,0.06);
+  position:relative;
+}
+.testi-card::before{
+  content:'"';position:absolute;top:20px;right:28px;
+  font-size:5rem;color:var(--teal);opacity:0.12;
+  font-family:'Raleway',sans-serif;font-weight:900;line-height:1;
+}
+.testi-stars{display:flex;gap:3px;margin-bottom:16px}
+.star{color:var(--gold);font-size:0.9rem}
+.testi-text{font-size:0.95rem;color:#333;line-height:1.7;margin-bottom:20px;font-style:italic}
+.testi-divider{height:1px;background:rgba(0,191,165,0.12);margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{
+  width:48px;height:48px;border-radius:50%;font-size:1.4rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ta1{background:linear-gradient(135deg,#FF6B35,#c44b20)}
+.ta2{background:linear-gradient(135deg,#00BFA5,#006d5f)}
+.ta3{background:linear-gradient(135deg,#1a3c6e,#0d2244)}
+.testi-author-info strong{display:block;font-weight:700;font-size:0.9rem;margin-bottom:2px}
+.testi-author-info span{font-size:0.78rem;color:var(--gray)}
+.testi-activity{
+  display:inline-flex;align-items:center;gap:4px;margin-top:4px;
+  font-size:0.7rem;font-weight:700;color:var(--teal);letter-spacing:0.5px;
+  background:rgba(0,191,165,0.08);padding:2px 8px;border-radius:6px;
+}
+
+/* ===== SUSTAINABILITY ===== */
+.sustainability{
+  padding:100px 0;
+  background:linear-gradient(145deg,#0d2208 0%,#1a3c10 40%,#0d2208 100%);
+  position:relative;overflow:hidden;
+}
+.sustainability::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(ellipse at 30% 60%,rgba(86,171,47,0.15) 0%,transparent 60%),
+                   radial-gradient(ellipse at 70% 30%,rgba(0,191,165,0.1) 0%,transparent 50%);
+}
+.sust-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr 1fr;gap:72px;align-items:center}
+.sust-left{color:#fff}
+.sust-left .section-label{color:#7ed957}
+.sust-left .section-title{color:#fff}
+.sust-left p{color:rgba(255,255,255,0.68);margin-bottom:32px;font-size:0.95rem}
+.sust-pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sust-pillar{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;padding:20px;
+  transition:border-color 0.3s,background 0.3s;
+}
+.sust-pillar:hover{background:rgba(86,171,47,0.12);border-color:rgba(86,171,47,0.35)}
+.sust-pillar .pillar-icon{font-size:1.6rem;margin-bottom:10px}
+.sust-pillar h4{color:#fff;font-size:0.95rem;margin-bottom:6px}
+.sust-pillar p{color:rgba(255,255,255,0.55);font-size:0.8rem;line-height:1.5}
+.sust-right{display:flex;flex-direction:column;gap:20px}
+.sust-stat{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(86,171,47,0.2);
+  border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;
+}
+.sust-stat-num{font-family:'Raleway',sans-serif;font-weight:900;font-size:2.4rem;color:#7ed957;line-height:1}
+.sust-stat-label{color:rgba(255,255,255,0.65);font-size:0.88rem;line-height:1.4}
+.sust-stat-label strong{color:#fff;display:block;font-size:0.95rem;margin-bottom:2px}
+.sust-cert{display:flex;align-items:center;gap:12px;margin-top:4px}
+.cert-badge{
+  background:rgba(86,171,47,0.15);border:1px solid rgba(86,171,47,0.35);
+  color:#7ed957;font-family:'Raleway',sans-serif;font-weight:700;font-size:0.68rem;
+  letter-spacing:1.5px;padding:5px 14px;border-radius:12px;
+}
+
+/* ===== CONTACT / FOOTER ===== */
+.contact-footer{background:var(--navy);padding:80px 0 0}
+.contact-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:60px}
+.cf-brand .nav-logo{font-size:1.4rem;margin-bottom:16px;display:inline-flex}
+.cf-brand p{color:rgba(255,255,255,0.55);font-size:0.88rem;line-height:1.7;max-width:260px;margin-bottom:20px}
+.social-links{display:flex;gap:10px}
+.social-link{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.6);font-size:1rem;
+  transition:background 0.2s,color 0.2s,border-color 0.2s;cursor:pointer;
+}
+.social-link:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.cf-col h4{
+  font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:20px;
+}
+.cf-links{display:flex;flex-direction:column;gap:10px}
+.cf-links a{color:rgba(255,255,255,0.58);font-size:0.88rem;transition:color 0.2s}
+.cf-links a:hover{color:var(--teal)}
+.cf-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px}
+.cf-contact-item .icon{color:var(--teal);font-size:1rem;flex-shrink:0;margin-top:2px}
+.cf-contact-item span{color:rgba(255,255,255,0.58);font-size:0.85rem;line-height:1.5}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,0.07);padding:24px 0;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:12px;
+}
+.footer-copy{color:rgba(255,255,255,0.35);font-size:0.78rem}
+.footer-copy span{color:var(--teal)}
+.footer-demo{
+  background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.25);
+  color:var(--gold);font-family:'Raleway',sans-serif;font-weight:700;font-size:0.68rem;
+  letter-spacing:1.5px;padding:5px 16px;border-radius:12px;text-transform:uppercase;
+}
+.footer-demo a{color:var(--gold);text-decoration:underline}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+
+/* ===== STRIPE ACCENT ===== */
+.stripe-divider{
+  height:4px;
+  background:linear-gradient(90deg,var(--teal),var(--orange),var(--gold),var(--teal));
+  background-size:200% 100%;
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .activities-grid{grid-template-columns:1fr 1fr}
+  .packages-grid{grid-template-columns:1fr}
+  .booking-inner{grid-template-columns:1fr;gap:40px}
+  .instructors-grid{grid-template-columns:1fr 1fr}
+  .masonry-grid{columns:2}
+  .testi-grid{grid-template-columns:1fr}
+  .sust-inner{grid-template-columns:1fr;gap:48px}
+  .contact-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .kite-svg{display:none}
+}
+@media(max-width:768px){
+  .nav-links,.lang-switch{display:none}
+  .hamburger{display:flex}
+  .hero h1{font-size:2.4rem}
+  .activities-grid{grid-template-columns:1fr}
+  .activity-card{min-height:280px}
+  .packages-grid{grid-template-columns:1fr}
+  .instructors-grid{grid-template-columns:1fr}
+  .masonry-grid{columns:2}
+  .form-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .sust-pillars{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .masonry-grid{columns:1}
+  .hero-ctas{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== FLOATING ELEMENTS ===== -->
+<div class="demo-watermark">DEMO BY <a href="https://unityspiritpartners.com" target="_blank">UNITY SPIRIT PARTNERS</a> ✦ unityspiritpartners.com</div>
+
+<div class="whatsapp-float" title="WhatsApp us!">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <span class="kite-icon">🪁</span>
+    <span>Carib<span>é</span></span>&nbsp;Kite&nbsp;<span style="color:var(--orange)">&amp;</span>&nbsp;Wellness
+  </div>
+  <div class="nav-links">
+    <a href="#activities">Kitesurf</a>
+    <a href="#activities">Wellness</a>
+    <a href="#activities">Tours</a>
+    <a href="#packages">Packages</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#booking" class="cta-nav">Book Now</a>
+    <div class="lang-switch">
+      <button class="active" onclick="setLang('en')">EN</button>
+      <button onclick="setLang('fr')">FR</button>
+      <button onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#activities" onclick="toggleMenu()">🪁 Kitesurf</a>
+  <a href="#activities" onclick="toggleMenu()">🧘 Wellness</a>
+  <a href="#activities" onclick="toggleMenu()">🌿 Tours</a>
+  <a href="#packages" onclick="toggleMenu()">📦 Packages</a>
+  <a href="#gallery" onclick="toggleMenu()">🖼 Gallery</a>
+  <a href="#booking" onclick="toggleMenu()" style="color:var(--teal)">✨ Book Now</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <canvas id="waveCanvas"></canvas>
+  <div class="hero-particles" id="particles"></div>
+
+  <!-- Animated kite SVG -->
+  <div class="kite-svg">
+    <svg width="180" height="160" viewBox="0 0 180 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="90,10 170,80 90,150 10,80" fill="none" stroke="rgba(0,191,165,0.7)" stroke-width="2"/>
+      <polygon points="90,10 170,80 90,80" fill="rgba(0,191,165,0.25)"/>
+      <polygon points="90,10 10,80 90,80" fill="rgba(255,107,53,0.2)"/>
+      <polygon points="90,80 170,80 90,150" fill="rgba(0,191,165,0.15)"/>
+      <polygon points="90,80 10,80 90,150" fill="rgba(212,175,55,0.15)"/>
+      <line x1="90" y1="10" x2="90" y2="150" stroke="rgba(0,191,165,0.4)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="10" y1="80" x2="170" y2="80" stroke="rgba(0,191,165,0.4)" stroke-width="1" stroke-dasharray="4,4"/>
+      <circle cx="90" cy="10" r="4" fill="#00BFA5"/>
+      <circle cx="90" cy="150" r="4" fill="#FF6B35"/>
+      <circle cx="10" cy="80" r="4" fill="#D4AF37"/>
+      <circle cx="170" cy="80" r="4" fill="#D4AF37"/>
+    </svg>
+  </div>
+  <!-- kite string -->
+  <svg class="kite-string" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="right:calc(8% - 30px);top:calc(15% + 140px)">
+    <path d="M90,5 C80,60 120,100 70,160" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none" stroke-dasharray="6,4"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      El Portillo Beach · Las Terrenas · Samaná
+    </div>
+    <h1>RIDE THE WIND.<br/><span class="accent">FIND</span> YOUR <span class="accent2">PEACE.</span></h1>
+    <p class="hero-sub">
+      <strong>Kitesurfing</strong> &nbsp;•&nbsp; <strong>Yoga Retreats</strong> &nbsp;•&nbsp; <strong>El Limón Tours</strong> &nbsp;•&nbsp; Las Terrenas, Samaná
+    </p>
+    <div class="hero-ctas">
+      <a href="#booking" class="btn btn-primary">🪁 Book a Lesson</a>
+      <a href="#packages" class="btn btn-outline">✨ See Packages</a>
+    </div>
+  </div>
+  <div class="wave-overlay">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,120 L0,120 Z" fill="#f4f8f7"/>
+    </svg>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ===== STRIPE ===== -->
+<div class="stripe-divider"></div>
+
+<!-- ===== ACTIVITIES ===== -->
+<section class="activities" id="activities">
+  <div class="container">
+    <div class="activities-header reveal">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Adventures for Every Soul</h2>
+      <p class="section-sub">From electric kite sessions on El Portillo Beach to serene sunrise yoga — we craft experiences that move you.</p>
+    </div>
+    <div class="activities-grid">
+
+      <div class="activity-card reveal">
+        <div class="card-bg card-bg-kite"></div>
+        <div class="card-pattern"></div>
+        <div class="card-overlay"></div>
+        <div class="card-icon">🪁</div>
+        <div class="card-content">
+          <div class="card-tag">⚡ IKO Certified School</div>
+          <h3>Kitesurfing</h3>
+          <div class="card-features">
+            <span class="card-feat">IKO Level 1–4</span>
+            <span class="card-feat">All levels welcome</span>
+            <span class="card-feat">El Portillo Beach</span>
+            <span class="card-feat">Private &amp; group</span>
+          </div>
+        </div>
+        <div class="card-cta">Explore →</div>
+      </div>
+
+      <div class="activity-card reveal reveal-delay-1">
+        <div class="card-bg card-bg-yoga"></div>
+        <div class="card-pattern"></div>
+        <div class="card-overlay"></div>
+        <div class="card-icon">🧘</div>
+        <div class="card-content">
+          <div class="card-tag">🌅 Beach &amp; Studio Sessions</div>
+          <h3>Yoga Retreats</h3>
+          <div class="card-features">
+            <span class="card-feat">Sunrise &amp; sunset</span>
+            <span class="card-feat">Vinyasa · Yin · Nidra</span>
+            <span class="card-feat">Mindfulness coaching</span>
+            <span class="card-feat">Breathwork included</span>
+          </div>
+        </div>
+        <div class="card-cta">Explore →</div>
+      </div>
+
+      <div class="activity-card reveal reveal-delay-2">
+        <div class="card-bg card-bg-limón"></div>
+        <div class="card-pattern"></div>
+        <div class="card-overlay"></div>
+        <div class="card-icon">🌿</div>
+        <div class="card-content">
+          <div class="card-tag">🏞 Guided Nature Experience</div>
+          <h3>El Limón Waterfall</h3>
+          <div class="card-features">
+            <span class="card-feat">Guided jungle hike</span>
+            <span class="card-feat">Horse riding option</span>
+            <span class="card-feat">Natural pool swim</span>
+            <span class="card-feat">Local lunch included</span>
+          </div>
+        </div>
+        <div class="card-cta">Explore →</div>
+      </div>
+
+      <div class="activity-card reveal reveal-delay-3">
+        <div class="card-bg card-bg-ocean"></div>
+        <div class="card-pattern"></div>
+        <div class="card-overlay"></div>
+        <div class="card-icon">🐋</div>
+        <div class="card-content">
+          <div class="card-tag">🌊 Ocean Adventures</div>
+          <h3>Ocean Tours</h3>
+          <div class="card-features">
+            <span class="card-feat">Snorkeling excursions</span>
+            <span class="card-feat">Catamaran day trips</span>
+            <span class="card-feat">Whale watching (Jan–Mar)</span>
+            <span class="card-feat">Cayo Levantado</span>
+          </div>
+        </div>
+        <div class="card-cta">Explore →</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PACKAGES ===== -->
+<section class="packages" id="packages">
+  <div class="container">
+    <div class="packages-header reveal">
+      <div class="section-label">Curated Escapes</div>
+      <h2 class="section-title">Choose Your Adventure</h2>
+      <p class="section-sub">All-inclusive packages crafted to maximize your time in paradise. Prices per person.</p>
+    </div>
+    <div class="packages-grid">
+
+      <!-- Kite Week -->
+      <div class="pkg-card reveal">
+        <div class="pkg-icon">🪁</div>
+        <h3 class="pkg-name">Kite Week</h3>
+        <div class="pkg-duration">7 NIGHTS · 8 DAYS</div>
+        <div class="pkg-price">$850 <span>/ person</span></div>
+        <div class="pkg-note">Deposit: $200 · Balance on arrival</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="check">✦</span> 10 hours of IKO-certified instruction</li>
+          <li><span class="check">✦</span> All kite equipment provided</li>
+          <li><span class="check">✦</span> 7 nights beach guesthouse</li>
+          <li><span class="check">✦</span> Airport transfer (POP ↔ Las Terrenas)</li>
+          <li><span class="check">✦</span> 1 El Limón day trip</li>
+          <li><span class="check">✦</span> Welcome dinner on the beach</li>
+        </ul>
+        <div class="pkg-cta">
+          <a href="#booking" class="btn btn-primary">Book Kite Week</a>
+        </div>
+      </div>
+
+      <!-- Wellness Retreat (featured) -->
+      <div class="pkg-card featured reveal reveal-delay-1">
+        <div class="pkg-badge">Most Popular</div>
+        <div class="pkg-icon">🧘</div>
+        <h3 class="pkg-name">Wellness Retreat</h3>
+        <div class="pkg-duration">7 NIGHTS · 8 DAYS</div>
+        <div class="pkg-price">$1,100 <span>/ person</span></div>
+        <div class="pkg-note">Deposit: $250 · Balance on arrival</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="check gold-feat">✦</span> 14 yoga &amp; meditation sessions</li>
+          <li><span class="check gold-feat">✦</span> 1:1 wellness coaching session</li>
+          <li><span class="check gold-feat">✦</span> Full board (21 meals, organic)</li>
+          <li><span class="check gold-feat">✦</span> El Limón + Ocean tour included</li>
+          <li><span class="check gold-feat">✦</span> 7 nights premium guesthouse</li>
+          <li><span class="check gold-feat">✦</span> Airport transfers</li>
+          <li><span class="check gold-feat">✦</span> Digital wellness journal</li>
+        </ul>
+        <div class="pkg-cta">
+          <a href="#booking" class="btn btn-orange">Book Retreat</a>
+        </div>
+      </div>
+
+      <!-- CUCUYO Experience -->
+      <div class="pkg-card reveal reveal-delay-2">
+        <div class="pkg-icon">✨</div>
+        <h3 class="pkg-name">CUCUYO Experience</h3>
+        <div class="pkg-duration">10 NIGHTS · 11 DAYS</div>
+        <div class="pkg-price">$1,400 <span>/ person</span></div>
+        <div class="pkg-note">Deposit: $300 · Balance on arrival</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="check">✦</span> 10h kitesurfing + all equipment</li>
+          <li><span class="check">✦</span> 10 yoga &amp; breathwork sessions</li>
+          <li><span class="check">✦</span> El Limón hike &amp; horse riding</li>
+          <li><span class="check">✦</span> Whale watching catamaran trip</li>
+          <li><span class="check">✦</span> Cultural immersion: local cooking</li>
+          <li><span class="check">✦</span> Full board + 10 nights deluxe</li>
+          <li><span class="check">✦</span> All transfers + photo package</li>
+        </ul>
+        <div class="pkg-cta">
+          <a href="#booking" class="btn btn-primary">Book CUCUYO</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section class="booking" id="booking">
+  <div class="container">
+    <div class="booking-inner">
+      <div class="booking-left reveal">
+        <div class="section-label">Reserve Your Spot</div>
+        <h2 class="section-title" style="color:#fff">Book Online,<br/>Pay Deposit</h2>
+        <p>Secure your session or package with just a small deposit. Our team confirms within 24 hours via WhatsApp or email.</p>
+        <div class="booking-info">
+          <div class="binfo-item">
+            <div class="binfo-icon">📍</div>
+            <span>El Portillo Beach, Las Terrenas, Samaná, Dominican Republic</span>
+          </div>
+          <div class="binfo-item">
+            <div class="binfo-icon">⏰</div>
+            <span>Open daily 7:00 AM – 7:00 PM · Lessons by appointment</span>
+          </div>
+          <div class="binfo-item">
+            <div class="binfo-icon">🌊</div>
+            <span>Wind conditions checked daily — we reschedule, never cancel</span>
+          </div>
+          <div class="binfo-item">
+            <div class="binfo-icon">💳</div>
+            <span>Deposits via card or PayPal · Balance in cash on arrival</span>
+          </div>
+        </div>
+      </div>
+      <div class="booking-form reveal reveal-delay-1">
+        <div class="form-title">✦ Request a Booking</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="e.g. Sophie"/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="e.g. Martin"/>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com"/>
+          </div>
+          <div class="form-group">
+            <label>WhatsApp / Phone</label>
+            <input type="tel" placeholder="+1 (809) ..."/>
+          </div>
+          <div class="form-group full">
+            <label>Activity / Package</label>
+            <select>
+              <option value="">— Select an experience —</option>
+              <optgroup label="Single Activities">
+                <option>🪁 Kitesurfing Lesson (2h)</option>
+                <option>🧘 Yoga Session (90min)</option>
+                <option>🌿 El Limón Tour (full day)</option>
+                <option>🐋 Ocean Tour / Whale Watching</option>
+              </optgroup>
+              <optgroup label="Packages">
+                <option>📦 Kite Week — $850</option>
+                <option>📦 Wellness Retreat — $1,100</option>
+                <option>📦 CUCUYO Experience — $1,400</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date"/>
+          </div>
+          <div class="form-group">
+            <label>Number of People</label>
+            <select>
+              <option>1 person</option>
+              <option>2 people</option>
+              <option>3 people</option>
+              <option>4+ people (group)</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Skill Level (kite/yoga)</label>
+            <select>
+              <option>Complete beginner — never tried</option>
+              <option>Beginner — some experience</option>
+              <option>Intermediate — comfortable basics</option>
+              <option>Advanced — looking to progress</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Special Requests / Notes</label>
+            <textarea rows="3" placeholder="Dietary needs, accessibility, accommodation questions…"></textarea>
+          </div>
+        </div>
+        <div class="form-submit">
+          <button class="btn btn-orange" onclick="submitBooking()">🌊 Book &amp; Pay Deposit →</button>
+        </div>
+        <p class="form-note">🔒 Your info is secure. No spam. Confirmation within 24h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTORS ===== -->
+<section class="instructors" id="instructors">
+  <div class="container">
+    <div class="instructors-header reveal">
+      <div class="section-label">Meet the Team</div>
+      <h2 class="section-title">Your Expert Guides</h2>
+      <p class="section-sub" style="margin:0 auto">Certified, passionate, multilingual — our instructors have taught thousands of students from across the globe.</p>
+    </div>
+    <div class="instructors-grid">
+
+      <div class="instructor-card reveal">
+        <div class="instructor-avatar av-bg-1">
+          <span>🤙</span>
+          <div class="instructor-flag">🇧🇷</div>
+          <div class="instructor-cert">IKO Level 3 · 8 Yrs</div>
+        </div>
+        <div class="instructor-body">
+          <h3>Carlos "Kiko" Mendes</h3>
+          <div class="instructor-specialty">⚡ Head Kitesurfing Instructor</div>
+          <div class="instructor-langs">
+            <span class="lang-tag">🇧🇷 Portuguese</span>
+            <span class="lang-tag">🇪🇸 Spanish</span>
+            <span class="lang-tag">🇬🇧 English</span>
+          </div>
+          <p class="instructor-bio">Brazilian-born champion kiter with 8+ years of IKO-certified instruction. Carlos specializes in beginners and has an uncanny ability to fast-track progress in just 3 days.</p>
+        </div>
+      </div>
+
+      <div class="instructor-card reveal reveal-delay-1">
+        <div class="instructor-avatar av-bg-2">
+          <span>🧘</span>
+          <div class="instructor-flag">🇫🇷</div>
+          <div class="instructor-cert">RYT-500 · Yoga Alliance</div>
+        </div>
+        <div class="instructor-body">
+          <h3>Amélie Rousseau</h3>
+          <div class="instructor-specialty">🌅 Lead Wellness & Yoga Guide</div>
+          <div class="instructor-langs">
+            <span class="lang-tag">🇫🇷 French</span>
+            <span class="lang-tag">🇬🇧 English</span>
+            <span class="lang-tag">🇪🇸 Spanish</span>
+          </div>
+          <p class="instructor-bio">RYT-500 certified with specializations in Yin, Vinyasa, and Yoga Nidra. Amélie blends traditional practice with Caribbean energy for transformative wellness retreats.</p>
+        </div>
+      </div>
+
+      <div class="instructor-card reveal reveal-delay-2">
+        <div class="instructor-avatar av-bg-3">
+          <span>🌿</span>
+          <div class="instructor-flag">🇩🇴</div>
+          <div class="instructor-cert">Local Expert · 12 Yrs</div>
+        </div>
+        <div class="instructor-body">
+          <h3>Javier "Javito" Santos</h3>
+          <div class="instructor-specialty">🏞 Tour Guide & Cultural Host</div>
+          <div class="instructor-langs">
+            <span class="lang-tag">🇪🇸 Spanish</span>
+            <span class="lang-tag">🇬🇧 English</span>
+            <span class="lang-tag">🇩🇪 German</span>
+          </div>
+          <p class="instructor-bio">Las Terrenas native with 12 years of guiding experience. Javito's deep knowledge of Samaná's ecosystems and culture turns every excursion into an unforgettable story.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <div class="section-label">Visual Journey</div>
+      <h2 class="section-title">Feel the Vibe</h2>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.95rem">El Portillo Beach · El Limón · Samaná Bay · Cayo Levantado</p>
+    </div>
+    <div class="masonry-grid">
+      <div class="masonry-item reveal">
+        <div class="gallery-img g1"><div class="gallery-img-inner">🪁</div></div>
+        <div class="gallery-caption"><span>Kite sessions at El Portillo</span></div>
+      </div>
+      <div class="masonry-item reveal reveal-delay-1">
+        <div class="gallery-img g2"><div class="gallery-img-inner">🌅</div></div>
+        <div class="gallery-caption"><span>Sunrise yoga on the beach</span></div>
+      </div>
+      <div class="masonry-item reveal reveal-delay-2">
+        <div class="gallery-img g3"><div class="gallery-img-inner">🐋</div></div>
+        <div class="gallery-caption"><span>Humpback whales · Samaná Bay</span></div>
+      </div>
+      <div class="masonry-item reveal">
+        <div class="gallery-img g4"><div class="gallery-img-inner">🌿</div></div>
+        <div class="gallery-caption"><span>El Limón waterfall trail</span></div>
+      </div>
+      <div class="masonry-item reveal reveal-delay-1">
+        <div class="gallery-img g5"><div class="gallery-img-inner">🧘</div></div>
+        <div class="gallery-caption"><span>Group breathwork session</span></div>
+      </div>
+      <div class="masonry-item reveal reveal-delay-2">
+        <div class="gallery-img g6"><div class="gallery-img-inner">⛵</div></div>
+        <div class="gallery-caption"><span>Catamaran day · Cayo Levantado</span></div>
+      </div>
+      <div class="masonry-item reveal">
+        <div class="gallery-img g7"><div class="gallery-img-inner">🌊</div></div>
+        <div class="gallery-caption"><span>Snorkeling reef excursion</span></div>
+      </div>
+      <div class="masonry-item reveal reveal-delay-1">
+        <div class="gallery-img g8"><div class="gallery-img-inner">🎶</div></div>
+        <div class="gallery-caption"><span>Beach bonfire &amp; cultural night</span></div>
+      </div>
+      <div class="masonry-item reveal reveal-delay-2">
+        <div class="gallery-img g9"><div class="gallery-img-inner">🐠</div></div>
+        <div class="gallery-caption"><span>Marine life · Caribbean reef</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="section-label">What Students Say</div>
+      <h2 class="section-title">Real Stories, Real Transformations</h2>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi-card reveal">
+        <div class="testi-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testi-text">"I came to Las Terrenas knowing nothing about kitesurfing. After 5 days with Carlos, I was riding upwind on my own. The wind conditions at El Portillo are absolutely perfect — I've kited in 12 countries and this is top 3 easily."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-author">
+          <div class="testi-avatar ta1">🇳🇱</div>
+          <div class="testi-author-info">
+            <strong>Pieter van den Berg</strong>
+            <span>Amsterdam, Netherlands</span>
+            <div class="testi-activity">🪁 Kite Week Package</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testi-text">"Le Wellness Retreat a complètement changé ma façon d'aborder le stress. Amélie est une enseignante extraordinaire — sa classe de Yoga Nidra au coucher du soleil sur la plage restera gravée dans ma mémoire. Samaná est magique."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-author">
+          <div class="testi-avatar ta2">🇫🇷</div>
+          <div class="testi-author-info">
+            <strong>Camille Lefèvre</strong>
+            <span>Lyon, France</span>
+            <div class="testi-activity">🧘 Wellness Retreat</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testi-text">"The CUCUYO Experience was the best 11 days of my life, period. We kited, we hiked, we watched humpback whales from a catamaran, and we cooked with a local family. Javito is a legend — he knows every secret spot in Samaná."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-author">
+          <div class="testi-avatar ta3">🇺🇸</div>
+          <div class="testi-author-info">
+            <strong>Bryce Callahan</strong>
+            <span>Austin, Texas, USA</span>
+            <div class="testi-activity">✨ CUCUYO Experience</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUSTAINABILITY ===== -->
+<section class="sustainability" id="sustainability">
+  <div class="container">
+    <div class="sust-inner">
+      <div class="sust-left reveal">
+        <div class="section-label">Eco-Tourism Commitment</div>
+        <h2 class="section-title">We Protect What We Share</h2>
+        <p>Las Terrenas and the Samaná Peninsula are among the most biodiverse and pristine environments in the Caribbean. We believe adventure and conservation are inseparable — every experience we offer is designed to give back more than it takes.</p>
+        <div class="sust-cert">
+          <div class="cert-badge">🌱 Eco-Certified</div>
+          <div class="cert-badge">🐋 Whale Watching Code</div>
+          <div class="cert-badge">♻️ Plastic-Free Camp</div>
+        </div>
+        <br/>
+        <div class="sust-pillars">
+          <div class="sust-pillar">
+            <div class="pillar-icon">🌊</div>
+            <h4>Ocean Stewardship</h4>
+            <p>Monthly reef cleanups with local dive schools. Biodegradable sunscreen required.</p>
+          </div>
+          <div class="sust-pillar">
+            <div class="pillar-icon">🌿</div>
+            <h4>Trail Preservation</h4>
+            <p>El Limón guided groups capped at 8 per trip to protect native flora and fauna.</p>
+          </div>
+          <div class="sust-pillar">
+            <div class="pillar-icon">🤝</div>
+            <h4>Community First</h4>
+            <p>80% of staff hired locally. We source meals from family farms in Las Terrenas.</p>
+          </div>
+          <div class="sust-pillar">
+            <div class="pillar-icon">🐋</div>
+            <h4>Whale Respect Protocol</h4>
+            <p>IWC-compliant whale watching. Engines off at 100m. No flash photography.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sust-right reveal reveal-delay-1">
+        <div class="sust-stat">
+          <div class="sust-stat-num">340+</div>
+          <div class="sust-stat-label">
+            <strong>Students Taught</strong>
+            Kitesurfers who learned to ride at El Portillo Beach since 2019
+          </div>
+        </div>
+        <div class="sust-stat">
+          <div class="sust-stat-num">12</div>
+          <div class="sust-stat-label">
+            <strong>Reef Cleanups</strong>
+            Coordinated dives removing plastic from Samaná Bay per year
+          </div>
+        </div>
+        <div class="sust-stat">
+          <div class="sust-stat-num">85%</div>
+          <div class="sust-stat-label">
+            <strong>Return Guest Rate</strong>
+            Of our retreat guests return or refer a friend within 12 months
+          </div>
+        </div>
+        <div class="sust-stat">
+          <div class="sust-stat-num">0</div>
+          <div class="sust-stat-label">
+            <strong>Single-Use Plastics</strong>
+            At all our beach stations, lessons, and excursions since 2022
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / FOOTER ===== -->
+<footer class="contact-footer" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="cf-brand reveal">
+        <div class="nav-logo" style="color:#fff;font-size:1.2rem;font-family:Raleway,sans-serif;font-weight:900;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px">
+          🪁 Carib<span style="color:var(--teal)">é</span> Kite &amp; Wellness
+        </div>
+        <p>El Portillo Beach, Las Terrenas, Samaná, Dominican Republic. The Caribbean's premier kite &amp; wellness destination.</p>
+        <div class="social-links">
+          <div class="social-link" title="Instagram">📸</div>
+          <div class="social-link" title="Facebook">👍</div>
+          <div class="social-link" title="YouTube">▶️</div>
+          <div class="social-link" title="TikTok">🎵</div>
+          <div class="social-link" title="WhatsApp" style="background:rgba(37,211,102,0.15);border-color:rgba(37,211,102,0.3)">💬</div>
+        </div>
+      </div>
+      <div class="cf-col reveal reveal-delay-1">
+        <h4>Experiences</h4>
+        <div class="cf-links">
+          <a href="#activities">🪁 Kitesurfing Lessons</a>
+          <a href="#activities">🧘 Yoga Retreats</a>
+          <a href="#activities">🌿 El Limón Waterfall</a>
+          <a href="#activities">🐋 Ocean Tours</a>
+          <a href="#activities">⛵ Catamaran Trips</a>
+        </div>
+      </div>
+      <div class="cf-col reveal reveal-delay-2">
+        <h4>Information</h4>
+        <div class="cf-links">
+          <a href="#packages">Packages &amp; Pricing</a>
+          <a href="#instructors">Meet the Team</a>
+          <a href="#sustainability">Eco-Tourism</a>
+          <a href="#booking">Book a Session</a>
+          <a href="#">Gift Vouchers</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+      <div class="cf-col reveal reveal-delay-3">
+        <h4>Find Us</h4>
+        <div class="cf-contact-item">
+          <span class="icon">📍</span>
+          <span>El Portillo Beach, Las Terrenas, Samaná 32000, Dominican Republic</span>
+        </div>
+        <div class="cf-contact-item">
+          <span class="icon">📞</span>
+          <span>+1 (809) 000-0000</span>
+        </div>
+        <div class="cf-contact-item">
+          <span class="icon">✉️</span>
+          <span>hola@caribe-kite.com</span>
+        </div>
+        <div class="cf-contact-item">
+          <span class="icon">⏰</span>
+          <span>Daily 7:00 AM – 7:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 <span>Caribé Kite &amp; Wellness</span> · El Portillo Beach, Las Terrenas · Fictional Demo</div>
+      <div class="footer-demo">Demo by <a href="https://unityspiritpartners.com" target="_blank">Unity Spirit Partners</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ---- NAVBAR SCROLL ----
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ---- MOBILE MENU ----
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+
+// ---- LANGUAGE SWITCHER (cosmetic demo) ----
+const translations = {
+  en: { headline: 'RIDE THE WIND.<br/><span class="accent">FIND</span> YOUR <span class="accent2">PEACE.</span>', sub: '<strong>Kitesurfing</strong> &nbsp;•&nbsp; <strong>Yoga Retreats</strong> &nbsp;•&nbsp; <strong>El Limón Tours</strong> &nbsp;•&nbsp; Las Terrenas, Samaná' },
+  fr: { headline: 'CHEVAUCHE LE VENT.<br/><span class="accent">TROUVE</span> TA <span class="accent2">PAIX.</span>', sub: '<strong>Kitesurf</strong> &nbsp;•&nbsp; <strong>Retraites Yoga</strong> &nbsp;•&nbsp; <strong>Tours El Limón</strong> &nbsp;•&nbsp; Las Terrenas, Samaná' },
+  es: { headline: 'CABALGA EL VIENTO.<br/><span class="accent">ENCUENTRA</span> TU <span class="accent2">PAZ.</span>', sub: '<strong>Kitesurf</strong> &nbsp;•&nbsp; <strong>Retiros de Yoga</strong> &nbsp;•&nbsp; <strong>Tours El Limón</strong> &nbsp;•&nbsp; Las Terrenas, Samaná' }
+};
+function setLang(lang) {
+  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.lang-switch button[onclick="setLang('${lang}')"]`).classList.add('active');
+  const h = document.querySelector('.hero h1');
+  const s = document.querySelector('.hero-sub');
+  if (h && translations[lang]) h.innerHTML = translations[lang].headline;
+  if (s && translations[lang]) s.innerHTML = translations[lang].sub;
+}
+
+// ---- WAVE CANVAS ----
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+let t = 0;
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function drawWaves() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const waves = [
+    { amp: 40, freq: 0.012, speed: 0.018, yBase: 0.55, color: 'rgba(0,191,165,0.18)', width: 2 },
+    { amp: 28, freq: 0.018, speed: 0.025, yBase: 0.62, color: 'rgba(0,191,165,0.12)', width: 1.5 },
+    { amp: 55, freq: 0.008, speed: 0.012, yBase: 0.72, color: 'rgba(255,107,53,0.1)', width: 2.5 },
+    { amp: 20, freq: 0.025, speed: 0.035, yBase: 0.45, color: 'rgba(212,175,55,0.08)', width: 1 },
+  ];
+  waves.forEach(w => {
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height * w.yBase);
+    for (let x = 0; x <= canvas.width; x += 3) {
+      const y = canvas.height * w.yBase + Math.sin(x * w.freq + t * w.speed * 100) * w.amp;
+      ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = w.color;
+    ctx.lineWidth = w.width;
+    ctx.stroke();
+  });
+  t += 0.016;
+  requestAnimationFrame(drawWaves);
+}
+drawWaves();
+
+// ---- PARTICLES ----
+const particleContainer = document.getElementById('particles');
+const particleCount = 18;
+for (let i = 0; i < particleCount; i++) {
+  const p = document.createElement('div');
+  p.classList.add('particle');
+  const size = Math.random() * 6 + 2;
+  const left = Math.random() * 100;
+  const duration = Math.random() * 12 + 8;
+  const delay = Math.random() * 10;
+  const drift = (Math.random() - 0.5) * 200;
+  p.style.cssText = `
+    width:${size}px;height:${size}px;
+    left:${left}%;
+    animation-duration:${duration}s;
+    animation-delay:-${delay}s;
+    --drift:${drift}px;
+    opacity:${Math.random() * 0.6 + 0.2};
+  `;
+  particleContainer.appendChild(p);
+}
+
+// ---- SCROLL REVEAL ----
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ---- BOOKING SUBMIT (demo) ----
+function submitBooking() {
+  const inputs = document.querySelectorAll('.booking-form input, .booking-form select');
+  let valid = true;
+  inputs.forEach(i => {
+    if (i.type !== 'submit' && !i.value) {
+      i.style.borderColor = 'var(--orange)';
+      valid = false;
+      setTimeout(() => i.style.borderColor = '', 2500);
+    }
+  });
+  if (!valid) { alert('Please fill in all fields to continue.'); return; }
+  const btn = document.querySelector('.form-submit .btn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ Request Sent! We\'ll confirm within 24h';
+  btn.style.background = '#25D366';
+  setTimeout(() => {
+    btn.innerHTML = orig;
+    btn.style.background = '';
+  }, 4000);
+}
+
+// ---- SMOOTH ACTIVE NAV ----
+const sections = document.querySelectorAll('section[id], footer[id]');
+const navLinks = document.querySelectorAll('.nav-links a:not(.cta-nav)');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--teal)' : '';
+  });
+});
+</script>
+</body>
+</html>

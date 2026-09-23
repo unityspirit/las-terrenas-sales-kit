@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Mer — Restaurant &amp; Beach Club | Las Terrenas, Samaná</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       RESET & ROOT VARIABLES
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --burgundy: #4A0E0E;
+      --burgundy-light: #6B1515;
+      --amber: #D4891A;
+      --amber-light: #E8A030;
+      --cream: #FFF8F0;
+      --navy: #0A0F1E;
+      --gold: #D4AF37;
+      --gold-light: #E8C94A;
+      --white: #ffffff;
+      --text-dark: #1A1A1A;
+      --text-muted: #6B6B6B;
+      --border-gold: rgba(212, 175, 55, 0.3);
+      --ff-heading: 'Cormorant Garamond', Georgia, serif;
+      --ff-body: 'Lato', sans-serif;
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --shadow-gold: 0 8px 40px rgba(212, 175, 55, 0.2);
+      --shadow-dark: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =============================================
+       DEMO WATERMARK
+    ============================================= */
+    .demo-watermark {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 9999;
+      background: rgba(212, 175, 55, 0.92);
+      color: var(--navy);
+      font-family: var(--ff-body);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+      line-height: 1.5;
+      text-align: center;
+      pointer-events: none;
+    }
+    .demo-watermark a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* =============================================
+       SCROLLBAR
+    ============================================= */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4%;
+      height: 72px;
+      background: transparent;
+      transition: background 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(10, 15, 30, 0.97);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+    }
+    .nav-logo {
+      font-family: var(--ff-heading);
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo span {
+      font-family: var(--ff-body);
+      font-size: 0.52rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      color: rgba(212, 175, 55, 0.7);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 248, 240, 0.85);
+      text-decoration: none;
+      position: relative;
+      transition: var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.35s ease;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .lang-switcher {
+      display: flex;
+      gap: 0.5rem;
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+    }
+    .lang-switcher button {
+      background: none;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: rgba(255,248,240,0.65);
+      padding: 3px 9px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--ff-body);
+      font-size: 0.68rem;
+    }
+    .lang-switcher button.active,
+    .lang-switcher button:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 26px; height: 1.5px;
+      background: var(--cream);
+      transition: var(--transition);
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(10, 15, 30, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      padding: 2rem 4%;
+      gap: 1.4rem;
+      border-top: 1px solid var(--border-gold);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border-gold);
+      transition: var(--transition);
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(212, 137, 26, 0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 20%, rgba(74, 14, 14, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+        linear-gradient(160deg, #0A0F1E 0%, #1a0a0a 40%, #2d1507 65%, #0a0f1e 100%);
+      animation: heroShift 18s ease-in-out infinite alternate;
+    }
+    @keyframes heroShift {
+      0%   { filter: brightness(1) hue-rotate(0deg); }
+      50%  { filter: brightness(1.08) hue-rotate(5deg); }
+      100% { filter: brightness(0.95) hue-rotate(-3deg); }
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,15,30,0.3) 0%, rgba(10,15,30,0.15) 40%, rgba(10,15,30,0.55) 100%);
+    }
+    /* animated ocean waves */
+    .hero-waves {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 160px;
+      overflow: hidden;
+    }
+    .hero-waves svg { width: 200%; height: 100%; animation: waveScroll 14s linear infinite; }
+    @keyframes waveScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 2rem 1.5rem;
+      animation: heroFadeIn 1.8s ease forwards;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-pre {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .hero-pre::before, .hero-pre::after {
+      content: '';
+      display: inline-block;
+      width: 60px; height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .hero h1 {
+      font-family: var(--ff-heading);
+      font-size: clamp(2.8rem, 7vw, 6.2rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-family: var(--ff-body);
+      font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: rgba(255, 248, 240, 0.75);
+      margin-bottom: 2.8rem;
+      text-transform: uppercase;
+    }
+    .btn-gold {
+      display: inline-block;
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 1rem 2.8rem;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      transition: var(--transition);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--amber);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    .btn-gold:hover::before { transform: translateX(0); }
+    .btn-gold span { position: relative; z-index: 1; }
+    .btn-outline {
+      display: inline-block;
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: transparent;
+      padding: 0.9rem 2.4rem;
+      border: 1px solid var(--gold);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      letter-spacing: 0.3em;
+    }
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 0.7;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+    .hero-scroll-indicator span {
+      font-family: var(--ff-body);
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    /* =============================================
+       SECTION COMMONS
+    ============================================= */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 7rem 4%;
+    }
+    .section-label {
+      font-family: var(--ff-body);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 40px; height: 1px;
+      background: var(--gold);
+    }
+    h2.section-title {
+      font-family: var(--ff-heading);
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+    }
+    .gold-divider {
+      width: 80px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* =============================================
+       REVEAL ANIMATIONS
+    ============================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.3s; }
+    .delay-3 { transition-delay: 0.45s; }
+    .delay-4 { transition-delay: 0.6s; }
+
+    /* =============================================
+       OUR STORY SECTION
+    ============================================= */
+    #story {
+      background: var(--cream);
+    }
+    #story .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    #story .section-label { color: var(--amber); }
+    #story .section-label::before { background: var(--amber); }
+    #story h2.section-title { color: var(--burgundy); }
+    #story .gold-divider { background: linear-gradient(to right, transparent, var(--amber), transparent); }
+    #story p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #3a2a1a;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+    #story p strong { font-weight: 700; color: var(--burgundy); }
+    .story-signature {
+      font-family: var(--ff-heading);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--amber);
+      margin-top: 1.5rem;
+    }
+    .story-img-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      gap: 14px;
+      position: sticky;
+      top: 100px;
+    }
+    .story-img {
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .story-img:first-child {
+      grid-row: span 2;
+    }
+    .story-img-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.6s ease;
+    }
+    .story-img:hover .story-img-inner { transform: scale(1.05); }
+    .story-img-inner.img1 {
+      background: linear-gradient(145deg, #D4891A 0%, #8B3A0F 50%, #4A0E0E 100%);
+      min-height: 414px;
+    }
+    .story-img-inner.img2 {
+      background: linear-gradient(145deg, #F5C842 0%, #D4891A 60%, #8B5A2B 100%);
+      min-height: 200px;
+    }
+    .story-img-inner.img3 {
+      background: linear-gradient(145deg, #1a3a4a 0%, #0A0F1E 60%, #0d2030 100%);
+      min-height: 200px;
+    }
+    .story-img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1rem 0.8rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      font-family: var(--ff-heading);
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+    }
+    .story-stat-bar {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(212, 137, 26, 0.25);
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: var(--ff-heading);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--amber);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--ff-body);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8a6a4a;
+      margin-top: 4px;
+    }
+
+    /* =============================================
+       MENU SECTION
+    ============================================= */
+    #menu {
+      background: linear-gradient(180deg, var(--navy) 0%, #100520 50%, var(--navy) 100%);
+      border-top: 1px solid var(--border-gold);
+    }
+    #menu .section-inner { padding-top: 5rem; padding-bottom: 6rem; }
+    #menu h2.section-title { text-align: center; }
+    #menu .section-label { justify-content: center; }
+    #menu .gold-divider { margin: 1rem auto 3rem; }
+    .menu-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border-gold);
+      border-radius: 2px;
+      overflow: hidden;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .menu-tab {
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border-gold);
+      color: rgba(255, 248, 240, 0.55);
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    .menu-tab:last-child { border-right: none; }
+    .menu-tab.active, .menu-tab:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.6rem; }
+    .dish-card {
+      background: rgba(255, 248, 240, 0.04);
+      border: 1px solid var(--border-gold);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+    .dish-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .dish-card:hover {
+      background: rgba(255, 248, 240, 0.08);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-gold);
+      border-color: rgba(212, 175, 55, 0.6);
+    }
+    .dish-card:hover::before { transform: scaleX(1); }
+    .dish-thumb {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+    .dish-thumb-inner {
+      width: 100%; height: 100%;
+      transition: transform 0.6s ease;
+    }
+    .dish-card:hover .dish-thumb-inner { transform: scale(1.08); }
+    .dt-ceviche { background: linear-gradient(145deg, #F0E68C 0%, #D4891A 40%, #8B3A0F 100%); }
+    .dt-mahi    { background: linear-gradient(145deg, #1a4a6a 0%, #0d8a7a 40%, #1a6a4a 100%); }
+    .dt-lobster { background: linear-gradient(145deg, #C0392B 0%, #8B0000 40%, #2d0a0a 100%); }
+    .dt-mofongo { background: linear-gradient(145deg, #D4A055 0%, #8B5A1A 50%, #4a2a0a 100%); }
+    .dt-creme   { background: linear-gradient(145deg, #FFF0C0 0%, #D4AF37 50%, #8B7030 100%); }
+    .dt-tuna    { background: linear-gradient(145deg, #2E86AB 0%, #1a4a5a 60%, #0a1a2a 100%); }
+    .dt-shrimp  { background: linear-gradient(145deg, #FF8C69 0%, #C04020 60%, #5A1010 100%); }
+    .dt-lamb    { background: linear-gradient(145deg, #8B1A1A 0%, #5a0a0a 60%, #2a0505 100%); }
+    .dt-risotto { background: linear-gradient(145deg, #F5DEB3 0%, #C4A050 60%, #7a5020 100%); }
+    .dt-sorbet  { background: linear-gradient(145deg, #FF69B4 0%, #C71585 60%, #8B0057 100%); }
+    .dt-fondant { background: linear-gradient(145deg, #3D1C02 0%, #7B3F00 60%, #B8860B 100%); }
+
+    .dish-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 1px;
+    }
+    .dish-body { padding: 1.4rem; }
+    .dish-name {
+      font-family: var(--ff-heading);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
+    }
+    .dish-desc {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: rgba(255, 248, 240, 0.6);
+      margin-bottom: 1rem;
+    }
+    .dish-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--border-gold);
+    }
+    .dish-price {
+      font-family: var(--ff-heading);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--gold);
+    }
+    .dish-tag {
+      font-family: var(--ff-body);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(212, 175, 55, 0.6);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 2px 8px;
+      border-radius: 1px;
+    }
+
+    /* =============================================
+       RESERVATION SECTION
+    ============================================= */
+    #reservations {
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    #reservations::before {
+      content: 'LA MER';
+      position: absolute;
+      font-family: var(--ff-heading);
+      font-size: 22vw;
+      font-weight: 700;
+      color: rgba(212, 137, 26, 0.05);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+    #reservations .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    #reservations .section-label { color: var(--amber); }
+    #reservations .section-label::before { background: var(--amber); }
+    #reservations h2.section-title { color: var(--burgundy); }
+    .res-info-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #3a2a1a;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .res-hours {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+    .res-hour-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 1.2rem;
+      background: rgba(212, 137, 26, 0.06);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 2px 2px 0;
+    }
+    .rhi-label {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+    }
+    .rhi-time {
+      font-family: var(--ff-heading);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--amber);
+      font-style: italic;
+    }
+    .reservation-form {
+      background: var(--navy);
+      border: 1px solid var(--border-gold);
+      border-radius: 3px;
+      padding: 2.8rem;
+      position: relative;
+    }
+    .reservation-form::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, var(--burgundy), var(--amber), var(--gold));
+    }
+    .form-title {
+      font-family: var(--ff-heading);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+      font-style: italic;
+    }
+    .form-subtitle {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,248,240,0.45);
+      margin-bottom: 1.8rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(212, 175, 55, 0.75);
+      margin-bottom: 0.45rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255, 248, 240, 0.05);
+      border: 1px solid var(--border-gold);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: rgba(255, 248, 240, 0.08);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+    .form-group select option { background: var(--navy); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .btn-gold.full { width: 100%; text-align: center; clip-path: none; margin-top: 0.6rem; }
+    .form-note {
+      text-align: center;
+      margin-top: 0.8rem;
+      font-size: 0.68rem;
+      color: rgba(255,248,240,0.35);
+      letter-spacing: 0.08em;
+    }
+
+    /* =============================================
+       EVENTS SECTION
+    ============================================= */
+    #events {
+      background: linear-gradient(160deg, #0d0820 0%, #1a0e0e 50%, #0a0f1e 100%);
+      border-top: 1px solid var(--border-gold);
+    }
+    #events h2.section-title { text-align: center; }
+    #events .section-label { justify-content: center; }
+    #events .gold-divider { margin: 1rem auto 3.5rem; }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .event-card {
+      position: relative;
+      border: 1px solid var(--border-gold);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .event-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-gold);
+      border-color: rgba(212, 175, 55, 0.6);
+    }
+    .event-thumb {
+      height: 240px;
+      position: relative;
+    }
+    .ev-jazz {
+      background: linear-gradient(145deg, #1A0A2E 0%, #3D1A5E 50%, #6B35A0 100%);
+    }
+    .ev-bbq {
+      background: linear-gradient(145deg, #1A0A00 0%, #8B2500 50%, #D4891A 100%);
+    }
+    .ev-private {
+      background: linear-gradient(145deg, #0A1A2E 0%, #0d3a5a 40%, #1a6a8a 80%, #2d8aaa 100%);
+    }
+    .event-day {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--ff-body);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 1px;
+    }
+    .event-icon {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      font-size: 3.5rem;
+      opacity: 0.4;
+    }
+    .event-body { padding: 1.8rem; }
+    .event-name {
+      font-family: var(--ff-heading);
+      font-size: 1.55rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .event-desc {
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: rgba(255, 248, 240, 0.6);
+      margin-bottom: 1.2rem;
+    }
+    .event-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .event-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+    }
+
+    /* =============================================
+       GALLERY SECTION
+    ============================================= */
+    #gallery {
+      background: var(--navy);
+      border-top: 1px solid var(--border-gold);
+      padding-top: 5rem;
+      padding-bottom: 0;
+    }
+    #gallery .section-inner {
+      padding-bottom: 0;
+    }
+    #gallery h2.section-title { text-align: center; }
+    #gallery .section-label { justify-content: center; }
+    #gallery .gold-divider { margin: 1rem auto 3rem; }
+    .gallery-masonry {
+      columns: 4 200px;
+      column-gap: 12px;
+      padding: 0 4%;
+      margin-top: 1rem;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item-inner {
+      width: 100%;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover .gallery-item-inner { transform: scale(1.05); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,15,30,0.6);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gi1 { background: linear-gradient(145deg, #D4891A, #8B3A0F); height: 280px; }
+    .gi2 { background: linear-gradient(145deg, #0d3a5a, #1a6a8a); height: 200px; }
+    .gi3 { background: linear-gradient(145deg, #4A0E0E, #8B1A1A); height: 240px; }
+    .gi4 { background: linear-gradient(145deg, #F0E68C, #D4891A); height: 180px; }
+    .gi5 { background: linear-gradient(145deg, #1A0A2E, #6B35A0); height: 260px; }
+    .gi6 { background: linear-gradient(145deg, #0a3a2a, #1a8a5a); height: 210px; }
+    .gi7 { background: linear-gradient(145deg, #D4AF37, #8B7030); height: 190px; }
+    .gi8 { background: linear-gradient(145deg, #2E86AB, #1a4a5a); height: 250px; }
+    .gi9 { background: linear-gradient(145deg, #FF8C69, #8B3A0F); height: 170px; }
+    .gi10 { background: linear-gradient(145deg, #1a0a00, #D4891A); height: 220px; }
+    .gi11 { background: linear-gradient(145deg, #C04020, #2d0505); height: 200px; }
+    .gi12 { background: linear-gradient(145deg, #FFF0C0, #D4AF37); height: 230px; }
+
+    /* =============================================
+       TESTIMONIALS SECTION
+    ============================================= */
+    #testimonials {
+      background: var(--burgundy);
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    #testimonials h2.section-title { text-align: center; color: var(--cream); }
+    #testimonials .section-label { justify-content: center; color: var(--gold); }
+    #testimonials .section-label::before { background: var(--gold); }
+    #testimonials .gold-divider { margin: 1rem auto 3.5rem; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: rgba(255, 248, 240, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 3px;
+      padding: 2.2rem;
+      position: relative;
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      background: rgba(255, 248, 240, 0.1);
+      transform: translateY(-4px);
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: var(--ff-heading);
+      font-size: 7rem;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.2;
+      position: absolute;
+      top: -10px; left: 20px;
+    }
+    .testimonial-text {
+      font-family: var(--ff-heading);
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(255, 248, 240, 0.88);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .author-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .av1 { background: linear-gradient(135deg, #2E86AB, #1a4a5a); color: #90d8f0; }
+    .av2 { background: linear-gradient(135deg, #D4891A, #8B3A0F); color: #ffd090; }
+    .av3 { background: linear-gradient(135deg, #3D8B37, #1a4a18); color: #90f080; }
+    .author-info { flex: 1; }
+    .author-name {
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+    .author-from {
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(212, 175, 55, 0.65);
+      margin-top: 2px;
+    }
+    .stars {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 2px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* =============================================
+       LOCATION SECTION
+    ============================================= */
+    #location {
+      background: var(--cream);
+    }
+    #location .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    #location .section-label { color: var(--amber); }
+    #location .section-label::before { background: var(--amber); }
+    #location h2.section-title { color: var(--burgundy); }
+    .location-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(212, 137, 26, 0.2);
+    }
+    .location-detail:last-of-type { border-bottom: none; }
+    .loc-icon {
+      font-size: 1.3rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    .loc-label {
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.3rem;
+    }
+    .loc-value {
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      color: #3a2a1a;
+      line-height: 1.65;
+    }
+    .map-placeholder {
+      height: 380px;
+      background:
+        linear-gradient(rgba(10,15,30,0.2), rgba(10,15,30,0.2)),
+        linear-gradient(145deg, #1a3a4a 0%, #0d2a3a 40%, #0a1a2a 100%);
+      border-radius: 3px;
+      border: 1px solid var(--border-gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 39px,
+        rgba(212, 175, 55, 0.07) 39px, rgba(212, 175, 55, 0.07) 40px
+      ),
+      repeating-linear-gradient(
+        90deg, transparent, transparent 39px,
+        rgba(212, 175, 55, 0.07) 39px, rgba(212, 175, 55, 0.07) 40px
+      );
+    }
+    .map-pin { font-size: 3rem; margin-bottom: 0.8rem; position: relative; }
+    .map-label-main {
+      font-family: var(--ff-heading);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+      position: relative;
+    }
+    .map-label-sub {
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      position: relative;
+    }
+    .map-coords {
+      position: absolute;
+      bottom: 12px; right: 14px;
+      font-family: var(--ff-body);
+      font-size: 0.62rem;
+      color: rgba(212, 175, 55, 0.5);
+      letter-spacing: 0.1em;
+    }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border-gold);
+    }
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 4% 3rem;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 3rem;
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: var(--ff-heading);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .footer-tagline {
+      font-family: var(--ff-heading);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(212, 175, 55, 0.6);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .footer-text {
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(255, 248, 240, 0.45);
+      margin-bottom: 1.5rem;
+    }
+    .footer-social {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-btn {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255, 248, 240, 0.55);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .social-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--navy);
+    }
+    .footer-col-title {
+      font-family: var(--ff-body);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .footer-links a {
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      color: rgba(255, 248, 240, 0.5);
+      text-decoration: none;
+      transition: var(--transition);
+      letter-spacing: 0.05em;
+    }
+    .footer-links a:hover { color: var(--gold); padding-left: 6px; }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .newsletter-form input {
+      background: rgba(255, 248, 240, 0.06);
+      border: 1px solid var(--border-gold);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .newsletter-form input:focus {
+      border-color: var(--gold);
+    }
+    .newsletter-form input::placeholder { color: rgba(255,248,240,0.3); }
+    .footer-bottom {
+      border-top: 1px solid var(--border-gold);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 4%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      color: rgba(255, 248, 240, 0.35);
+      letter-spacing: 0.06em;
+    }
+    .footer-powered {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      color: rgba(212, 175, 55, 0.6);
+      letter-spacing: 0.08em;
+    }
+    .footer-powered a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-powered a:hover { color: var(--amber-light); }
+
+    /* =============================================
+       WHATSAPP FLOATING BUTTON
+    ============================================= */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #25D366;
+      border-radius: 50px;
+      padding: 12px 20px 12px 14px;
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      animation: waPulse 3s ease-in-out infinite;
+    }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 6px 50px rgba(37, 211, 102, 0.7); }
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+      background: #1db954;
+      padding-right: 24px;
+    }
+    .wa-icon {
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+    }
+    .wa-text {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: white;
+      white-space: nowrap;
+    }
+
+    /* =============================================
+       SEPARATOR ORNAMENT
+    ============================================= */
+    .ornament {
+      text-align: center;
+      margin: 1.5rem 0;
+      color: var(--gold);
+      opacity: 0.5;
+      font-size: 1.2rem;
+      letter-spacing: 1rem;
+    }
+
+    /* =============================================
+       CUISINE STRIP
+    ============================================= */
+    .cuisine-strip {
+      background: var(--gold);
+      overflow: hidden;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    .cuisine-strip-inner {
+      display: flex;
+      animation: stripScroll 30s linear infinite;
+      white-space: nowrap;
+    }
+    .cuisine-strip-inner span {
+      font-family: var(--ff-body);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--navy);
+      padding: 0 2rem;
+    }
+    @keyframes stripScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* =============================================
+       MOBILE RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .lang-switcher { display: none; }
+      .nav-hamburger { display: flex; }
+      #story .section-inner { grid-template-columns: 1fr; gap: 3rem; }
+      #reservations .section-inner { grid-template-columns: 1fr; gap: 2rem; }
+      #location .section-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .events-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .gallery-masonry { columns: 2; }
+      .form-row { grid-template-columns: 1fr; }
+      .story-img-grid { position: static; grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .story-img:first-child { grid-row: span 1; }
+      .story-img-inner.img1 { min-height: 200px; }
+      .menu-tabs { flex-wrap: wrap; width: 100%; }
+      .menu-tab { flex: 1 1 auto; }
+      .demo-watermark { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-masonry { columns: 1; }
+      .hero h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- DEMO WATERMARK -->
+  <div class="demo-watermark">
+    DEMO BY UNITY SPIRIT PARTNERS<br>
+    unityspiritpartners.com
+  </div>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a href="https://wa.me/18097890000" class="whatsapp-float" target="_blank" rel="noopener">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="wa-text">Reserve via WhatsApp</span>
+  </a>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">
+      La Mer
+      <span>Restaurant &amp; Beach Club</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#reservations">Reservations</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#location">Contact</a></li>
+    </ul>
+    <div style="display:flex; align-items:center; gap:1.2rem;">
+      <div class="lang-switcher">
+        <button class="active">EN</button>
+        <button>FR</button>
+        <button>ES</button>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#story" onclick="closeMobileNav()">Our Story</a>
+    <a href="#menu" onclick="closeMobileNav()">Menu</a>
+    <a href="#reservations" onclick="closeMobileNav()">Reservations</a>
+    <a href="#events" onclick="closeMobileNav()">Events</a>
+    <a href="#location" onclick="closeMobileNav()">Contact</a>
+    <div class="lang-switcher" style="margin-top:0.5rem;">
+      <button class="active">EN</button>
+      <button>FR</button>
+      <button>ES</button>
+    </div>
+  </div>
+
+  <!-- =============================================
+       HERO SECTION
+  ============================================= -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-pre">Pueblo de los Pescadores, Las Terrenas</div>
+      <h1>Where the <em>Ocean</em><br>Sets the Table</h1>
+      <p class="hero-sub">Las Terrenas, Samaná &nbsp;•&nbsp; Open for Lunch &amp; Dinner &nbsp;•&nbsp; Est. 2004</p>
+      <div style="display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap;">
+        <a href="#reservations" class="btn-gold"><span>✦ Reserve a Table</span></a>
+        <a href="#menu" class="btn-outline">Explore Menu</a>
+      </div>
+    </div>
+
+    <!-- Animated ocean waves -->
+    <div class="hero-waves">
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill="rgba(212,137,26,0.12)" d="M0,80 C180,140 360,20 540,80 C720,140 900,20 1080,80 C1260,140 1440,60 1440,80 L1440,160 L0,160 Z"/>
+        <path fill="rgba(10,15,30,0.8)" d="M0,110 C160,70 320,150 480,110 C640,70 800,150 960,110 C1120,70 1280,140 1440,110 L1440,160 L0,160 Z"/>
+        <path fill="rgba(10,15,30,1)" d="M0,140 C200,120 400,160 600,140 C800,120 1000,155 1200,140 C1320,132 1380,145 1440,140 L1440,160 L0,160 Z"/>
+      </svg>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- CUISINE STRIP -->
+  <div class="cuisine-strip">
+    <div class="cuisine-strip-inner">
+      <span>French-Dominican Fine Dining</span>
+      <span>✦</span>
+      <span>Fresh Seafood Daily</span>
+      <span>✦</span>
+      <span>Beachfront Dining</span>
+      <span>✦</span>
+      <span>Private Events</span>
+      <span>✦</span>
+      <span>Live Music Fridays</span>
+      <span>✦</span>
+      <span>Award-Winning Wine Selection</span>
+      <span>✦</span>
+      <span>Sunset Cocktails</span>
+      <span>✦</span>
+      <span>French-Dominican Fine Dining</span>
+      <span>✦</span>
+      <span>Fresh Seafood Daily</span>
+      <span>✦</span>
+      <span>Beachfront Dining</span>
+      <span>✦</span>
+      <span>Private Events</span>
+      <span>✦</span>
+      <span>Live Music Fridays</span>
+      <span>✦</span>
+      <span>Award-Winning Wine Selection</span>
+      <span>✦</span>
+      <span>Sunset Cocktails</span>
+      <span>✦</span>
+    </div>
+  </div>
+
+  <!-- =============================================
+       OUR STORY SECTION
+  ============================================= -->
+  <section id="story">
+    <div class="section-inner">
+      <!-- Left: Text -->
+      <div class="reveal-left">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">Two Decades of<br><em>Beachfront Magic</em></h2>
+        <div class="gold-divider"></div>
+        <p>Born from a passionate encounter between French culinary tradition and the vibrant soul of the Dominican Caribbean, <strong>La Mer</strong> has graced the shores of Pueblo de los Pescadores for over twenty years — a haven where the rhythm of the waves dictates the pace of every meal.</p>
+        <p>Founded in 2004 by Chef Isabelle Fontaine and her Dominican partner Ramón Castillo, La Mer began as a modest beachside table and grew into one of Samaná's most celebrated dining destinations. Our philosophy is simple: <strong>honour the sea, respect the land, and nourish the soul.</strong></p>
+        <p>Every dish is a dialogue — between Paris and the Caribbean, between centuries-old French technique and the bold, sun-kissed ingredients of the Dominican Republic. Our fish is caught each morning by local fishermen at Playa Las Ballenas. Our produce arrives daily from mountain farms in Los Ranchos.</p>
+        <div class="story-signature">— Isabelle &amp; Ramón</div>
+        <div class="story-stat-bar">
+          <div class="stat-item">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Years of Excellence</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4.9</div>
+            <div class="stat-label">Guest Rating</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">38</div>
+            <div class="stat-label">Dishes on Menu</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">12k+</div>
+            <div class="stat-label">Happy Guests</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Image Grid -->
+      <div class="story-img-grid reveal-right">
+        <div class="story-img">
+          <div class="story-img-inner img1"></div>
+          <div class="story-img-caption">The terrace at golden hour</div>
+        </div>
+        <div class="story-img">
+          <div class="story-img-inner img2"></div>
+          <div class="story-img-caption">Fresh catch, daily</div>
+        </div>
+        <div class="story-img">
+          <div class="story-img-inner img3"></div>
+          <div class="story-img-caption">Evenings under the stars</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       MENU SECTION
+  ============================================= -->
+  <section id="menu">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">À La Carte</div>
+        <h2 class="section-title">Our Menu</h2>
+        <div class="gold-divider"></div>
+        <p style="font-size:0.9rem; color:rgba(255,248,240,0.55); max-width:560px; margin:0 auto 2.5rem; line-height:1.8;">
+          Crafted from the finest local ingredients, each dish is a celebration of French technique and Caribbean soul. Prices in USD.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="menu-tabs">
+          <button class="menu-tab active" onclick="switchTab('appetizers')">Appetizers</button>
+          <button class="menu-tab" onclick="switchTab('seafood')">Seafood</button>
+          <button class="menu-tab" onclick="switchTab('mains')">Mains</button>
+          <button class="menu-tab" onclick="switchTab('desserts')">Desserts</button>
+        </div>
+      </div>
+
+      <!-- APPETIZERS -->
+      <div class="menu-panel active reveal delay-1" id="panel-appetizers">
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-ceviche"></div><span class="dish-badge">⭐ SIGNATURE</span></div>
+          <div class="dish-body">
+            <div class="dish-name">Ceviche Caribéen</div>
+            <div class="dish-desc">Fresh mahi-mahi marinated in Dominican lime, coconut milk, mango salsa &amp; habanero oil, served with tostones.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$14</span>
+              <span class="dish-tag">GF • DF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-tuna"></div></div>
+          <div class="dish-body">
+            <div class="dish-name">Tuna Tataki à la Créole</div>
+            <div class="dish-desc">Seared yellow-fin tuna with Créole spice crust, avocado purée, pickled shallots &amp; sesame vinaigrette.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$18</span>
+              <span class="dish-tag">GF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-shrimp"></div><span class="dish-badge">🌶 SPICY</span></div>
+          <div class="dish-body">
+            <div class="dish-name">Gambas al Ajillo</div>
+            <div class="dish-desc">Tiger prawns sautéed in spiced butter, white wine &amp; garlic, finished with fresh parsley and lemon zest.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$16</span>
+              <span class="dish-tag">GF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEAFOOD -->
+      <div class="menu-panel" id="panel-seafood">
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-mahi"></div><span class="dish-badge">🎣 CATCH OF THE DAY</span></div>
+          <div class="dish-body">
+            <div class="dish-name">Grilled Mahi-Mahi</div>
+            <div class="dish-desc">Line-caught mahi-mahi, charcoal-grilled, with saffron beurre blanc, grilled plantain &amp; seasonal vegetables.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$28</span>
+              <span class="dish-tag">GF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-lobster"></div><span class="dish-badge">👑 PREMIUM</span></div>
+          <div class="dish-body">
+            <div class="dish-name">Lobster Thermidor</div>
+            <div class="dish-desc">Local Caribbean spiny lobster baked in classic French Thermidor sauce with Gruyère gratin &amp; truffle oil.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$55</span>
+              <span class="dish-tag">Chef's Favourite</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-tuna"></div></div>
+          <div class="dish-body">
+            <div class="dish-name">Whole Grilled Red Snapper</div>
+            <div class="dish-desc">Market-fresh pargo rojo, marinated in Dominican sofrito, wood-fired and served with coconut rice &amp; avocado.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$34</span>
+              <span class="dish-tag">GF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAINS -->
+      <div class="menu-panel" id="panel-mains">
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-mofongo"></div><span class="dish-badge">🇩🇴 LOCAL CLASSIC</span></div>
+          <div class="dish-body">
+            <div class="dish-name">Mofongo La Mer</div>
+            <div class="dish-desc">Traditional Dominican mofongo de plátano stuffed with garlic-braised shrimp, crispy chicharrón &amp; house sofrito.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$18</span>
+              <span class="dish-tag">GF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-lamb"></div></div>
+          <div class="dish-body">
+            <div class="dish-name">Rack of Lamb Provençal</div>
+            <div class="dish-desc">French-style herb-crusted lamb rack with rosemary jus, ratatouille &amp; gratin dauphinois.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$44</span>
+              <span class="dish-tag">CLASSIC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-risotto"></div></div>
+          <div class="dish-body">
+            <div class="dish-name">Lobster &amp; Saffron Risotto</div>
+            <div class="dish-desc">Carnaroli risotto with Caribbean lobster bisque, saffron, Parmesan &amp; micro herbs.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$36</span>
+              <span class="dish-tag">V-OPTION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESSERTS -->
+      <div class="menu-panel" id="panel-desserts">
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-creme"></div><span class="dish-badge">🏆 BEST SELLER</span></div>
+          <div class="dish-body">
+            <div class="dish-name">Crème Brûlée au Rhum</div>
+            <div class="dish-desc">Classic Parisian crème brûlée infused with Dominican Barceló rum &amp; vanilla de Tahití, torched tableside.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$12</span>
+              <span class="dish-tag">V • GF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-sorbet"></div></div>
+          <div class="dish-body">
+            <div class="dish-name">Tropical Sorbet Trio</div>
+            <div class="dish-desc">Mango, passion fruit &amp; coconut sorbets made in-house daily, served with Dominican cacao tuile.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$9</span>
+              <span class="dish-tag">V • GF • DF</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dish-card">
+          <div class="dish-thumb"><div class="dish-thumb-inner dt-fondant"></div></div>
+          <div class="dish-body">
+            <div class="dish-name">Fondant Cacao Dominicano</div>
+            <div class="dish-desc">Warm chocolate fondant made with 72% Dominican cacao, Chantilly cream &amp; fleur de sel caramel.</div>
+            <div class="dish-footer">
+              <span class="dish-price">$11</span>
+              <span class="dish-tag">V</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       RESERVATION SECTION
+  ============================================= -->
+  <section id="reservations">
+    <div class="section-inner">
+      <!-- Left: Info -->
+      <div class="reveal-left">
+        <div class="section-label">Book Your Table</div>
+        <h2 class="section-title">Make a<br><em>Reservation</em></h2>
+        <div class="gold-divider" style="background:linear-gradient(to right,transparent,#D4891A,transparent);"></div>
+        <p class="res-info-text">Join us for an unforgettable dining experience under swaying palms, with the Caribbean horizon as your backdrop. We recommend booking in advance — especially for dinner and weekend events.</p>
+        <div class="res-hours">
+          <div class="res-hour-item">
+            <span class="rhi-label">☀ Lunch Service</span>
+            <span class="rhi-time">12:00pm — 3:00pm</span>
+          </div>
+          <div class="res-hour-item">
+            <span class="rhi-label">🌙 Dinner Service</span>
+            <span class="rhi-time">7:00pm — 11:00pm</span>
+          </div>
+          <div class="res-hour-item">
+            <span class="rhi-label">🥂 Private Events</span>
+            <span class="rhi-time">By Arrangement</span>
+          </div>
+          <div class="res-hour-item">
+            <span class="rhi-label">📅 Open</span>
+            <span class="rhi-time">Tuesday — Sunday</span>
+          </div>
+        </div>
+        <div class="ornament" style="text-align:left; margin-top:1.5rem; color:var(--amber); opacity:0.8;">✦ ✦ ✦</div>
+        <p style="font-size:0.82rem; color:#8a6a4a; font-style:italic; line-height:1.75;">
+          For parties of 10 or more, or private beach dinners, please contact us directly via WhatsApp or email for a personalised experience.
+        </p>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="reveal-right delay-1">
+        <div class="reservation-form">
+          <div class="form-title">Reserve Your Evening</div>
+          <div class="form-subtitle">We will confirm within 2 hours</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Isabelle" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Fontaine" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="you@email.com" />
+            </div>
+            <div class="form-group">
+              <label>Phone / WhatsApp</label>
+              <input type="tel" placeholder="+1 809 000 0000" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" />
+            </div>
+            <div class="form-group">
+              <label>Service</label>
+              <select>
+                <option>Lunch (12pm — 3pm)</option>
+                <option>Dinner (7pm — 11pm)</option>
+                <option>Private Event</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Party Size</label>
+              <select>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+                <option>5–8 Guests</option>
+                <option>9–15 Guests</option>
+                <option>Large Party (16+)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Preferred Time</label>
+              <select>
+                <option>12:00pm</option>
+                <option>12:30pm</option>
+                <option>1:00pm</option>
+                <option>1:30pm</option>
+                <option>7:00pm</option>
+                <option>7:30pm</option>
+                <option>8:00pm</option>
+                <option>8:30pm</option>
+                <option>9:00pm</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Special Requests</label>
+            <textarea placeholder="Dietary restrictions, anniversary setup, beachfront table preference…"></textarea>
+          </div>
+          <button class="btn-gold full"><span>✦ Request Reservation</span></button>
+          <p class="form-note">No card required • Instant confirmation by email &amp; WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       EVENTS SECTION
+  ============================================= -->
+  <section id="events">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Evenings to Remember</div>
+        <h2 class="section-title">Events &amp; Experiences</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="events-grid">
+        <div class="event-card reveal delay-1">
+          <div class="event-thumb ev-jazz">
+            <div class="event-day">Every Friday</div>
+            <div class="event-icon">🎷</div>
+          </div>
+          <div class="event-body">
+            <div class="event-name">Live Jazz Fridays</div>
+            <div class="event-desc">As the sun dips below the horizon, local jazz trio Trio Las Ballenas takes the stage. Sip on our signature cocktails as the night fills with smooth melodies and ocean breeze.</div>
+            <div class="event-meta">
+              <div class="event-meta-item">🕖 7:00pm — Midnight</div>
+              <div class="event-meta-item">🎟 No cover charge</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal delay-2">
+          <div class="event-thumb ev-bbq">
+            <div class="event-day">Every Saturday</div>
+            <div class="event-icon">🔥</div>
+          </div>
+          <div class="event-body">
+            <div class="event-name">Saturday Night BBQ</div>
+            <div class="event-desc">Our chefs light the fire on a spectacular beachside grill. Fresh lobster, prawns, whole fish and Dominican meats — an all-inclusive feast beneath the Caribbean stars.</div>
+            <div class="event-meta">
+              <div class="event-meta-item">🕖 7:30pm — 11pm</div>
+              <div class="event-meta-item">💰 $65 per person</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card reveal delay-3">
+          <div class="event-thumb ev-private">
+            <div class="event-day">By Appointment</div>
+            <div class="event-icon">🌊</div>
+          </div>
+          <div class="event-body">
+            <div class="event-name">Private Beach Dinners</div>
+            <div class="event-desc">An intimate table set directly on the sand, just for you. Ideal for proposals, anniversaries and celebrations. Includes personal sommelier, floral decor &amp; dedicated chef.</div>
+            <div class="event-meta">
+              <div class="event-meta-item">🥂 From $250 per couple</div>
+              <div class="event-meta-item">📞 By reservation only</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       GALLERY SECTION
+  ============================================= -->
+  <section id="gallery">
+    <div class="section-inner">
+      <div class="reveal" style="text-align:center;">
+        <div class="section-label">Visual Journey</div>
+        <h2 class="section-title">Gallery</h2>
+        <div class="gold-divider"></div>
+        <p style="font-size:0.88rem; color:rgba(255,248,240,0.5); max-width:500px; margin:0 auto 1rem;">
+          Moments captured at La Mer — where every angle is a composition.
+        </p>
+      </div>
+    </div>
+
+    <div class="gallery-masonry reveal">
+      <div class="gallery-item"><div class="gallery-item-inner gi1"></div><div class="gallery-item-overlay">🌅</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi2"></div><div class="gallery-item-overlay">🐟</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi3"></div><div class="gallery-item-overlay">🍷</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi4"></div><div class="gallery-item-overlay">🍋</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi5"></div><div class="gallery-item-overlay">🎷</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi6"></div><div class="gallery-item-overlay">🌿</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi7"></div><div class="gallery-item-overlay">🥂</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi8"></div><div class="gallery-item-overlay">🌊</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi9"></div><div class="gallery-item-overlay">🦞</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi10"></div><div class="gallery-item-overlay">🔥</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi11"></div><div class="gallery-item-overlay">🌴</div></div>
+      <div class="gallery-item"><div class="gallery-item-inner gi12"></div><div class="gallery-item-overlay">🍮</div></div>
+    </div>
+    <div style="height:5rem;"></div>
+  </section>
+
+  <!-- =============================================
+       TESTIMONIALS SECTION
+  ============================================= -->
+  <section id="testimonials">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-label">What Our Guests Say</div>
+        <h2 class="section-title">Table Talk</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal delay-1">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            "Un repas inoubliable face à l'océan Atlantique. Le homard Thermidor était parfait — une finesse digne des meilleurs restaurants parisiens, mais avec l'âme des Caraïbes. Nous reviendrons sans hésiter."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar av1">MR</div>
+            <div class="author-info">
+              <div class="author-name">Marie &amp; René Delacroix</div>
+              <div class="author-from">🇫🇷 Paris, France — Visited June 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal delay-2">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            "La Mer is the most magical restaurant I have ever experienced. The private beach dinner they arranged for our anniversary was beyond anything we imagined — candles in the sand, a personal chef, and the stars above. Truly bucket-list worthy."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar av2">JK</div>
+            <div class="author-info">
+              <div class="author-name">James &amp; Karen Mitchell</div>
+              <div class="author-from">🇺🇸 New York, USA — Visited March 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal delay-3">
+          <div class="stars">★★★★★</div>
+          <div class="testimonial-text">
+            "Siamo rimasti senza parole. Il Mofongo La Mer è un capolavoro di fusione: tradizione dominicana cucinata con la tecnica francese. Il tramonto visto dalla terrazza, con un cocktail al rum... impossibile dimenticare."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar av3">LC</div>
+            <div class="author-info">
+              <div class="author-name">Luca &amp; Chiara Bianchi</div>
+              <div class="author-from">🇮🇹 Milano, Italy — Visited January 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       LOCATION SECTION
+  ============================================= -->
+  <section id="location">
+    <div class="section-inner">
+      <div class="reveal-left">
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title">Come <em>Find Us</em><br>at the Sea</h2>
+        <div class="gold-divider" style="background:linear-gradient(to right,transparent,#D4891A,transparent);"></div>
+
+        <div class="location-detail">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-label">Address</div>
+            <div class="loc-value">Pueblo de los Pescadores, Calle Principal<br>Las Terrenas, Samaná 32000<br>Dominican Republic</div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">🕐</div>
+          <div>
+            <div class="loc-label">Opening Hours</div>
+            <div class="loc-value">
+              Tuesday – Sunday<br>
+              Lunch: 12:00pm – 3:00pm<br>
+              Dinner: 7:00pm – 11:00pm<br>
+              <em style="color:#8a6a4a;">Closed Mondays</em>
+            </div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-label">Reservations &amp; Contact</div>
+            <div class="loc-value">
+              📱 +1 (809) 789-0000<br>
+              ✉️ reservations@la-mer-lasterrenas.com<br>
+              💬 WhatsApp preferred
+            </div>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="loc-icon">🚗</div>
+          <div>
+            <div class="loc-label">Getting Here</div>
+            <div class="loc-value">15 min from Las Terrenas centre • Free parking available • Water-taxi from Playa Bonita on request</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right delay-1">
+        <div class="map-placeholder">
+          <div class="map-pin">📍</div>
+          <div class="map-label-main">La Mer Restaurant &amp; Beach Club</div>
+          <div class="map-label-sub">Pueblo de los Pescadores — Las Terrenas, Samaná</div>
+          <div class="map-coords">19.3001° N, 69.5441° W</div>
+        </div>
+        <div style="margin-top:1.5rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+          <a href="https://maps.google.com" target="_blank" class="btn-gold" style="clip-path:none;"><span>Open in Google Maps</span></a>
+          <a href="#reservations" class="btn-outline">Reserve Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand reveal">
+        <div class="footer-logo">La Mer</div>
+        <div class="footer-tagline">Restaurant &amp; Beach Club</div>
+        <p class="footer-text">Pueblo de los Pescadores, Las Terrenas, Samaná. Open Tuesday to Sunday for lunch and dinner. Reservations recommended.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Instagram">📸</a>
+          <a href="#" class="social-btn" title="Facebook">📘</a>
+          <a href="#" class="social-btn" title="TripAdvisor">🧳</a>
+          <a href="https://wa.me/18097890000" class="social-btn" title="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <div class="reveal delay-1">
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#menu">The Menu</a></li>
+          <li><a href="#reservations">Reservations</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#location">Contact &amp; Location</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal delay-2">
+        <div class="footer-col-title">Experience</div>
+        <ul class="footer-links">
+          <li><a href="#events">Live Jazz Fridays</a></li>
+          <li><a href="#events">Saturday Night BBQ</a></li>
+          <li><a href="#events">Private Beach Dinners</a></li>
+          <li><a href="#reservations">Wedding Receptions</a></li>
+          <li><a href="#reservations">Corporate Events</a></li>
+          <li><a href="#reservations">Sunset Cocktail Hour</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal delay-3">
+        <div class="footer-col-title">Newsletter</div>
+        <p style="font-size:0.8rem; color:rgba(255,248,240,0.45); line-height:1.7; margin-bottom:1rem;">
+          Subscribe to receive exclusive invitations, seasonal menus &amp; special offers.
+        </p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com" />
+          <button class="btn-gold" style="clip-path:none; width:100%;"><span>Subscribe</span></button>
+        </div>
+        <p style="font-size:0.65rem; color:rgba(255,248,240,0.25); margin-top:0.8rem; letter-spacing:0.06em;">
+          No spam. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 La Mer Restaurant &amp; Beach Club. Las Terrenas, Dominican Republic. All rights reserved. &nbsp;|&nbsp; This is a demo website.</div>
+      <div class="footer-powered">
+        Website by <a href="https://unityspiritpartners.com" target="_blank">Unity Spirit Partners Inc.</a> — unityspiritpartners.com
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    /* ---- Navbar scroll effect ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ---- Mobile nav toggle ---- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('open');
+    });
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+    }
+
+    /* ---- Menu tab switcher ---- */
+    function switchTab(tabId) {
+      document.querySelectorAll('.menu-tab').forEach((btn, i) => {
+        const tabs = ['appetizers','seafood','mains','desserts'];
+        btn.classList.toggle('active', tabs[i] === tabId);
+      });
+      document.querySelectorAll('.menu-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === `panel-${tabId}`);
+      });
+    }
+
+    /* ---- Lang switcher (visual only) ---- */
+    document.querySelectorAll('.lang-switcher button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.lang-switcher').querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    /* ---- Intersection Observer for reveal animations ---- */
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ---- Smooth form submit (demo) ---- */
+    document.querySelector('.btn-gold.full').addEventListener('click', function(e) {
+      e.preventDefault();
+      const btn = this;
+      btn.querySelector('span').textContent = '✓ Request Sent!';
+      btn.style.background = '#2a8a5a';
+      setTimeout(() => {
+        btn.querySelector('span').textContent = '✦ Request Reservation';
+        btn.style.background = '';
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>

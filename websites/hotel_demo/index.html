@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Villa Caribé Boutique Hotel — Playa Bonita, Samaná</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ======================================================
+       RESET & BASE
+    ====================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A1628;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ======================================================
+       CSS VARIABLES
+    ====================================================== */
+    :root {
+      --teal:    #0D4A5E;
+      --teal-lt: #1A7A99;
+      --sand:    #F2D9A2;
+      --gold:    #D4AF37;
+      --gold-dk: #B8941F;
+      --navy:    #0A1628;
+      --white:   #FFFFFF;
+      --offwt:   #F5F0E8;
+      --gray:    #6B7280;
+      --radius:  12px;
+      --shadow:  0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    /* ======================================================
+       DEMO WATERMARK
+    ====================================================== */
+    #demo-watermark {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 9999;
+      background: rgba(10,22,40,0.85);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 9px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      line-height: 1.6;
+      pointer-events: none;
+    }
+    #demo-watermark a {
+      color: var(--sand);
+      text-decoration: none;
+      pointer-events: all;
+    }
+
+    /* ======================================================
+       STICKY NAVBAR
+    ====================================================== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      padding: 0 40px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10, 22, 40, 0.0);
+      border-bottom: 1px solid rgba(255,255,255,0);
+      transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(10, 22, 40, 0.96);
+      border-bottom: 1px solid rgba(212,175,55,0.25);
+      box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+      backdrop-filter: blur(16px);
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      text-decoration: none;
+    }
+    .nav-logo-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .nav-logo-main span { color: var(--gold); }
+    .nav-logo-sub {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 3px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .btn-book-nav {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      color: var(--navy) !important;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      letter-spacing: 1px;
+      transition: transform 0.2s, box-shadow 0.3s !important;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.35);
+    }
+    .btn-book-nav::after { display: none !important; }
+    .btn-book-nav:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212,175,55,0.55) !important;
+      color: var(--navy) !important;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ======================================================
+       HERO SECTION
+    ====================================================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(160deg, #071a2e 0%, #0D4A5E 40%, #0a2f3d 70%, #0A1628 100%);
+    }
+    /* Animated wave layers */
+    .hero-waves {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: -10%;
+      width: 120%;
+      border-radius: 50% 60% 40% 50%;
+      opacity: 0.08;
+      animation: waveFloat 12s ease-in-out infinite;
+    }
+    .wave:nth-child(1) {
+      height: 45%;
+      background: radial-gradient(ellipse at 50% 100%, #1A7A99 0%, transparent 70%);
+      animation-duration: 10s;
+    }
+    .wave:nth-child(2) {
+      height: 35%;
+      background: radial-gradient(ellipse at 40% 100%, #D4AF37 0%, transparent 70%);
+      animation-duration: 14s;
+      animation-delay: -3s;
+      opacity: 0.05;
+    }
+    .wave:nth-child(3) {
+      height: 55%;
+      background: radial-gradient(ellipse at 60% 100%, #0D4A5E 0%, transparent 60%);
+      animation-duration: 18s;
+      animation-delay: -6s;
+    }
+    @keyframes waveFloat {
+      0%, 100% { transform: translateY(0) scaleX(1); }
+      25%       { transform: translateY(-18px) scaleX(1.02); }
+      50%       { transform: translateY(-8px) scaleX(0.98); }
+      75%       { transform: translateY(-22px) scaleX(1.01); }
+    }
+
+    /* Particle canvas */
+    #particle-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    /* Diagonal light streaks */
+    .hero-light {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(ellipse at 70% 20%, rgba(212,175,55,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-light2 {
+      position: absolute;
+      bottom: 0;
+      left: -10%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(ellipse at 20% 80%, rgba(13,74,94,0.5) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 30px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,175,55,0.15);
+      border: 1px solid rgba(212,175,55,0.5);
+      border-radius: 50px;
+      padding: 7px 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      backdrop-filter: blur(8px);
+      animation: fadeSlideUp 0.8s ease both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 24px;
+      animation: fadeSlideUp 0.9s ease 0.15s both;
+      text-shadow: 0 4px 40px rgba(0,0,0,0.4);
+    }
+    .hero-title .accent { color: var(--gold); font-style: italic; }
+    .hero-subtitle {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 48px;
+      animation: fadeSlideUp 0.9s ease 0.3s both;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 0.9s ease 0.45s both;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dk) 100%);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.3s;
+      box-shadow: 0 6px 30px rgba(212,175,55,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 45px rgba(212,175,55,0.55);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 15px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, transform 0.25s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.7);
+      transform: translateY(-3px);
+    }
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      animation: fadeSlideUp 1s ease 1s both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(212,175,55,0.7), transparent);
+      animation: scrollDrop 2s ease-in-out infinite;
+    }
+    @keyframes scrollDrop {
+      0%, 100% { opacity: 0.8; transform: scaleY(1) translateY(0); }
+      50% { opacity: 0.3; transform: scaleY(0.6) translateY(10px); }
+    }
+
+    /* ======================================================
+       SHARED SECTION STYLES
+    ====================================================== */
+    section { padding: 100px 0; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .section-title.dark { color: var(--navy); }
+    .section-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.65);
+      max-width: 600px;
+    }
+    .section-sub.dark { color: rgba(10,22,40,0.65); }
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), transparent);
+      margin: 20px 0 36px;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ======================================================
+       INTRO SECTION
+    ====================================================== */
+    #intro {
+      background: var(--offwt);
+      position: relative;
+      overflow: hidden;
+    }
+    #intro::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,74,94,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .intro-text {}
+    .intro-features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .feature-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border: 1px solid rgba(13,74,94,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-lt) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .feature-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .feature-info p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ======================================================
+       DECORATIVE PALM SILHOUETTE
+    ====================================================== */
+    .palm-silhouette {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.04;
+    }
+
+    /* ======================================================
+       ROOMS SECTION
+    ====================================================== */
+    #rooms {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #rooms::before {
+      content: '';
+      position: absolute;
+      bottom: -200px; left: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(13,74,94,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .rooms-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+    }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .room-card {
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: transform 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+    }
+    .room-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    }
+    .room-img {
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+    .room-img-ocean {
+      background: linear-gradient(160deg, #0a3d55 0%, #1A7A99 40%, #0D7D8F 70%, #D4AF37 100%);
+    }
+    .room-img-garden {
+      background: linear-gradient(160deg, #1a4a1f 0%, #2d7a3a 40%, #4aad5e 70%, #D4AF37 100%);
+    }
+    .room-img-beach {
+      background: linear-gradient(160deg, #7a4a1a 0%, #D4AF37 40%, #e8c96b 65%, #0D4A5E 100%);
+    }
+    .room-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,22,40,0.8) 100%);
+    }
+    .room-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(212,175,55,0.9);
+      color: var(--navy);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .room-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image:
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 11px),
+        repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,0.3) 10px, rgba(255,255,255,0.3) 11px);
+    }
+    .room-floating-icon {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 40px;
+      opacity: 0.6;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+    .room-body {
+      padding: 28px;
+    }
+    .room-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .room-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .room-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .amenity-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: var(--sand);
+      background: rgba(242,217,162,0.1);
+      border: 1px solid rgba(242,217,162,0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .room-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .room-price {
+      display: flex;
+      flex-direction: column;
+    }
+    .price-from {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .price-night {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+    }
+    .btn-room {
+      background: transparent;
+      border: 1px solid rgba(212,175,55,0.5);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-room:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    /* ======================================================
+       EXPERIENCES SECTION
+    ====================================================== */
+    #experiences {
+      background: var(--offwt);
+      position: relative;
+      overflow: hidden;
+    }
+    .experiences-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .exp-tile {
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      height: 360px;
+      cursor: pointer;
+      transition: transform 0.4s;
+    }
+    .exp-tile:hover { transform: scale(1.03); }
+    .exp-tile:hover .exp-overlay { opacity: 1; }
+    .exp-tile:hover .exp-info { transform: translateY(0); }
+    .exp-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s;
+    }
+    .exp-tile:hover .exp-bg { transform: scale(1.08); }
+    .exp-bg-snorkel {
+      background: linear-gradient(160deg, #006994 0%, #00b4d8 40%, #90e0ef 70%, #caf0f8 100%);
+    }
+    .exp-bg-waterfall {
+      background: linear-gradient(160deg, #1a4a1f 0%, #2d9e3a 40%, #74d57a 70%, #ffffff 100%);
+    }
+    .exp-bg-kite {
+      background: linear-gradient(160deg, #0D4A5E 0%, #1A7A99 50%, #90caf9 100%);
+    }
+    .exp-bg-dining {
+      background: linear-gradient(160deg, #2d1b00 0%, #6b3a1f 40%, #D4AF37 80%, #f5e6c8 100%);
+    }
+    .exp-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.2) 60%, transparent 100%);
+    }
+    .exp-icon-large {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      font-size: 64px;
+      opacity: 0.3;
+      transition: opacity 0.3s;
+    }
+    .exp-tile:hover .exp-icon-large { opacity: 0.1; }
+    .exp-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 28px;
+    }
+    .exp-category {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .exp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .exp-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+    }
+    .exp-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,74,94,0.15);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .exp-info {
+      margin-top: 12px;
+      transform: translateY(10px);
+      transition: transform 0.3s;
+    }
+    .exp-info .exp-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ======================================================
+       GALLERY SECTION
+    ====================================================== */
+    #gallery {
+      background: var(--navy);
+      position: relative;
+    }
+    .gallery-header {
+      margin-bottom: 48px;
+    }
+    .masonry-grid {
+      columns: 4;
+      column-gap: 16px;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.02);
+      z-index: 2;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-img {
+      width: 100%;
+      display: block;
+    }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,74,94,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-zoom-icon { font-size: 32px; color: var(--white); }
+
+    /* Gallery color blocks */
+    .g1  { height: 280px; background: linear-gradient(135deg, #006994, #00b4d8, #90e0ef); }
+    .g2  { height: 200px; background: linear-gradient(135deg, #1a4a1f, #2d9e3a, #74d57a); }
+    .g3  { height: 340px; background: linear-gradient(135deg, #6b3a1f, #D4AF37, #f5e6c8); }
+    .g4  { height: 220px; background: linear-gradient(135deg, #0D4A5E, #1A7A99, #90caf9); }
+    .g5  { height: 300px; background: linear-gradient(135deg, #2d1b00, #D4AF37, #fff5cc); }
+    .g6  { height: 180px; background: linear-gradient(135deg, #4a1a3a, #b94080, #f48cb1); }
+    .g7  { height: 260px; background: linear-gradient(135deg, #1a1a4a, #3a3ab8, #90a0f8); }
+    .g8  { height: 220px; background: linear-gradient(135deg, #4a3a00, #b8941f, #D4AF37); }
+    .g9  { height: 190px; background: linear-gradient(135deg, #003a2e, #00b894, #55efc4); }
+    .g10 { height: 310px; background: linear-gradient(135deg, #0a1628, #0D4A5E, #1A7A99); }
+    .g11 { height: 240px; background: linear-gradient(135deg, #3d1a00, #c0392b, #f5a58c); }
+    .g12 { height: 200px; background: linear-gradient(135deg, #002040, #0052b4, #90c0ff); }
+
+    .gallery-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.75);
+      text-transform: uppercase;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+
+    /* ======================================================
+       TESTIMONIALS SECTION
+    ====================================================== */
+    #testimonials {
+      background: linear-gradient(160deg, #071320 0%, #0D4A5E 60%, #071320 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #testimonials::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 400px;
+      font-weight: 900;
+      position: absolute;
+      top: -60px;
+      left: -20px;
+      color: rgba(212,175,55,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .testimonials-header .section-label,
+    .testimonials-header .section-title,
+    .testimonials-header .divider { margin-left: auto; margin-right: auto; }
+    .testimonials-header .divider {
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      width: 80px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute;
+      top: 12px;
+      right: 28px;
+      line-height: 1;
+    }
+    .stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    .star { color: var(--gold); font-size: 16px; }
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .author-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .av-fr { background: linear-gradient(135deg, #002395, #ED2939); }
+    .av-ca { background: linear-gradient(135deg, #ff0000, #ff8c00); }
+    .av-de { background: linear-gradient(135deg, #000000, #ffce00); }
+    .author-info h5 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .author-info span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.5px;
+    }
+    .flag { font-size: 16px; }
+
+    /* ======================================================
+       BOOKING WIDGET SECTION
+    ====================================================== */
+    #booking {
+      background: var(--offwt);
+      position: relative;
+      overflow: hidden;
+    }
+    #booking::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .booking-inner {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+    .booking-top {
+      background: linear-gradient(135deg, var(--teal) 0%, #0a2f3d 100%);
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .booking-top-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .booking-top-text p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .booking-badge {
+      background: rgba(212,175,55,0.2);
+      border: 1px solid rgba(212,175,55,0.5);
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .booking-badge span { font-size: 20px; font-weight: 900; }
+    .booking-form {
+      padding: 40px 48px;
+    }
+    .booking-form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) auto;
+      gap: 16px;
+      align-items: end;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .form-group input,
+    .form-group select {
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--navy);
+      background: #f9fafb;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(13,74,94,0.1);
+      background: var(--white);
+    }
+    .btn-check {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      color: var(--navy);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.3s;
+      box-shadow: 0 6px 24px rgba(212,175,55,0.4);
+      white-space: nowrap;
+    }
+    .btn-check:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(212,175,55,0.55);
+    }
+    .booking-perks {
+      display: flex;
+      gap: 28px;
+      padding: 20px 48px 40px;
+      flex-wrap: wrap;
+    }
+    .booking-perk {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--gray);
+    }
+    .booking-perk .perk-icon { color: var(--teal); font-size: 16px; }
+
+    /* ======================================================
+       LOCATION SECTION
+    ====================================================== */
+    #location {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .map-placeholder {
+      position: relative;
+      height: 420px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0a2f3d 0%, #0D4A5E 50%, #1A7A99 100%);
+      box-shadow: var(--shadow);
+    }
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .map-island {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 130px;
+      background: linear-gradient(135deg, #1a6b40 0%, #2d9e5a 50%, #1a5a3a 100%);
+      border-radius: 40% 60% 50% 50%;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+    }
+    .map-water-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 185px;
+      border-radius: 45% 55% 55% 45%;
+      border: 2px solid rgba(26,122,153,0.4);
+      animation: waterRing 4s ease-in-out infinite;
+    }
+    .map-water-ring:nth-child(2) {
+      width: 340px;
+      height: 230px;
+      border-radius: 55% 45% 45% 55%;
+      animation-delay: -1s;
+      border-color: rgba(26,122,153,0.2);
+    }
+    @keyframes waterRing {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.6; }
+    }
+    .map-pin {
+      position: absolute;
+      top: 42%;
+      left: 53%;
+      transform: translate(-50%, -100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      animation: pinBounce 2s ease-in-out infinite;
+    }
+    .pin-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 4px 12px rgba(212,175,55,0.6);
+    }
+    .pin-shadow {
+      width: 10px;
+      height: 4px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      margin-top: 2px;
+      filter: blur(2px);
+    }
+    @keyframes pinBounce {
+      0%, 100% { transform: translate(-50%, -100%) translateY(0); }
+      50% { transform: translate(-50%, -100%) translateY(-8px); }
+    }
+    .map-label-pin {
+      position: absolute;
+      top: 28%;
+      left: 53%;
+      transform: translateX(-40%);
+      background: rgba(10,22,40,0.9);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      backdrop-filter: blur(8px);
+    }
+    .map-label-pin::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: rgba(212,175,55,0.4);
+    }
+    .map-legend {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      background: rgba(10,22,40,0.75);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .map-logo-watermark {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      font-weight: 600;
+    }
+    .location-details {}
+    .location-address {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-bottom: 36px;
+    }
+    .loc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .loc-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(13,74,94,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .loc-text h5 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .loc-text p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+    .loc-airports {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .loc-airports h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .airport-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .airport-row:last-child { border: none; }
+    .airport-code {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .airport-name {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+    .airport-time {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      background: rgba(212,175,55,0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ======================================================
+       NEWSLETTER / CONTACT SECTION
+    ====================================================== */
+    #newsletter {
+      background: linear-gradient(135deg, #0D4A5E 0%, #071320 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #newsletter::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; right: -150px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .newsletter-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .newsletter-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .newsletter-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .newsletter-text p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+    }
+    .newsletter-form {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      gap: 12px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--white);
+      background: rgba(255,255,255,0.07);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .newsletter-form input:focus { border-color: var(--gold); }
+    .btn-subscribe {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dk));
+      color: var(--navy);
+      border: none;
+      border-radius: 10px;
+      padding: 14px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.35);
+      white-space: nowrap;
+    }
+    .btn-subscribe:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(212,175,55,0.5);
+    }
+
+    /* ======================================================
+       FOOTER
+    ====================================================== */
+    footer {
+      background: #060d18;
+      padding: 60px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 20px;
+    }
+    .footer-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+      max-width: 280px;
+      margin-bottom: 28px;
+    }
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .social-link:hover {
+      background: rgba(212,175,55,0.15);
+      transform: translateY(-3px);
+      border-color: rgba(212,175,55,0.3);
+    }
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col ul a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-col ul a:hover { color: var(--sand); }
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 12px;
+    }
+    .footer-contact-item .icon { font-size: 14px; }
+    .footer-bottom {
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.5px;
+    }
+    .footer-bottom a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .footer-bottom a:hover { text-decoration: underline; }
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-bottom-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-bottom-links a:hover { color: var(--sand); }
+
+    /* ======================================================
+       FLOATING WHATSAPP
+    ====================================================== */
+    #whatsapp-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+      text-decoration: none;
+      font-size: 26px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: waPulse 3s ease-in-out infinite;
+    }
+    #whatsapp-btn:hover {
+      transform: scale(1.12);
+      box-shadow: 0 12px 40px rgba(37,211,102,0.7);
+      animation: none;
+    }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 6px 50px rgba(37,211,102,0.8), 0 0 0 12px rgba(37,211,102,0.08); }
+    }
+    .wa-tooltip {
+      position: absolute;
+      right: 70px;
+      white-space: nowrap;
+      background: rgba(10,22,40,0.92);
+      border: 1px solid rgba(37,211,102,0.3);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--white);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    #whatsapp-btn:hover .wa-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ======================================================
+       MOBILE NAV MENU
+    ====================================================== */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6,13,24,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      backdrop-filter: blur(16px);
+    }
+    #mobile-menu.open { display: flex; }
+    .mobile-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 28px;
+      color: var(--white);
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    #mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    #mobile-menu a:hover { color: var(--gold); }
+    #mobile-menu .btn-primary { font-family: 'Inter', sans-serif; font-size: 15px; }
+
+    /* ======================================================
+       RESPONSIVE
+    ====================================================== */
+    @media (max-width: 1100px) {
+      .masonry-grid { columns: 3; }
+      .experiences-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .rooms-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .rooms-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .location-grid { grid-template-columns: 1fr; }
+      .booking-form-grid { grid-template-columns: 1fr 1fr; }
+      .masonry-grid { columns: 2; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 0; }
+      .container { padding: 0 20px; }
+      #navbar { padding: 0 20px; }
+      .experiences-grid { grid-template-columns: 1fr; }
+      .masonry-grid { columns: 1; }
+      .booking-form-grid { grid-template-columns: 1fr; }
+      .booking-top, .booking-form, .booking-perks { padding: 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      #demo-watermark { font-size: 8px; padding: 4px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       DEMO WATERMARK
+  ============================================================ -->
+  <div id="demo-watermark">
+    DEMO BY<br>
+    <a href="https://unityspiritpartners.com" target="_blank">UNITY SPIRIT PARTNERS</a>
+  </div>
+
+  <!-- ============================================================
+       FLOATING WHATSAPP
+  ============================================================ -->
+  <a href="https://wa.me/18491234567" id="whatsapp-btn" target="_blank" aria-label="Contact us on WhatsApp">
+    <span class="wa-tooltip">Chat with us on WhatsApp</span>
+    💬
+  </a>
+
+  <!-- ============================================================
+       MOBILE MENU
+  ============================================================ -->
+  <div id="mobile-menu">
+    <button class="mobile-close" id="mobile-close-btn" aria-label="Close menu">✕</button>
+    <a href="#hero" onclick="closeMobileMenu()">Home</a>
+    <a href="#rooms" onclick="closeMobileMenu()">Rooms</a>
+    <a href="#experiences" onclick="closeMobileMenu()">Experiences</a>
+    <a href="#gallery" onclick="closeMobileMenu()">Gallery</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="#booking" class="btn-primary" onclick="closeMobileMenu()">✦ Book Now</a>
+  </div>
+
+  <!-- ============================================================
+       STICKY NAVBAR
+  ============================================================ -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">
+      <span class="nav-logo-main">Villa <span>Caribé</span></span>
+      <span class="nav-logo-sub">Boutique Hotel</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#booking" class="btn-book-nav">✦ Book Now</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero">
+    <canvas id="particle-canvas"></canvas>
+    <div class="hero-waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+    <div class="hero-light"></div>
+    <div class="hero-light2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Direct Booking — Best Rate Guaranteed
+      </div>
+      <h1 class="hero-title">
+        Where the Caribbean<br>Meets <span class="accent">French Elegance</span>
+      </h1>
+      <p class="hero-subtitle">Playa Bonita &nbsp;·&nbsp; Samaná &nbsp;·&nbsp; Dominican Republic</p>
+      <div class="hero-ctas">
+        <a href="#booking" class="btn-primary">✦ Book Direct</a>
+        <a href="#rooms" class="btn-secondary">↓ View Rooms</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTRO SECTION
+  ============================================================ -->
+  <section id="intro">
+    <div class="container">
+      <div class="intro-grid">
+        <div class="intro-text">
+          <p class="section-label reveal">Our Story</p>
+          <h2 class="section-title dark reveal reveal-delay-1">A sanctuary<br><em>unlike any other</em></h2>
+          <div class="divider reveal reveal-delay-2" style="background: linear-gradient(to right, var(--teal), transparent);"></div>
+          <p class="section-sub dark reveal reveal-delay-2" style="margin-bottom: 20px;">
+            Nestled along the pristine shores of Playa Bonita in Samaná, Villa Caribé Boutique Hotel is where barefoot luxury meets refined sophistication. Born from a love affair between French art de vivre and the vibrant spirit of the Dominican Republic.
+          </p>
+          <p class="section-sub dark reveal reveal-delay-3">
+            Twelve exquisitely appointed suites, a cliff-top pool with panoramic ocean views, and a culinary experience that fuses Creole tradition with Parisian technique. This is not just a hotel — it is a feeling you will carry long after your return home.
+          </p>
+          <div class="reveal reveal-delay-4" style="margin-top: 32px;">
+            <a href="#rooms" class="btn-primary" style="display:inline-flex; background: linear-gradient(135deg, var(--teal), #1A7A99); box-shadow: 0 6px 24px rgba(13,74,94,0.3);">Explore Rooms →</a>
+          </div>
+        </div>
+        <div class="intro-features">
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">🏖️</div>
+            <div class="feature-info">
+              <h4>Private Beachfront Access</h4>
+              <p>Step from your terrace directly onto the powdered sands of Playa Bonita, one of the most beautiful beaches in the Caribbean.</p>
+            </div>
+          </div>
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">🌹</div>
+            <div class="feature-info">
+              <h4>Adults-Only Sanctuary</h4>
+              <p>Designed exclusively for adults seeking tranquility, romance, and an elevated experience free from distractions.</p>
+            </div>
+          </div>
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">🥂</div>
+            <div class="feature-info">
+              <h4>All-Inclusive Optional</h4>
+              <p>Choose your experience: enjoy our à la carte cuisine or indulge in the full all-inclusive package with premium spirits and gourmet dining.</p>
+            </div>
+          </div>
+          <div class="feature-card reveal reveal-delay-4">
+            <div class="feature-icon">✈️</div>
+            <div class="feature-info">
+              <h4>Seamless Arrival Service</h4>
+              <p>Private airport transfers from AZS Samaná airport (30 min) or SDQ Las Américas (2.5 hrs). Your journey begins at the gate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ROOMS SECTION
+  ============================================================ -->
+  <section id="rooms">
+    <div class="container">
+      <div class="rooms-header">
+        <div>
+          <p class="section-label reveal">Accommodations</p>
+          <h2 class="section-title reveal reveal-delay-1">Our Curated Suites</h2>
+          <div class="divider reveal reveal-delay-2"></div>
+          <p class="section-sub reveal reveal-delay-2">Each suite is a private world — designed for those who believe that beauty and comfort should coexist without compromise.</p>
+        </div>
+        <a href="#booking" class="btn-primary reveal reveal-delay-2" style="flex-shrink:0; white-space:nowrap;">View All Rooms →</a>
+      </div>
+      <div class="rooms-grid">
+
+        <!-- Ocean Suite -->
+        <div class="room-card reveal reveal-delay-1">
+          <div class="room-img room-img-ocean">
+            <div class="room-pattern"></div>
+            <div class="room-img-overlay"></div>
+            <span class="room-badge">Most Popular</span>
+            <div class="room-floating-icon">🌊</div>
+          </div>
+          <div class="room-body">
+            <h3 class="room-name">Ocean Suite</h3>
+            <p class="room-desc">Panoramic floor-to-ceiling glass with uninterrupted Atlantic views. A private infinity pool, king canopy bed and butler service define pure luxury.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Private Pool</span>
+              <span class="amenity-tag">Ocean View</span>
+              <span class="amenity-tag">King Bed</span>
+              <span class="amenity-tag">Butler Service</span>
+              <span class="amenity-tag">80m²</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">
+                <span class="price-from">From</span>
+                <span class="price-amount">$485</span>
+                <span class="price-night">/ night</span>
+              </div>
+              <a href="#booking" class="btn-room">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Garden Villa -->
+        <div class="room-card reveal reveal-delay-2">
+          <div class="room-img room-img-garden">
+            <div class="room-pattern"></div>
+            <div class="room-img-overlay"></div>
+            <span class="room-badge">Romantic Escape</span>
+            <div class="room-floating-icon">🌿</div>
+          </div>
+          <div class="room-body">
+            <h3 class="room-name">Garden Villa</h3>
+            <p class="room-desc">Enveloped in lush tropical gardens with a private plunge pool and outdoor shower. A serene retreat inspired by the island's natural abundance.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Plunge Pool</span>
+              <span class="amenity-tag">Garden View</span>
+              <span class="amenity-tag">King Bed</span>
+              <span class="amenity-tag">Outdoor Shower</span>
+              <span class="amenity-tag">65m²</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">
+                <span class="price-from">From</span>
+                <span class="price-amount">$345</span>
+                <span class="price-night">/ night</span>
+              </div>
+              <a href="#booking" class="btn-room">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beachfront Bungalow -->
+        <div class="room-card reveal reveal-delay-3">
+          <div class="room-img room-img-beach">
+            <div class="room-pattern"></div>
+            <div class="room-img-overlay"></div>
+            <span class="room-badge">Beachfront</span>
+            <div class="room-floating-icon">🌴</div>
+          </div>
+          <div class="room-body">
+            <h3 class="room-name">Beachfront Bungalow</h3>
+            <p class="room-desc">Step barefoot from your private deck onto white sand. Thatch-roofed architecture blends organically with the shoreline in perfect Caribbean harmony.</p>
+            <div class="room-amenities">
+              <span class="amenity-tag">Direct Beach</span>
+              <span class="amenity-tag">Private Deck</span>
+              <span class="amenity-tag">Queen Bed</span>
+              <span class="amenity-tag">Hammock</span>
+              <span class="amenity-tag">55m²</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">
+                <span class="price-from">From</span>
+                <span class="price-amount">$295</span>
+                <span class="price-night">/ night</span>
+              </div>
+              <a href="#booking" class="btn-room">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPERIENCES SECTION
+  ============================================================ -->
+  <section id="experiences">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 0;">
+        <p class="section-label reveal" style="display:block; text-align:center;">Curated Experiences</p>
+        <h2 class="section-title dark reveal reveal-delay-1" style="text-align:center; margin-left:auto; margin-right:auto;">Discover Samaná</h2>
+        <div class="divider reveal reveal-delay-2" style="margin:20px auto 0; background: linear-gradient(to right, transparent, var(--teal), transparent); width:80px;"></div>
+        <p class="section-sub dark reveal reveal-delay-2" style="margin: 16px auto 0; text-align:center;">From the azure depths of the Atlantic to the mist-shrouded heights of El Limón, every day holds a new adventure.</p>
+      </div>
+      <div class="experiences-grid">
+
+        <div class="exp-tile reveal reveal-delay-1">
+          <div class="exp-bg exp-bg-snorkel"></div>
+          <div class="exp-gradient"></div>
+          <div class="exp-icon-large">🤿</div>
+          <div class="exp-overlay"></div>
+          <div class="exp-content">
+            <p class="exp-category">Marine Adventure</p>
+            <h3 class="exp-title">Snorkeling &amp; Diving</h3>
+            <p class="exp-desc">Explore vibrant coral reefs teeming with tropical fish in the crystal-clear waters of the Samaná Bay.</p>
+            <div class="exp-info"><span class="exp-tag">Half-day from $85</span></div>
+          </div>
+        </div>
+
+        <div class="exp-tile reveal reveal-delay-2">
+          <div class="exp-bg exp-bg-waterfall"></div>
+          <div class="exp-gradient"></div>
+          <div class="exp-icon-large">💧</div>
+          <div class="exp-overlay"></div>
+          <div class="exp-content">
+            <p class="exp-category">Nature Excursion</p>
+            <h3 class="exp-title">El Limón Waterfall</h3>
+            <p class="exp-desc">Ride on horseback through lush jungle to reach the majestic 52-meter waterfall hidden in the Samaná mountains.</p>
+            <div class="exp-info"><span class="exp-tag">Full day from $120</span></div>
+          </div>
+        </div>
+
+        <div class="exp-tile reveal reveal-delay-3">
+          <div class="exp-bg exp-bg-kite"></div>
+          <div class="exp-gradient"></div>
+          <div class="exp-icon-large">🪁</div>
+          <div class="exp-overlay"></div>
+          <div class="exp-content">
+            <p class="exp-category">Water Sports</p>
+            <h3 class="exp-title">Kitesurfing</h3>
+            <p class="exp-desc">Catch perfect trade winds on the open waters of Las Terrenas. Lessons for all levels with certified instructors.</p>
+            <div class="exp-info"><span class="exp-tag">Lesson from $150</span></div>
+          </div>
+        </div>
+
+        <div class="exp-tile reveal reveal-delay-4">
+          <div class="exp-bg exp-bg-dining"></div>
+          <div class="exp-gradient"></div>
+          <div class="exp-icon-large">🍽️</div>
+          <div class="exp-overlay"></div>
+          <div class="exp-content">
+            <p class="exp-category">Gastronomic</p>
+            <h3 class="exp-title">Fine Dining</h3>
+            <p class="exp-desc">Chef Antoine Moreau's five-course tasting menu under the stars — French technique, Caribbean soul, local ingredients.</p>
+            <div class="exp-info"><span class="exp-tag">Reservations required</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALLERY SECTION
+  ============================================================ -->
+  <section id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <p class="section-label reveal">Visual Journey</p>
+        <h2 class="section-title reveal reveal-delay-1">Gallery</h2>
+        <div class="divider reveal reveal-delay-2"></div>
+        <p class="section-sub reveal reveal-delay-2">A glimpse into life at Villa Caribé — where every corner tells a story of beauty, warmth and the sea.</p>
+      </div>
+      <div class="masonry-grid">
+        <div class="gallery-item reveal">
+          <div class="gallery-img g1"><div class="gallery-label">Ocean Suite Pool</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1">
+          <div class="gallery-img g2"><div class="gallery-label">Tropical Gardens</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <div class="gallery-img g3"><div class="gallery-label">Chef's Table</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3">
+          <div class="gallery-img g4"><div class="gallery-label">Playa Bonita</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-img g5"><div class="gallery-label">Sunset Bar</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1">
+          <div class="gallery-img g6"><div class="gallery-label">Spa &amp; Wellness</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <div class="gallery-img g7"><div class="gallery-label">Pool at Night</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3">
+          <div class="gallery-img g8"><div class="gallery-label">Breakfast Terrace</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal">
+          <div class="gallery-img g9"><div class="gallery-label">Snorkeling</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-1">
+          <div class="gallery-img g10"><div class="gallery-label">Suite Interior</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-2">
+          <div class="gallery-img g11"><div class="gallery-label">El Limón Falls</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+        <div class="gallery-item reveal reveal-delay-3">
+          <div class="gallery-img g12"><div class="gallery-label">Ocean View</div></div>
+          <div class="gallery-item-overlay"><span class="gallery-zoom-icon">⊕</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS SECTION
+  ============================================================ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <p class="section-label reveal">Guest Stories</p>
+        <h2 class="section-title reveal reveal-delay-1">What Our Guests Say</h2>
+        <div class="divider reveal reveal-delay-2"></div>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"Villa Caribé transported us completely. The ocean suite was breathtaking — waking up to that view every morning felt like a dream we never wanted to leave. The team made us feel like we were the only guests. Absolument parfait."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar av-fr">MV</div>
+            <div class="author-info">
+              <h5>Marie &amp; Vincent Dubois <span class="flag">🇫🇷</span></h5>
+              <span>Paris, France · February 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"We've stayed in boutique hotels across Southeast Asia and the Mediterranean — Villa Caribé matches them all and adds something uniquely Caribbean. The El Limón excursion was extraordinary. Booking direct saved us nearly $400 for the week."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar av-ca">SL</div>
+            <div class="author-info">
+              <h5>Sarah &amp; Liam Tremblay <span class="flag">🇨🇦</span></h5>
+              <span>Montréal, Canada · March 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal reveal-delay-3">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"The perfect blend of French refinement and Caribbean warmth. Chef Antoine's five-course dinner was among the finest meals of our travels. The beachfront bungalow gave us direct access to Playa Bonita — truly paradise on Earth."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar av-de">KF</div>
+            <div class="author-info">
+              <h5>Klaus &amp; Franziska Weber <span class="flag">🇩🇪</span></h5>
+              <span>Munich, Germany · January 2025</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOOKING WIDGET SECTION
+  ============================================================ -->
+  <section id="booking">
+    <div class="container">
+      <div class="booking-inner reveal">
+        <div class="booking-top">
+          <div class="booking-top-text">
+            <h2>Check Availability</h2>
+            <p>Book direct and secure the best available rate — guaranteed.</p>
+          </div>
+          <div class="booking-badge">
+            Book Direct &amp; Save <span>15%</span> vs. Booking.com
+          </div>
+        </div>
+        <div class="booking-form">
+          <div class="booking-form-grid">
+            <div class="form-group">
+              <label>Check-In</label>
+              <input type="date" id="checkin" />
+            </div>
+            <div class="form-group">
+              <label>Check-Out</label>
+              <input type="date" id="checkout" />
+            </div>
+            <div class="form-group">
+              <label>Adults</label>
+              <select>
+                <option>1 Adult</option>
+                <option selected>2 Adults</option>
+                <option>3 Adults</option>
+                <option>4 Adults</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Room Type</label>
+              <select>
+                <option value="">Any Room</option>
+                <option>Ocean Suite</option>
+                <option>Garden Villa</option>
+                <option>Beachfront Bungalow</option>
+              </select>
+            </div>
+            <button class="btn-check" onclick="handleBooking()">
+              Check Availability →
+            </button>
+          </div>
+        </div>
+        <div class="booking-perks">
+          <div class="booking-perk"><span class="perk-icon">✓</span> Best Rate Guaranteed</div>
+          <div class="booking-perk"><span class="perk-icon">✓</span> Free Airport Transfer (3+ nights)</div>
+          <div class="booking-perk"><span class="perk-icon">✓</span> Complimentary Welcome Drink</div>
+          <div class="booking-perk"><span class="perk-icon">✓</span> Flexible Cancellation</div>
+          <div class="booking-perk"><span class="perk-icon">✓</span> Instant Confirmation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LOCATION SECTION
+  ============================================================ -->
+  <section id="location">
+    <div class="container">
+      <div class="location-grid">
+        <div class="map-placeholder reveal">
+          <div class="map-grid"></div>
+          <div class="map-island"></div>
+          <div class="map-water-ring"></div>
+          <div class="map-water-ring"></div>
+          <div class="map-pin">
+            <div class="pin-dot"></div>
+            <div class="pin-shadow"></div>
+          </div>
+          <div class="map-label-pin">📍 Villa Caribé · Playa Bonita</div>
+          <div class="map-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#2d9e5a;"></div>
+              Samaná Peninsula
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#1A7A99;"></div>
+              Atlantic Ocean
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--gold);"></div>
+              Villa Caribé
+            </div>
+          </div>
+          <div class="map-logo-watermark">Samaná, DR</div>
+        </div>
+        <div class="location-details">
+          <p class="section-label reveal">How to Find Us</p>
+          <h2 class="section-title reveal reveal-delay-1">Find Us in Paradise</h2>
+          <div class="divider reveal reveal-delay-2"></div>
+          <div class="location-address reveal reveal-delay-2">
+            <div class="loc-item">
+              <div class="loc-icon">📍</div>
+              <div class="loc-text">
+                <h5>Hotel Address</h5>
+                <p>Playa Bonita, Las Terrenas<br>Samaná Province, Dominican Republic</p>
+              </div>
+            </div>
+            <div class="loc-item">
+              <div class="loc-icon">📞</div>
+              <div class="loc-text">
+                <h5>Reservations</h5>
+                <p>+1 (849) 123-4567<br>reservations@villacaribe.com</p>
+              </div>
+            </div>
+            <div class="loc-item">
+              <div class="loc-icon">🕐</div>
+              <div class="loc-text">
+                <h5>Check-in / Check-out</h5>
+                <p>Check-in: 3:00 PM · Check-out: 12:00 PM<br>Early check-in available upon request</p>
+              </div>
+            </div>
+          </div>
+          <div class="loc-airports reveal reveal-delay-3">
+            <h4>✈ Nearest Airports</h4>
+            <div class="airport-row">
+              <div>
+                <div class="airport-code">AZS</div>
+                <div class="airport-name">Samaná El Catey International</div>
+              </div>
+              <div class="airport-time">~30 min</div>
+            </div>
+            <div class="airport-row">
+              <div>
+                <div class="airport-code">SDQ</div>
+                <div class="airport-name">Las Américas International (Santo Domingo)</div>
+              </div>
+              <div class="airport-time">~2.5 hrs</div>
+            </div>
+            <div class="airport-row">
+              <div>
+                <div class="airport-code">PUJ</div>
+                <div class="airport-name">Punta Cana International</div>
+              </div>
+              <div class="airport-time">~3 hrs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER SECTION
+  ============================================================ -->
+  <section id="contact" style="padding:0;">
+    <div id="newsletter">
+      <div class="container">
+        <div class="newsletter-inner">
+          <div class="newsletter-text reveal">
+            <p class="section-label" style="color:var(--sand);">Stay Connected</p>
+            <h2>Exclusive Offers &amp; Updates</h2>
+            <p>Join our inner circle and receive private rates, seasonal offers and destination inspiration from Samaná.</p>
+          </div>
+          <form class="newsletter-form reveal reveal-delay-1" onsubmit="handleNewsletter(event)">
+            <input type="email" placeholder="your@email.com" required />
+            <button type="submit" class="btn-subscribe">Subscribe →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Villa <span>Caribé</span></div>
+          <div class="footer-tagline">Boutique Hotel · Samaná, DR</div>
+          <p class="footer-desc">Where the Caribbean meets French elegance. Twelve boutique suites on the pristine shores of Playa Bonita, Las Terrenas.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📸</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="TripAdvisor">🟢</a>
+            <a href="#" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Hotel</h4>
+          <ul>
+            <li><a href="#intro">About Us</a></li>
+            <li><a href="#rooms">Rooms &amp; Suites</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#">Spa &amp; Wellness</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="#">Hotel Policies</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Weddings &amp; Events</a></li>
+            <li><a href="#">Press &amp; Media</a></li>
+            <li><a href="#">Sustainability</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item"><span class="icon">📍</span> Playa Bonita, Las Terrenas, Samaná</div>
+          <div class="footer-contact-item"><span class="icon">📞</span> +1 (849) 123-4567</div>
+          <div class="footer-contact-item"><span class="icon">✉️</span> hello@villacaribe.com</div>
+          <div class="footer-contact-item"><span class="icon">💬</span> WhatsApp available 24/7</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Villa Caribé Boutique Hotel. All rights reserved. · <strong>DEMO SITE</strong> · Designed by <a href="https://unityspiritpartners.com" target="_blank">Unity Spirit Partners Inc.</a></p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---- Navbar scroll behaviour ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    /* ---- Mobile menu ---- */
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('open');
+    });
+    document.getElementById('mobile-close-btn').addEventListener('click', closeMobileMenu);
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+    /* ---- Intersection Observer for reveal animations ---- */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ---- Particle canvas ---- */
+    (function() {
+      const canvas = document.getElementById('particle-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let W, H;
+
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize, { passive: true });
+      resize();
+
+      const COLORS = [
+        'rgba(212,175,55,',
+        'rgba(242,217,162,',
+        'rgba(26,122,153,',
+        'rgba(255,255,255,'
+      ];
+
+      function createParticle() {
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.8 + 0.4,
+          alpha: Math.random() * 0.6 + 0.1,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: -(Math.random() * 0.4 + 0.1),
+          color: COLORS[Math.floor(Math.random() * COLORS.length)]
+        };
+      }
+
+      for (let i = 0; i < 120; i++) particles.push(createParticle());
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + p.alpha + ')';
+          ctx.fill();
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.0008;
+          if (p.y < -10 || p.alpha < 0.02) {
+            Object.assign(p, createParticle(), { y: H + 5 });
+          }
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* ---- Booking form ---- */
+    (function() {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      const dayAfter = new Date(today);
+      dayAfter.setDate(today.getDate() + 8);
+
+      function fmt(d) {
+        return d.toISOString().split('T')[0];
+      }
+      const ci = document.getElementById('checkin');
+      const co = document.getElementById('checkout');
+      if (ci) ci.value = fmt(tomorrow);
+      if (co) co.value = fmt(dayAfter);
+    })();
+
+    function handleBooking() {
+      const ci = document.getElementById('checkin').value;
+      const co = document.getElementById('checkout').value;
+      if (!ci || !co) {
+        alert('Please select your check-in and check-out dates.');
+        return;
+      }
+      alert('✦ Thank you for your inquiry!\n\nThis is a demo website by Unity Spirit Partners.\n\nIn a real implementation, this would open a live booking engine or redirect to your reservation system.\n\nContact us at unityspiritpartners.com to build your hotel website!');
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = '✓ Subscribed!';
+      btn.style.background = 'linear-gradient(135deg, #2d9e5a, #1a6b3a)';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe →';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+
+    /* ---- Active nav link on scroll ---- */
+    const sections = document.querySelectorAll('section[id], div[id="newsletter"]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sectionIds = ['hero','intro','rooms','experiences','gallery','testimonials','booking','location','contact'];
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) {
+          current = s.id;
+        }
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current
+          ? 'var(--gold)'
+          : '';
+      });
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

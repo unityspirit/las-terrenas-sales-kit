@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Spirit Partners - Las Terrenas Sales Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A0F1E;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+            --gray: #F3F4F6;
+            --dark-gray: #1F2937;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--gray);
+            color: var(--navy);
+        }
+        header {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            margin: 0 0 10px 0;
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+        p.subtitle {
+            margin: 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .sector-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--navy);
+        }
+        .sector-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .sector-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--navy);
+            border-bottom: 2px solid var(--gray);
+            padding-bottom: 15px;
+        }
+        .asset-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: var(--gray);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .asset-link:hover {
+            background-color: var(--navy);
+            color: var(--gold);
+        }
+        .icon {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+        .badge {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: auto;
+        }
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unity Spirit Partners Inc.</h1>
+    <p class="subtitle">Las Terrenas Sales Mission — October 2026</p>
+</header>
+
+<div class="container">
+    <div class="grid">
+        
+        <!-- HOTEL SECTOR -->
+        <div class="sector-card">
+            <h2 class="sector-title">🏨 Boutique Hotels</h2>
+            <a href="websites/hotel_demo/index.html" class="asset-link" target="_blank">
+                <span class="icon">🌐</span> Demo Website <span class="badge">SHOWSTOPPER</span>
+            </a>
+            <a href="hotel_pitch_deck.html" class="asset-link" target="_blank">
+                <span class="icon">📊</span> Pitch Deck
+            </a>
+            <a href="hotel_one_pager.html" class="asset-link" target="_blank">
+                <span class="icon">📄</span> One-Pager (A4)
+            </a>
+        </div>
+
+        <!-- RESTAURANT SECTOR -->
+        <div class="sector-card">
+            <h2 class="sector-title">🍽️ Restaurants & Clubs</h2>
+            <a href="websites/restaurant_demo/index.html" class="asset-link" target="_blank">
+                <span class="icon">🌐</span> Demo Website <span class="badge">SHOWSTOPPER</span>
+            </a>
+            <a href="restaurant_pitch_deck.html" class="asset-link" target="_blank">
+                <span class="icon">📊</span> Pitch Deck
+            </a>
+            <a href="restaurant_one_pager.html" class="asset-link" target="_blank">
+                <span class="icon">📄</span> One-Pager (A4)
+            </a>
+        </div>
+
+        <!-- REAL ESTATE SECTOR -->
+        <div class="sector-card">
+            <h2 class="sector-title">🏡 Real Estate Agencies</h2>
+            <a href="websites/realestate_demo/index.html" class="asset-link" target="_blank">
+                <span class="icon">🌐</span> Demo Website <span class="badge">SHOWSTOPPER</span>
+            </a>
+            <a href="realestate_pitch_deck.html" class="asset-link" target="_blank">
+                <span class="icon">📊</span> Pitch Deck
+            </a>
+            <a href="realestate_one_pager.html" class="asset-link" target="_blank">
+                <span class="icon">📄</span> One-Pager (A4)
+            </a>
+        </div>
+
+        <!-- WELLNESS & TOURS SECTOR -->
+        <div class="sector-card">
+            <h2 class="sector-title">🧘 Wellness & Tours</h2>
+            <a href="websites/wellness_demo/index.html" class="asset-link" target="_blank">
+                <span class="icon">🌐</span> Demo Website <span class="badge">SHOWSTOPPER</span>
+            </a>
+            <a href="wellness_pitch_deck.html" class="asset-link" target="_blank">
+                <span class="icon">📊</span> Pitch Deck
+            </a>
+            <a href="wellness_one_pager.html" class="asset-link" target="_blank">
+                <span class="icon">📄</span> One-Pager (A4)
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+    <p>All files are local and offline-ready. Built for the Las Terrenas market. © 2026 Unity Spirit Partners Inc.</p>
+</div>
+
+</body>
+</html>
