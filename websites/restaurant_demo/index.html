@@ -222,26 +222,12 @@
       text-align: center;
       overflow: hidden;
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 30% 60%, rgba(212, 137, 26, 0.35) 0%, transparent 55%),
-        radial-gradient(ellipse at 75% 20%, rgba(74, 14, 14, 0.5) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-        linear-gradient(160deg, #0A0F1E 0%, #1a0a0a 40%, #2d1507 65%, #0a0f1e 100%);
-      animation: heroShift 18s ease-in-out infinite alternate;
-    }
-    @keyframes heroShift {
-      0%   { filter: brightness(1) hue-rotate(0deg); }
+    .hero-bg { position: absolute; inset: 0; background: transparent; z-index: 1; }
+    
       50%  { filter: brightness(1.08) hue-rotate(5deg); }
       100% { filter: brightness(0.95) hue-rotate(-3deg); }
     }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(10,15,30,0.3) 0%, rgba(10,15,30,0.15) 40%, rgba(10,15,30,0.55) 100%);
-    }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.45) 100%); z-index: 2; }
     /* animated ocean waves */
     .hero-waves {
       position: absolute;
