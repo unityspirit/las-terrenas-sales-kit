@@ -1659,6 +1659,15 @@
     body { background: transparent !important; }
     section, .hero, .footer, header { background: transparent !important; background-color: transparent !important; }
   </style>
+<style>
+.room-img-ocean { background: url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=80') center/cover !important; }
+.room-img-garden { background: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80') center/cover !important; }
+.room-img-beach { background: url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=80') center/cover !important; }
+.g1, .g5, .g9 { background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80') center/cover !important; }
+.g2, .g6, .g10 { background: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80') center/cover !important; }
+.g3, .g7, .g11 { background: url('https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80') center/cover !important; }
+.g4, .g8, .g12 { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80') center/cover !important; }
+</style>
 </head>
 <body>
   <canvas id="gl-canvas"></canvas>
@@ -2564,5 +2573,15 @@
     }
     loadAllFrames();
   </script>
+<script>
+document.querySelectorAll('a, button').forEach(el => {
+  if (el.tagName === 'BUTTON' || (el.tagName === 'A' && (el.getAttribute('href') === '#' || el.getAttribute('href') === ''))) {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('This is a demo! In the final version, this button will open your booking engine, contact form, or payment gateway.');
+    });
+  }
+});
+</script>
 </body>
 </html>

@@ -640,6 +640,12 @@ select option{background:#0d2a2a;color:#fff}
     body { background: transparent !important; }
     section, .hero, .footer, header { background: transparent !important; background-color: transparent !important; }
   </style>
+<style>
+.g1, .g4, .g7 { background: url('https://images.unsplash.com/photo-1517400508447-f8dd518b86db?w=800&q=80') center/cover !important; }
+.g2, .g5, .g8 { background: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80') center/cover !important; }
+.g3, .g6, .g9 { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80') center/cover !important; }
+.gallery-img-inner { display: none !important; } /* hide emojis */
+</style>
 </head>
 <body>
   <canvas id="gl-canvas"></canvas>
@@ -1545,5 +1551,15 @@ window.addEventListener('scroll', () => {
     }
     loadAllFrames();
   </script>
+<script>
+document.querySelectorAll('a, button').forEach(el => {
+  if (el.tagName === 'BUTTON' || (el.tagName === 'A' && (el.getAttribute('href') === '#' || el.getAttribute('href') === ''))) {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('This is a demo! In the final version, this button will open your booking engine, contact form, or payment gateway.');
+    });
+  }
+});
+</script>
 </body>
 </html>
