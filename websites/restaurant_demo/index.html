@@ -1461,6 +1461,47 @@
 .gi12 { background-image: url('') !important; background-size: cover !important; background-position: center !important; }
 .av1, .av2, .av3 { background-image: url('') !important; background-size: cover !important; background-position: center !important; }
 </style>
+<style id="cinematic-css">
+#gl-canvas {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  display: block !important;
+}
+html { background: #060a14 !important; }
+body {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+/* All sections sit above canvas */
+section, header, footer, nav, .hero, main, .hero-section,
+#hero, #services, #gallery, #booking, #contact, #rooms, #experiences,
+#properties, #listings, #activities, #wellness, #tours,
+.page, .section-wrapper {
+  position: relative !important;
+  z-index: 10 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+/* Navbar always on top */
+#navbar, .navbar, nav {
+  z-index: 1000 !important;
+  background: transparent !important;
+}
+.navbar.scrolled, #navbar.scrolled {
+  background: rgba(6,10,20,0.92) !important;
+}
+/* Remove white line: borders on sections */
+section { border: none !important; outline: none !important; }
+</style>
+<style id="gallery-images">
+.g1,.g4,.g7 { background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80') !important; background-size: cover !important; background-position: center !important; min-height: 220px !important; }
+.g2,.g5,.g8 { background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80') !important; background-size: cover !important; background-position: center !important; min-height: 220px !important; }
+.g3,.g6,.g9 { background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80') !important; background-size: cover !important; background-position: center !important; min-height: 220px !important; }
+</style>
 </head>
 
 <body>
@@ -2276,98 +2317,6 @@
   </script>
 
   <script>
-    const TOTAL_FRAMES = 230; 
-    const LERP = 0.04;
-    const CONCURRENCY = 48;
-    const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent) || innerWidth < 768;
-    const FRAME_DIR = isMobile ? 'frames-mobile' : 'frames-webp';
-    const glCanvas = document.getElementById('gl-canvas');
-    const glCtx = glCanvas.getContext('2d');
-    let glCanvasDpr = 1;
-
-    function resizeGl() {
-      glCanvasDpr = Math.min(devicePixelRatio || 1, isMobile ? 1.5 : 2);
-      glCanvas.width  = innerWidth * glCanvasDpr;
-      glCanvas.height = innerHeight * glCanvasDpr;
-      glCanvas.style.width  = innerWidth + 'px';
-      glCanvas.style.height = innerHeight + 'px';
-      glCtx.setTransform(glCanvasDpr, 0, 0, glCanvasDpr, 0, 0);
-    }
-    window.addEventListener('resize', resizeGl);
-    resizeGl();
-
-    const frames = new Array(TOTAL_FRAMES);
-    let loadedCount = 0;
-    let isReady = false;
-
-    function frameName(i) { return FRAME_DIR + '/frame_' + String(i + 1).padStart(6, '0') + '.webp'; }
-
-    async function loadAllFrames() {
-      const queue = Array.from({length: TOTAL_FRAMES}, (_, i) => i);
-      async function worker() {
-        while (queue.length) {
-          const i = queue.shift();
-          await new Promise(resolve => {
-            const img = new Image();
-            img.onload = img.onerror = () => {
-              frames[i] = img;
-              loadedCount++;
-              if (loadedCount === 1) {
-                isReady = true;
-                startAnim();
-              }
-              resolve();
-            };
-            img.src = frameName(i);
-          });
-        }
-      }
-      await Promise.all(Array.from({length: CONCURRENCY}, worker));
-    }
-
-    let glCurrentFrame = 0;
-    let glTargetFrame  = 0;
-
-    window.addEventListener('scroll', () => {
-      if (!isReady) return;
-      const maxScroll = document.documentElement.scrollHeight - innerHeight;
-      const progress  = maxScroll > 0 ? scrollY / maxScroll : 0;
-      glTargetFrame = progress * (TOTAL_FRAMES - 1);
-    }, { passive: true });
-
-    function drawFrame(idx) {
-      const img = frames[Math.max(0, Math.min(idx, TOTAL_FRAMES - 1))];
-      if (!img || !img.complete) return;
-      
-      const W = innerWidth;
-      const H = innerHeight;
-      const r  = Math.max(W / img.naturalWidth, H / img.naturalHeight);
-      const iw = img.naturalWidth * r;
-      const ih = img.naturalHeight * r;
-      const x  = (W - iw) / 2;
-      const y  = (H - ih) / 2;
-      
-      glCtx.clearRect(0, 0, W, H);
-      glCtx.drawImage(img, x, y, iw, ih);
-      
-      const vig = glCtx.createRadialGradient(W/2, H/2, H*0.18, W/2, H/2, H*0.85);
-      vig.addColorStop(0, 'rgba(6,4,10,0)');
-      vig.addColorStop(1, 'rgba(6,4,10,0.85)');
-      glCtx.fillStyle = vig;
-      glCtx.fillRect(0, 0, W, H);
-    }
-
-    function startAnim() {
-      function loop() {
-        requestAnimationFrame(loop);
-        glCurrentFrame += (glTargetFrame - glCurrentFrame) * LERP;
-        if (isReady) drawFrame(Math.round(glCurrentFrame));
-      }
-      loop();
-    }
-    loadAllFrames();
-  </script>
-<script>
 document.querySelectorAll('a, button').forEach(el => {
   if (el.tagName === 'BUTTON' || (el.tagName === 'A' && (el.getAttribute('href') === '#' || el.getAttribute('href') === ''))) {
     el.addEventListener('click', (e) => {
@@ -2377,12 +2326,110 @@ document.querySelectorAll('a, button').forEach(el => {
   }
 });
 </script>
-<style id="gallery-img-fix">
-.g1,.g4,.g7{background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
-.g2,.g5,.g8{background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
-.g3,.g6,.g9{background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80')!important;background-size:cover!important;background-position:center!important}
-#gl-canvas{z-index:1!important}
-html,body{background:transparent!important;background-color:transparent!important}
-section,header,footer,.hero{background:transparent!important;position:relative;z-index:10}
-</style></body>
+<script id="cinematic-engine">
+(function() {
+  var TOTAL_FRAMES = 230;
+  var LERP = 0.04;
+  var CONCURRENCY = 48;
+  var isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent) || window.innerWidth < 768;
+  var FRAME_DIR = isMobile ? 'frames-mobile' : 'frames-webp';
+
+  var glCanvas = document.getElementById('gl-canvas');
+  if (!glCanvas) {
+    glCanvas = document.createElement('canvas');
+    glCanvas.id = 'gl-canvas';
+    document.body.insertBefore(glCanvas, document.body.firstChild);
+  }
+  var glCtx = glCanvas.getContext('2d');
+  var glCanvasDpr = 1;
+
+  function resizeGl() {
+    glCanvasDpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+    glCanvas.width  = window.innerWidth  * glCanvasDpr;
+    glCanvas.height = window.innerHeight * glCanvasDpr;
+    glCanvas.style.width  = window.innerWidth  + 'px';
+    glCanvas.style.height = window.innerHeight + 'px';
+    glCtx.setTransform(glCanvasDpr, 0, 0, glCanvasDpr, 0, 0);
+  }
+  window.addEventListener('resize', resizeGl);
+  resizeGl();
+
+  var frames = new Array(TOTAL_FRAMES);
+  var loadedCount = 0;
+  var isReady = false;
+
+  function frameName(i) {
+    var n = String(i + 1);
+    while (n.length < 6) n = '0' + n;
+    return FRAME_DIR + '/frame_' + n + '.webp';
+  }
+
+  function loadAll() {
+    var queue = [];
+    for (var j = 0; j < TOTAL_FRAMES; j++) queue.push(j);
+
+    function worker() {
+      if (queue.length === 0) return Promise.resolve();
+      var i = queue.shift();
+      return new Promise(function(resolve) {
+        var img = new Image();
+        img.onload = img.onerror = function() {
+          frames[i] = img;
+          loadedCount++;
+          if (loadedCount === 1) { isReady = true; startAnim(); }
+          resolve();
+          worker();
+        };
+        img.src = frameName(i);
+      });
+    }
+
+    var workers = [];
+    for (var w = 0; w < Math.min(CONCURRENCY, TOTAL_FRAMES); w++) {
+      workers.push(worker());
+    }
+    return Promise.all(workers);
+  }
+
+  var glCurrentFrame = 0;
+  var glTargetFrame  = 0;
+
+  window.addEventListener('scroll', function() {
+    if (!isReady) return;
+    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    var progress  = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+    glTargetFrame = progress * (TOTAL_FRAMES - 1);
+  }, { passive: true });
+
+  function drawFrame(idx) {
+    var img = frames[Math.max(0, Math.min(Math.round(idx), TOTAL_FRAMES - 1))];
+    if (!img || !img.complete || !img.naturalWidth) return;
+    var W = window.innerWidth;
+    var H = window.innerHeight;
+    var r  = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    var iw = img.naturalWidth  * r;
+    var ih = img.naturalHeight * r;
+    var x  = (W - iw) / 2;
+    var y  = (H - ih) / 2;
+    glCtx.clearRect(0, 0, W, H);
+    glCtx.drawImage(img, x, y, iw, ih);
+    var vig = glCtx.createRadialGradient(W/2, H/2, H*0.18, W/2, H/2, H*0.85);
+    vig.addColorStop(0, 'rgba(6,4,10,0)');
+    vig.addColorStop(1, 'rgba(6,4,10,0.78)');
+    glCtx.fillStyle = vig;
+    glCtx.fillRect(0, 0, W, H);
+  }
+
+  function startAnim() {
+    (function loop() {
+      requestAnimationFrame(loop);
+      glCurrentFrame += (glTargetFrame - glCurrentFrame) * LERP;
+      if (isReady) drawFrame(glCurrentFrame);
+    })();
+  }
+
+  loadAll();
+})();
+</script>
+</body>
 </html>
