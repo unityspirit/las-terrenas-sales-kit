@@ -231,10 +231,10 @@ canvas#waveCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.35}
 .activity-card:hover .card-overlay{opacity:0.85}
 .activity-card:hover .card-cta{opacity:1;transform:translateY(0)}
 .card-bg{position:absolute;inset:0;width:100%;height:100%}
-.card-bg-kite{background:linear-gradient(145deg,#00BFA5 0%,#006d5f 40%,#0A2020 100%)}
-.card-bg-yoga{background:linear-gradient(145deg,#FF6B8A 0%,#D4357A 40%,#5c1a3d 100%)}
-.card-bg-limón{background:linear-gradient(145deg,#56ab2f 0%,#2d6a18 50%,#0f3306 100%)}
-.card-bg-ocean{background:linear-gradient(145deg,#1a3c6e 0%,#0d2244 50%,#080f1e 100%)}
+.card-bg-kite{background-image:url('https://images.unsplash.com/photo-1582139329536-e7284fece509?w=900&q=85');background-size:cover;background-position:center;}
+.card-bg-yoga{background-image:url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=900&q=85');background-size:cover;background-position:center;}
+.card-bg-limón{background-image:url('https://images.unsplash.com/photo-1511497584788-876760111969?w=900&q=85');background-size:cover;background-position:center;}
+.card-bg-ocean{background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&q=85');background-size:cover;background-position:center;}
 .card-pattern{
   position:absolute;inset:0;opacity:0.08;
   background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.3) 0,rgba(255,255,255,0.3) 1px,transparent 0,transparent 50%);
@@ -429,7 +429,7 @@ select option{background:#0d2a2a;color:#fff}
   break-inside:avoid;margin-bottom:16px;border-radius:14px;overflow:hidden;
   position:relative;cursor:pointer;
   transition:transform 0.3s,box-shadow 0.3s;
-}
+min-height:220px;}
 .masonry-item:hover{transform:scale(1.02);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
 .gallery-img{
   width:100%;display:block;
@@ -699,6 +699,31 @@ section { border: none !important; outline: none !important; }
   position: relative !important;
   z-index: 20 !important;
 }
+</style>
+<style id="wellness-text-fix">
+/* ── TEXT CONTRAST FIX ── */
+.hero h1, .hero-title, .hero p, .hero-sub, .section-title, .section-sub,
+.section-label, .card-content h3, .card-content p, .card-list li,
+.card-tag, h1, h2, h3, h4, .nav-logo, .gallery-header h2 {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.7), 1px 1px 0 rgba(0,0,0,0.8) !important;
+}
+/* Hero specific */
+.hero h1 {
+  text-shadow: 0 2px 8px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.9), 2px 2px 0 rgba(0,0,0,1) !important;
+}
+/* ── ACTIVITY CARDS: semi-transparent glass ── */
+.activity-card {
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  background: rgba(0,0,0,0.15) !important;
+  backdrop-filter: blur(0px) !important;
+}
+/* Card overlay: lighter so image shows through */
+.card-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%) !important;
+}
+/* ── GALLERY: ensure items have height ── */
+.masonry-item { min-height: 220px !important; overflow: hidden !important; }
+.gallery-img { min-height: 220px !important; height: 220px !important; background-size: cover !important; background-position: center !important; }
 </style>
 </head>
 <body>

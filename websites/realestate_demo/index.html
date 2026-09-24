@@ -1287,6 +1287,41 @@ section { border: none !important; outline: none !important; }
   z-index: 20 !important;
 }
 </style>
+<style id="realestate-text-fix">
+/* ── TEXT CONTRAST: white text with strong dark outline ── */
+h1, h2, h3, h4, h5,
+.hero-title, .hero h1, .hero-badge,
+.footer-brand .name, .footer-brand .sub,
+footer p, footer a, footer li,
+.contact-top *, .footer-col *,
+.nav-logo .name, .nav-logo .sub,
+.hero-stats *, .hero-subtitle,
+.prop-price, .prop-tag, .prop-title,
+.testimonial-text, .testimonial-author {
+  text-shadow: 
+    1px 1px 0 rgba(0,0,0,1),
+    -1px -1px 0 rgba(0,0,0,1),
+    1px -1px 0 rgba(0,0,0,1),
+    -1px 1px 0 rgba(0,0,0,1),
+    0 2px 8px rgba(0,0,0,0.9),
+    0 0 16px rgba(0,0,0,0.8) !important;
+}
+/* Hero main title: even stronger */
+h1, .hero h1 {
+  text-shadow:
+    2px 2px 0 rgba(0,0,0,1),
+    -2px -2px 0 rgba(0,0,0,1),
+    2px -2px 0 rgba(0,0,0,1),
+    -2px 2px 0 rgba(0,0,0,1),
+    0 4px 16px rgba(0,0,0,1),
+    0 0 30px rgba(0,0,0,0.9) !important;
+}
+/* Footer: slight dark backing for legibility */
+footer {
+  background: rgba(0,0,0,0.35) !important;
+  backdrop-filter: blur(4px) !important;
+}
+</style>
 </head>
 <body>
   <canvas id="gl-canvas"></canvas>
@@ -2004,9 +2039,7 @@ section { border: none !important; outline: none !important; }
   <!-- ====================================================
        DEMO WATERMARK
   ==================================================== -->
-  <div class="demo-watermark">
-    ✦ DEMO BY UNITY SPIRIT PARTNERS — unityspiritpartners.com ✦
-  </div>
+  
 
   <!-- ====================================================
        JAVASCRIPT
