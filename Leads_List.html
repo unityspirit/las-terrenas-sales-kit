@@ -1,26 +1,1173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lead Database - Las Terrenas</title>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<style>
-  body { font-family: 'Inter', sans-serif; background: #0A1628; color: #fff; padding: 40px; max-width: 1000px; margin: 0 auto; line-height: 1.6; }
-  h1, h2, h3 { color: #D4AF37; }
-  a { color: #1A7A99; }
-  table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255,255,255,0.05); font-size: 14px;}
-  th, td { border: 1px solid rgba(212,175,55,0.3); padding: 12px; text-align: left; }
-  th { background: rgba(212,175,55,0.1); color: #D4AF37; }
-  .btn-back { display: inline-block; margin-bottom: 30px; padding: 10px 20px; background: #D4AF37; color: #0A1628; text-decoration: none; border-radius: 4px; font-weight: bold; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Spirit - Lead Database</title>
+    <!-- Use Tailwind CSS for rapid UI styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0A0F1E; color: #fff; }
+        .glass { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); }
+        th { position: sticky; top: 0; background: #0A0F1E; z-index: 10; border-bottom: 2px solid #D4AF37; cursor: pointer; }
+        th:hover { background: rgba(212, 175, 55, 0.1); }
+        td { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        tr:hover td { background: rgba(255,255,255,0.05); }
+        .badge-high { background: #ef4444; color: white; }
+        .badge-med { background: #eab308; color: black; }
+        .badge-low { background: #22c55e; color: white; }
+        
+        /* Custom scrollbar for table container */
+        .table-container::-webkit-scrollbar { height: 10px; width: 10px; }
+        .table-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        .table-container::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 5px; }
+    </style>
 </head>
-<body>
-<a href="Sales_Hub.html" class="btn-back">&larr; Back to Sales Hub</a>
-<div id="content"></div>
-<script>
-  const markdownText = `# 🎯 Master Lead Database (Las Terrenas)\\n### Unity Spirit Partners Inc. — October 2026 Sales Mission\\n\\n> **Strategy:** Focus on '🔴 HIGH' priority leads first. These businesses lack automated direct bookings, rely entirely on OTAs/WhatsApp, and are losing 15-25% margin. Offer them our cinematic automated booking engine.\\n\\n\\n### 🏨 Hotels, Villas & Aparthotels\\n| Priority | Business Name | Category | Digital Weakness / Pitch Angle | Website / Social |\\n| --- | --- | --- | --- | --- |\\n| 🔴 HIGH | **Hotel Las Cayenas** | Boutique Hotel | Inactive/dead website (former lascayenas.com is down); entirely reliant on OTAs (Booking.com/TripAdvisor) and walk-ins, bleeding direct margin. | Social: https://www.facebook.com/HotelLasCayenas |\\n| 🔴 HIGH | **Hotel Iguana** | Hotel | Expired domain/defunct site (iguana-hotel.com); 100% reliant on third-party aggregators with zero direct booking capture. |  |\\n| 🔴 HIGH | **Hotel Boutique Casa Grande** | Boutique Hotel | No standalone website or direct booking engine; completely dependent on OTAs (Expedia, Hotels.com) paying 15-25% commissions. | Social: https://www.instagram.com/hotelboutiquecasagrande |\\n| 🔴 HIGH | **Beach Hotel Casa Nina** | Boutique Hotel | No dedicated direct booking website; relies entirely on third-party aggregator listings and fragmented social pages. | Social: https://www.facebook.com/BeachHotelCasaNina |\\n| 🔴 HIGH | **Hotel Coco Plaza** | Boutique Hotel | Outdated non-HTTPS (insecure) legacy site from the early 2010s; poor mobile layout and no integrated modern booking engine. | Web: http://www.hotelcocoplaza.com <br> Social: https://www.facebook.com/hotelcocoplaza |\\n| 🔴 HIGH | **Los Nomadas Villa Rentals** | Villa Rental & Property Management | Low-fidelity directory site representing multi-million dollar luxury villas; lacks modern 3D virtual tours, instant inquiry workflows, and high-res media. | Web: https://www.losnomadaslasterrenas.com <br> Social: None dedicated (community tags only) |\\n| 🔴 HIGH | **Carib Service** | Real Estate & Villa Rentals | Extremely dated website architecture, non-mobile optimized tables, lack of modern SSL security, and no virtual walkthroughs. | Web: https://www.carib-service.com <br> Social: https://www.facebook.com/caribservice |\\n| 🔴 HIGH | **Villa Del Mar** | Villa Rental | Single-page minimalist brochure site with no automated availability calendar, direct payment processing, or concierge upsells. | Web: https://villadelmar.do <br> Social: https://www.instagram.com/villadelmarlasterrenas |\\n| 🟡 MED | **Takuma Boutik Hotel** | Boutique Hotel | Stylish concept with high ADR, but website lacks a high-converting direct booking engine with rate parity, forcing guests to OTAs. | Web: https://takumaboutikhotel.com <br> Social: https://www.instagram.com/takumaboutikhotel |\\n| 🟡 MED | **El Mambo Boutique Hotel** | Boutique Hotel | Basic informational site with weak SEO ranking for English searches; lacks immersive video storytelling and automated activity booking. | Web: https://elmambohotel.com <br> Social: https://www.instagram.com/elmambohotel |\\n| 🟡 MED | **Mahona Boutique Hotel** | Boutique Hotel | Clean Balinese aesthetic but site is minimal; lacks direct packages/experiences upsells, multi-language toggles, and dynamic currency conversions. | Web: https://mahona-lasterrenas.com <br> Social: https://www.instagram.com/mahonaboutiquehotel |\\n| 🟡 MED | **Punta Popy Boutique Hotel** | Boutique Hotel | Basic template website, lacks direct customer retention tools, instant chat widget, and local experience packaging. | Web: https://punta-popy-boutique-hotel.com <br> Social: https://www.instagram.com/puntapopyhotel |\\n| 🟡 MED | **Hotel La Tortuga** | Boutique Hotel | Legacy website layout with dated typography and poor mobile viewport scaling; lacks instant confirmation booking system. | Web: http://www.hotel-la-tortuga.com <br> Social: https://www.instagram.com/hotellatortuga |\\n| 🟡 MED | **Beach Hotel Casa Coson** | Boutique Hotel & Villas | Slow media loading speeds, lacks 360-degree virtual beach tours, and event/wedding inquiry funnel is purely static text. | Web: https://casacoson-beachhotel.com <br> Social: https://www.instagram.com/casacoson |\\n| 🟡 MED | **Hotel Atlantis** | Boutique Hotel & Restaurant | Historic beachfront culinary landmark with an outdated static website; no online table reservation or room package upsells. | Web: https://hotel-atlantis-lasterrenas.com <br> Social: https://www.instagram.com/atlantislasterrenas |\\n| 🟡 MED | **Puerto Plaza Las Terrenas** | Boutique Hotel & Aparthotel | Unique boat-shaped architectural landmark with an underutilized website; lacks modern interactive room selection and upsell funnels. | Web: https://puertoplazalasterrenas.com <br> Social: https://www.facebook.com/puertoplazalasterrenas |\\n| 🟡 MED | **Coson Bay Hotel & Residences** | Hotel & Residences | Corporate template website with generic imagery and slow load times; lacks personalized experiential landing pages for weddings and groups. | Web: http://www.cosonbay.com <br> Social: https://www.facebook.com/cosonbay |\\n| 🟡 MED | **El Mosquito Boutique Hotel** | Boutique Hotel | High-vibe lifestyle hotel with solid branding, but site is slow to load and lacks seamless direct-booking upsells for surf/adventure packages. | Web: https://mosquitoboutiquehotel.com <br> Social: https://www.instagram.com/elmosquitoboutiquehotel |\\n| 🟡 MED | **Mosquito Beach Bar & Restaurant (Hotel El Mosquito)** | Beach Club, Cocktail Bar & Boutique Hotel Restaurant | Hotel-centric website; no dedicated restaurant menu, table reservation or beach club day-pass engine | Web: Yes (https://mosquitoboutiquehotel.com) <br> Social: @mosquitobarart (Instagram) , Facebook: El Mosquito Boutique Hotel |\\n| 🟡 MED | **Hotel Casa Grande Restaurant** | Boutique Hotel Restaurant & Beach Bar | Basic website with static PDF text menu, no interactive table booking or romantic dinner package booking | Web: Yes (https://casagrande.com.do) <br> Social: @CasaGrandeRD (Instagram) |\\n| 🟡 MED | **Casa Cosón (Caffé Cosón)** | Beachfront Hotel Restaurant, Grill & Cocktail Bar | Hotel-dominated website with outdated menu presentation, no dedicated restaurant booking engine | Web: Yes (https://www.casacoson-beachhotel.com) <br> Social: Facebook: Beach Hotel Casa Coson , @casacosonlt |\\n| 🟢 LOW | **Hotel Alisei Restaurant & Spa** | Hotel & Spa | Established property with decent web traffic, but booking flow redirects to third-party engine with clunky UX and no personalized add-on bundles. | Web: https://aliseihotelspa.com <br> Social: https://www.facebook.com/aliseihotelspa |\\n\\n### 🍽️ Restaurants, Beach Clubs & Cafes\\n| Priority | Business Name | Category | Digital Weakness / Pitch Angle | Website / Social |\\n| --- | --- | --- | --- | --- |\\n| 🔴 HIGH | **La Terrasse** | Fine Dining / French & Mediterranean | No website, no online booking, phone-only reservations, no multilingual digital menu | Social: Facebook: facebook.com/profile (La Terrasse Las Terrenas) , Phone: +1 809-240-6730 |\\n| 🔴 HIGH | **Casa Azul Pizzeria** | Italian Pizzeria & Casual Beach Dining | No website, Instagram-only, no online table booking or takeout ordering | Social: @casaazulpizzeria (Instagram) , Facebook: Casa Azul Pizzeria |\\n| 🔴 HIGH | **One Love Surf Shack** | Beach Bar & Grill / Surf Shack | No website, no booking, Facebook-only, no digital event schedule or menu | Social: Facebook: One Love Surf Shack Las Terrenas |\\n| 🔴 HIGH | **Pizza Playa** | Beachfront Pizzeria & Bar | No website, no online ordering, Facebook-only, no multilingual presence | Social: Facebook: Pizza Playa Las Terrenas , Phone: +1 809-240-6399 |\\n| 🔴 HIGH | **La Yuca Caliente** | Traditional Dominican & Caribbean Restaurant | No website, no online booking, Instagram-only, Spanish-only without multilingual menu for tourists | Social: @layucacaliente (Instagram) , Facebook: La Yuca Caliente |\\n| 🔴 HIGH | **Le Tre Caravelle** | Fine Dining / Italian Seafood & Beachfront Restaurant | No website, no booking engine, Facebook-only, high average check ($$$) without direct reservations | Social: Facebook: Le Tre Caravelle , Phone: +1 829-410-0232 / +1 809-240-5188 |\\n| 🔴 HIGH | **Manda Popy** | Beachfront Cafe & Healthy Caribbean Dining | No website, no direct reservation system, Facebook-only, reliant on 3rd-party delivery app (Komida) | Social: Facebook: Manda Popy |\\n| 🔴 HIGH | **Campuno Beach Club** | Beach Club & Dominican Seafood Restaurant | No website, Instagram-only, no online sunbed or VIP cabana booking engine | Social: @campunobc (Instagram) , Facebook: Campuno Beach Club |\\n| 🔴 HIGH | **Ristorante La Dolce Vita** | Italian Trattoria & Pizzeria | No website, Facebook-only, conflicting social media pages with condo rentals of same name, no online booking | Social: Facebook: LA DOLCE VITA Las Terrenas , Phone: +1 809-989-5766 |\\n| 🔴 HIGH | **Pizzeria Raffaele** | Neapolitan Wood-Fired Pizzeria | No website, no online ordering, Facebook-only, lacks multilingual menu and SEO presence | Social: Facebook: Pizzeria Raffaele Las Terrenas , Phone: +1 829-791-2222 |\\n| 🔴 HIGH | **Beluga Beach Club (El Beluga)** | Beach Club & Gourmet Seafood Restaurant | No website, Instagram-only, no online booking for daybeds or sunset dining | Social: @beluga.rd (Instagram) , Facebook: Beluga Beach Club |\\n| 🔴 HIGH | **El Cayuco de la Bonita** | Spanish Seafood & Paella Restaurant | No website, no verified social media accounts, zero digital marketing, relies strictly on foot traffic | Social: Facebook: Restaurante El Cayuco , Phone: +1 809-240-9444 |\\n| 🔴 HIGH | **Eden Beach Club** | Beach Club, Cocktail Lounge & Restaurant | No website, no online booking for daybeds or dining, Facebook-only, no multilingual presence | Social: Facebook: Eden Beach Club Las Terrenas , Phone: +1 829-470-8194 |\\n| 🔴 HIGH | **Boulangerie Française** | French Bakery & Breakfast Cafe | No website, no online preorder/pickup menu, Facebook-only, no multilingual digital presence | Social: Facebook: Boulangerie Française Las Terrenas |\\n| 🟡 MED | **ETNO Beach Club** | Beach Club, Cocktail Lounge & Restaurant | Basic static marketing site, no automated table/bed booking engine, WhatsApp manual booking only | Web: Yes (https://www.etnobeachclub.com) <br> Social: @etnobeachclub (Instagram) , Facebook: ETNO Beach Club |\\n| 🟡 MED | **Tropik Bowl** | Healthy Cafe / Poke Bowls & Smoothies | No website, Instagram/Facebook only, no direct online pre-ordering or pickup portal | Social: @tropikbowl (Instagram) , Facebook: Tropik Bowl Las Terrenas |\\n| 🟡 MED | **Restaurant Atlantis** | Fine Dining / French & Caribbean Gastronomy | Outdated legacy hotel website, no dedicated restaurant reservation flow, manual email booking only | Web: Yes (https://hotel-atlantis-lasterrenas.com) <br> Social: Facebook: Hotel Atlantis Las Terrenas , Phone: +1 809-240-6111 |\\n| 🟡 MED | **El Portillo Beach Residences Club** | Private Residential Beach Club & Restaurant | No independent website, no public digital booking, zero digital visibility outside gated community | Social: Facebook: El Portillo Beach Club & Residences |\\n| 🟡 MED | **Kiosko Bar & Restaurant (Hotel Playa Colibri)** | Beachfront Resort Restaurant & Bar | No independent restaurant website, no table reservation system, basic static hotel page | Web: Yes (https://hotelplayacolibri.com) <br> Social: Facebook: Hotel Playa Colibri |\\n| 🟡 MED | **La Bufala Pizzeria Contemporanea** | Contemporary Italian Pizzeria | No website, Facebook-only, no online ordering or table reservation system | Social: Facebook: La Bufala Pizzeria Contemporanea , Phone: +1 849-429-0002 |\\n| 🟡 MED | **Barrio Latino** | Urban Brasserie, Bar & International Bistro | No website, Facebook-only, no digital menu or table booking | Social: Facebook: Barrio Latino Las Terrenas |\\n| 🟡 MED | **Empanadas y Más** | Casual Latin / Empanadas & Ceviche Snack Bar | No website, Facebook-only, cash-only, no digital takeout menu | Social: Facebook: Empanadas y Más Las Terrenas |\\n| 🟢 LOW | **Onno's Las Terrenas** | Beach Bar, Tex-Mex & Nightclub | Part of regional corporate chain; generic multi-location site lacking local SEO and personalized booking | Web: Yes (https://onnosdr.com) <br> Social: @onnoslasterrenas / @onnosbar (Instagram) |\\n| 🟢 LOW | **Porto by Mosquito** | Upscale Beach Club & International Restaurant | Flashy showcase site but weak local organic search SEO, lacks automated multilingual reservation flow | Web: Yes (https://portobymosquito.com) <br> Social: @portobymosquito / @crazydonkeyentertainment (Instagram) |\\n| 🟢 LOW | **Mosquito Sol de Arena** | Beach Club, Wood-Fired Pizza & Fusion Restaurant | New establishment with low search ranking, WhatsApp-only manual booking, no multilingual menu translation | Web: Yes (https://mosquitosoldearena.com) <br> Social: @mosquitobarart (Instagram) , WhatsApp: +1 809-697-0504 |\\n| 🟢 LOW | **Bistro & La Palapa at Sublime Samaná** | Luxury Resort Dining / Mediterranean-Dominican Fusion | Hotel-managed corporate site with static menus; no OpenTable/SevenRooms integration for outside guests | Web: Yes (https://sublimesamana.com) <br> Social: @sublimesamana (Instagram) |\\n\\n### 🧘 Wellness, Tours, Schools & Expat Services\\n| Priority | Business Name | Category | Digital Weakness / Pitch Angle | Website / Social |\\n| --- | --- | --- | --- | --- |\\n| 🔴 HIGH | **Hotel La Dolce Vita Residence** | Aparthotel | Zero independent website or direct booking system; bookings are captured exclusively via aggregators (Trivago, Expedia). | Social: None official |\\n| 🔴 HIGH | **Fata Morgana Eco Hotel** | Guesthouse / Eco-Lodge | Highly rated budget eco-lodge with no standalone website or direct booking funnel; totally dependent on OTAs. | Social: None official |\\n| 🔴 HIGH | **Afreeka Beach Hostel & Music Bar** | Hostel / Guesthouse | Popular youth/events hotspot operating strictly via social media and OTAs, lacking direct bed and event ticket reservation capabilities. | Social: https://www.instagram.com/afreeka_beach_hostel |\\n| 🔴 HIGH | **Yoga Life Villa & Exhale Yoga Studio** | Wellness Studios & Yoga Retreats | Relies heavily on third-party aggregators (BookRetreats, WeTravel) paying high commissions; lacks direct integrated booking engine for drop-in classes or day passes; English-only site ignores local French and Spanish-speaking expat community. | Web: Yes (https://yogalifevilla.com) <br> Social: Instagram: @theyogalifevilla , Facebook: Yoga Life Villa - Retreat Venue |\\n| 🔴 HIGH | **Shiva's Cave Yoga Retreat Center** | Yoga Retreats & Wellness Studios | Outdated, non-responsive web design from early 2010s; unencrypted HTTP protocol; fragmented branding across vacation rental subdomains; no interactive retreat schedule or online payment gateway. | Web: Yes (http://shivascaveyogaretreat.com) <br> Social: Facebook: Monte Placido & Shiva's Cave |\\n| 🔴 HIGH | **Kiteworld Las Terrenas** | Kitesurfing Schools & Water Sports | Cluttered legacy layout with slow loading speeds; no real-time wind/weather widgets or live beach webcam feed; lacks modern multi-currency checkout for high-ticket multi-day lesson packages. | Web: Yes (https://www.kitesurflasterrenas.com) <br> Social: Instagram: @kiteworlddr , Facebook: kiteworldlt |\\n| 🔴 HIGH | **LT'KITE (Las Terrenas Kitesurf)** | Kitesurfing Schools | Established in 2007 but still running on an insecure HTTP site with poor mobile optimization and security warnings; zero automated equipment rental reservation or course deposit system. | Web: Yes (http://www.lasterrenas-kitesurf.com) <br> Social: Facebook: LT'Kite - Las Terrenas Kitesurf |\\n| 🔴 HIGH | **Kite Mecca & CUCUYO Retreats** | Kitesurfing Schools & Active Retreats | Requires manual inquiry forms for retreat bookings; no dynamic room/session inventory checker; weak Google organic ranking for competitive international keywords ('kite camp Caribbean'). | Web: Yes (https://kitemecca.com) <br> Social: Instagram: @kitemecca , Facebook: Kite Mecca |\\n| 🔴 HIGH | **Pirata Surf School** | Surf Schools | Single-language presentation neglecting the massive French expat demographic in Playa Bonita; lacks digital waiver signing and real-time surf lesson/board rental scheduler. | Web: Yes (https://piratasurfschool.com) <br> Social: Instagram: @piratasurfschool , Facebook: Pirata Surf School |\\n| 🔴 HIGH | **Carolina Surf School** | Surf Schools | Very basic web presence with slow mobile speeds; lacks direct booking engine and relies heavily on physical hotel referrals (El Mosquito/Casa Grande) rather than capturing pre-trip search traffic. | Web: Yes (https://carolinasurfschooldr.com) <br> Social: Instagram: Carolina Surf School , Facebook: Carolina Surf School DR |\\n| 🔴 HIGH | **The Dive Academy Las Terrenas** | Dive Shops & Boat Charters | Lacks an interactive 3D dive site map or marine life guide; no e-commerce flow for PADI/SSI course certifications or rental equipment prepayment; under-optimized for North American diving search queries. | Web: Yes (https://tdalasterrenas.com) <br> Social: Facebook: The Dive Academy Las Terrenas , Instagram: @tdalasterrenas |\\n| 🔴 HIGH | **Turtle Dive Center** | Dive Shops | Severely dated web portal running on unencrypted HTTP; completely lacks an active Instagram strategy despite high visual appeal of diving; no online booking; relies on walk-ins at El Paseo. | Web: Yes (http://www.turtledivecenter.com) <br> Social: Facebook: turtledivecenter.lasterrenas |\\n| 🔴 HIGH | **Jolie Playa** | Boat Charters & Water Excursions | No real-time calendar availability for private catamaran and boat charters; no instant online deposit collection; forces international clients to message back-and-forth manually. | Web: Yes (https://jolieplaya.com) <br> Social: Instagram: @jolieplaya , WhatsApp |\\n| 🔴 HIGH | **Whale Samaná (Kim Beddall Legacy)** | Whale Watching Tours | Iconic regional pioneer operating an antiquated early-2000s website; clunky non-responsive mobile UI; no streamlined instant ticketing system during high season (Jan–March); inactive Instagram. | Web: Yes (https://whalesamana.com) <br> Social: Facebook: Whale Samana / Kim Beddall |\\n| 🔴 HIGH | **Flora Tours Las Terrenas** | Adventure Tour Companies & Hiking Guides | Heavy French bias in copy and structure; lacks multi-currency e-commerce checkout for excursions (Los Haitises, El Limón); forces potential clients through long inquiry forms and manual email confirmation. | Web: Yes (https://flora-tours.com) <br> Social: Facebook: Flora Tours Las Terrenas , Instagram: @floratours |\\n| 🔴 HIGH | **Nano Vega Tours** | Adventure Tour Companies & ATV/Buggy Rentals | Brochure-only website with no live fleet inventory display, no real-time rental availability system, and no online credit card deposit authorization. | Web: Yes (https://nanovegatours.com) <br> Social: Facebook: Nano Vega Tours , Instagram: @nanovegatours |\\n| 🔴 HIGH | **Lucky Moto S.r.l.** | Car, Scooter & Motorbike Rentals / ATV Tours | Legacy website with poor mobile UI/UX; lacks digital rental contract generation, insurance tier selection, and instant vehicle reservations; dormant social media channels. | Web: Yes (https://luckymotosrl.com) <br> Social: Facebook: Lucky Moto Rent Car, Motor & Tour Operator |\\n| 🔴 HIGH | **Santi Limón Excursiones** | Hiking Guides & Waterfall Tours | Old HTTP website with broken links and layout bugs; no online ticketing or advance reservation for hiking/horseback excursions to Salto El Limón; heavy revenue leakage to physical street intermediaries. | Web: Yes (http://cascadalimonsamana.com) <br> Social: Facebook: Santi Limón Excursiones , TripAdvisor |\\n| 🔴 HIGH | **Parada La Manzana (Rancho Manzana)** | Hiking Guides & Eco-Tours | Zero independent website presence; completely dependent on third-party aggregators (Viator/GetYourGuide) and drive-by traffic; losing up to 25-30% platform booking commissions. | Social: Facebook: Parada La Manzana Salto El Limón , Google Maps Profile |\\n| 🔴 HIGH | **ZenVida Wellness & Aesthetics** | Spas, Massage Centers & Medical Aesthetics | No standalone branded website; zero SEO presence for high-value aesthetic and medical spa terms; relies exclusively on Instagram link-in-bio, limiting international search visibility. | Web: No (Relies solely on Linktree: linktr.ee/ZenVidaGroup) <br> Social: Instagram: @ZenVidaLT , WhatsApp |\\n| 🔴 HIGH | **Las Terrenas Dental Group** | Dental Clinics for Medical Tourism | Completely lacks a dedicated website despite massive dental tourism demand (implants/veneers at 70% US savings); entirely invisible to English/French medical tourists searching from abroad. | Social: Facebook: Las Terrenas Dental Group , Local directory listings |\\n| 🔴 HIGH | **Odontohealth Consultorio Dental** | Dental Clinics for Medical Tourism | Zero digital footprint beyond a basic map pin and dormant Facebook page; no before/after clinical showcase, no bilingual pricing transparency, and no virtual consultation portal. | Social: Facebook: Odontohealth Las Terrenas , Google Business Profile |\\n| 🔴 HIGH | **Común CoWork** | Coworking Spaces & Digital Nomad Services | One-page informational site lacking an automated desk/meeting room booking portal; nomads cannot purchase day passes or check live seat capacity before arriving. | Web: Yes (https://comuncowork.com) <br> Social: Instagram: @comuncowork , Facebook: Comun CoWork |\\n| 🔴 HIGH | **PAVPG & Asociados** | Expat Lawyers & Notaries | Sparse content with no downloadable legal guides for foreign investors; lacks bilingual residency eligibility assessment calculators and automated consultation scheduling. | Web: Yes (https://pavpg.com) <br> Social: Facebook: PAVPG & Asociados , LinkedIn |\\n| 🔴 HIGH | **FACT (Future Academy of Critical Thinking)** | International Schools & Nomad Education | Basic DIY site builder architecture with weak organic SEO; lacks an interactive curriculum portal, parent testimonial videos, and streamlined digital tuition payments. | Web: Yes (https://www.factlasterrenas.com) <br> Social: Instagram: @factlasterrenas , Facebook: @FACT.LasTerrenas |\\n| 🔴 HIGH | **Chez Sandro (O Grill by Sandro)** | Beachfront French Seafood & Grill | No website, no booking system, Facebook-only, fragmented dual branding (Chez Sandro vs. O Grill) | Social: Facebook: Chez Sandro / O Grill Las Terrenas |\\n| 🔴 HIGH | **Restaurant Luis (Parrillada Luis)** | Rustic Dominican Seafood & Beach Grill | No website, no booking, zero digital menu, cash-only, massive international reputation with 0% digital capture | Social: Facebook: Restaurant Luis Playa Cosón , @restaurantluisplayacoson |\\n| 🔴 HIGH | **Donde Valerio** | Casual Beachfront Seafood Shack | No website, no social media presence, no booking, cash-only, invisible online except on Google Maps | Social: None (No official page / Word-of-mouth only) |\\n| 🔴 HIGH | **Zu Ceviche and Grill by Alex** | Beachfront Cevichería & Fresh Grill | No website, Instagram-only, no online booking, cash-only, lacks multilingual menu | Social: @zu_ceviche_grill (Instagram) , WhatsApp: +1 829-525-1782 |\\n| 🔴 HIGH | **Restaurante Dulce Playa** | Dominican Seafood & Beach Kiosk | No website, zero social media presence, no digital footprint, cash-only | Social: None (No official page) , Phone: +1 829-771-5283 |\\n| 🟡 MED | **Hotel Residence Playa Colibri** | Aparthotel / Vacation Rentals | Dated visual design that does not reflect its prime beachfront setting; cumbersome multi-step booking engine on mobile devices. | Web: https://hotelplayacolibri.com <br> Social: https://www.facebook.com/hotelplayacolibri |\\n| 🟡 MED | **Residencia El Paseo** | Aparthotel | Aging website structure with no live availability calendar or mobile-friendly instant booking checkout. | Web: http://www.residenciadelpaseo.com <br> Social: https://www.facebook.com/ResidenciaDelPaseo |\\n| 🟡 MED | **Clave Verde Ecolodge** | Eco-Lodge / Guesthouse | Basic template site with cumbersome manual booking inquiries via email/form; lacks automated instant reservation and retreat packaging. | Web: https://www.claveverde.com <br> Social: https://www.instagram.com/claveverde |\\n| 🟡 MED | **Las Terrenas Villa Rentals** | Vacation Rentals | Directory-style catalog requiring manual inquiry emails; no instant booking, date availability checks, or dynamic seasonal pricing. | Web: https://lasterrenasrental.com |\\n| 🟡 MED | **Yoga Las Terrenas (Nat & The Coconut)** | Wellness Studios & Beach Yoga | Hosted on a free/subdomain platform without a custom domain or structured SEO; zero automated booking or calendar integration; relies 100% on manual WhatsApp coordination. | Web: Yes (https://natandthecoconut.framer.website) <br> Social: Instagram: @natandthecoconut , WhatsApp |\\n| 🟡 MED | **RushMore Kite School** | Kitesurfing Schools | Generic template site lacking video proof and student showcase reels; no instant booking widget; relies on static email contact forms instead of frictionless Stripe/PayPal checkout. | Web: Yes (https://www.rushmorekiteschool.com) <br> Social: Instagram: @rushmorekiteschool , Facebook: rushmorekiteschool |\\n| 🟡 MED | **Profundo Blue** | Dive Shops & Snorkeling Tours | Minimalist landing page with thin text content, zero transparent pricing tables, and weak Google Business Profile optimization; all inquiries routed to WhatsApp with no automated quote tool. | Web: Yes (https://profundoblue.com) <br> Social: Facebook: Profundo Blue Las Terrenas , Instagram |\\n| 🟡 MED | **Evy Spa (Takuma Boutik Hotel)** | Spas & Massage Centers | Modern visual layout but lacks self-service scheduling (Calendly/Fresha style); forces every client through WhatsApp; missing gift card e-commerce and cross-promotional hotel room upsells. | Web: Yes (https://evyspa.com) <br> Social: Instagram: @evyspalasterrenas , Facebook: Evy Spa |\\n| 🟡 MED | **Lourdes Massage & Mobile Beach Spa** | Spas & Massage Centers | Basic single-page web presence without secure SSL; no interactive booking calendar or villa dispatch scheduling; lacks client reviews and treatment video showcases. | Web: Yes (http://lasterrenasmassage.com) <br> Social: Facebook: Lourdes Massage Las Terrenas |\\n| 🟡 MED | **ACT Rent Car** | Car, Scooter & Motorbike Rentals | Static brochure website with no dynamic date/model selection or real-time availability; missing digital ID upload and automated credit card security deposit processing. | Web: Yes (https://actrentcar.com) <br> Social: Facebook: ACT Rent Car Las Terrenas |\\n| 🟡 MED | **Jessie Rent Cars** | Car, Scooter & Quad Rentals | Outdated template site with slow mobile performance; unable to book or confirm reservations online; relies entirely on manual phone calls and WhatsApp chats. | Web: Yes (https://www.jessierentcars.com) <br> Social: Facebook: Jessie Rent Cars , Petit Futé Directory |\\n| 🟡 MED | **Guzmán Ariza Attorneys at Law (Las Terrenas)** | Expat Lawyers & Notaries | Large national corporate site is text-heavy and dense; lacks dedicated high-converting Las Terrenas expat landing pages for real estate title due diligence, residency packages, or online retainer intake. | Web: Yes (https://drlawyer.com) <br> Social: LinkedIn: Guzman Ariza , Facebook: Guzman Ariza Law |\\n| 🟡 MED | **Lycée Français International de Las Terrenas (Théodore Chassériau)** | International Schools | Cumbersome navigation relying on heavy PDF downloads; lacks an interactive virtual campus tour or digital admissions funnel; predominantly French with weak English orientation for new expat families. | Web: Yes (https://lfilt.com) <br> Social: Facebook: @lfilt , Instagram: Lycée Français International |\\n| 🟡 MED | **ISLA Academy (Las Terrenas Campus)** | International Schools | Shared corporate site heavily centered on the Cabarete campus; Las Terrenas branch lacks dedicated local faculty profiles, program details, and automated campus tour scheduling. | Web: Yes (https://islaacademy.com) <br> Social: Facebook: @ISLALasTerrenas , Instagram: @islaacademy |\\n| 🟡 MED | **El Lugar** | International Gastropub & Caribbean Fusion | Basic single-page website without interactive live reservation system; relies on phone/walk-in | Web: Yes (https://ellugarlasterrenas.com) <br> Social: @ellugarlasterrenas (Instagram) , Facebook: El Lugar Las Terrenas |\\n| 🟡 MED | **Hotel Las Cayenas Restaurant** | Beachfront Italian & Grill | Basic outdated website, no online table reservations, abandoned social media | Web: Yes (https://hotel-lascayenas.com) <br> Social: Inactive Facebook , Phone: +1 809-240-6080 |\\n| 🟢 LOW | **Sublime Samana Hotel & Residences** | Luxury Boutique Resort | High-end luxury property (member of Small Luxury Hotels) with a professional site; high reliance on luxury consortia/OTAs with potential for specialized VIP landing pages. | Web: https://sublimesamana.com <br> Social: https://www.instagram.com/sublimesamana |\\n\\n### 🏡 Real Estate & Property Management\\n| Priority | Business Name | Category | Digital Weakness / Pitch Angle | Website / Social |\\n| --- | --- | --- | --- | --- |\\n| 🔴 HIGH | **PRIME Property Management** | Property Management | Built on basic Wix template; lacks automated property owner onboarding portal, multi-calendar synchronization, and direct booking engine. | Web: https://primepropertydr.com <br> Social: https://www.instagram.com/primepropertydr |\\n| 🔴 HIGH | **Paradise Holiday Las Terrenas** | Vacation Rentals & Real Estate | Non-responsive rental portal with poor mobile UX, slow page speeds, and no automated booking engine or instant quotation system. | Web: https://www.paradiseholidaylt.com <br> Social: https://www.instagram.com/paradise.holiday.31 |\\n| 🔴 HIGH | **Los Nomadas Villa Rentals** | Villa Rental & Property Management | Low-fidelity directory site representing multi-million dollar luxury villas; lacks modern 3D virtual tours, instant inquiry workflows, and high-res media. | Web: https://www.losnomadaslasterrenas.com <br> Social: None dedicated (community tags only) |\\n| 🔴 HIGH | **Carib Service** | Real Estate & Villa Rentals | Extremely dated website architecture, non-mobile optimized tables, lack of modern SSL security, and no virtual walkthroughs. | Web: https://www.carib-service.com <br> Social: https://www.facebook.com/caribservice |\\n| 🔴 HIGH | **Hublot Caraïbes** | Real Estate Agency | Clunky CMS with broken multilingual selectors, poor mobile rendering, and no interactive search map for buyers. | Web: https://www.lasterrenasrealtyimmo.com <br> Social: https://www.facebook.com/hublotcaraibes |\\n| 🔴 HIGH | **AIC Dominicana Real Estate** | Real Estate Agency & Vacation Rentals | Cluttered web design from 2012; difficult mobile navigation, no WhatsApp direct-lead integration, and dated property listings display. | Web: https://www.aic-dominicana-inmobiliaria.com <br> Social: https://www.facebook.com/aicdominicana |\\n| 🔴 HIGH | **Caraibes Horizons** | Real Estate Agency | Very slow image loading times, non-responsive layout on smartphones, and absence of video walkthroughs or active lead capture popups. | Web: https://www.caraibeshorizons.com <br> Social: https://www.facebook.com/caraibeshorizons |\\n| 🟡 MED | **ZenRepublik** | Vacation Rentals & Property Management | Heavy reliance on Airbnb platform algorithms; standalone portal lacks local organic SEO authority and direct loyalty incentives. | Web: https://zenrepublik.com <br> Social: https://www.instagram.com/zenrepublik |\\n| 🟡 MED | **PlayaMax Real Estate** | Real Estate Agency | Established firm with 17+ years in LT, but website is dated; lacks modern video walkthrough embeds, interactive map search, and automated CRM lead capture. | Web: https://playamax.com <br> Social: https://www.instagram.com/playamaxrealestate |\\n| 🟡 MED | **Beachtown Property Real Estate** | Real Estate Agency | Older UI/UX that feels cramped on mobile; lacks automated property valuation calculator and interactive buyer guide downloads. | Web: https://beachtownproperty.com <br> Social: https://www.instagram.com/beachtownproperty |\\n| 🟡 MED | **FEDE Real Estate** | Real Estate Agency | Standard template with limited SEO landing pages for high-intent search terms (e.g. 'villas for sale Playa Bonita'); minimal video content. | Web: https://federealestate.com <br> Social: https://www.instagram.com/federealestate |\\n| 🟡 MED | **Leo Estate Group** | Real Estate Agency | Modern minimalist site but very thin content; lacks in-depth legal/tax investment guides and organic search visibility. | Web: https://leo.estate <br> Social: https://www.instagram.com/leo.estate |\\n| 🟡 MED | **Atlantique Sud** | Real Estate Agency & Development | Extensive listings and 25-year history, but homepage is visually overcrowded and desktop-centric; needs modern mobile-first visual revamp. | Web: https://realestatelasterrenas.com <br> Social: https://www.instagram.com/real_estate_las_terrenas |\\n| 🟢 LOW | **Navetta Properties** | Real Estate & Property Management | Modern site with clean UI, but lacks interactive CONFOTUR tax exemption calculator and automated lead nurture funnel for foreign buyers. | Web: https://navettaproperties.com <br> Social: https://www.instagram.com/navettaproperties |\\n| 🟢 LOW | **Ocean Edge Real Estate** | Real Estate Agency | Active YouTube channel and modern site; weakness is mainly lack of localized multi-language landing pages for French/German buyers and interactive ROI calculators. | Web: https://oceanedge-realestate.com <br> Social: https://www.instagram.com/oceanedgerealestate |\\n`;
-  document.getElementById('content').innerHTML = marked.parse(markdownText);
-</script>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-[1400px] mx-auto">
+        
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <a href="Sales_Hub.html" class="inline-block px-4 py-2 bg-[#D4AF37] text-[#0A0F1E] font-bold rounded hover:bg-yellow-400 mb-4 transition-colors">
+                    &larr; Back to Sales Hub
+                </a>
+                <h1 class="text-3xl md:text-4xl font-bold text-[#D4AF37]">🎯 Master Lead Database</h1>
+                <p class="text-gray-400 mt-2">108 Las Terrenas Businesses. Sort, filter, and plan your Post-Trip Outreach.</p>
+            </div>
+            
+            <!-- Filter & Search Controls -->
+            <div class="w-full md:w-auto flex flex-col md:flex-row gap-4">
+                <input type="text" id="searchInput" placeholder="🔍 Search businesses..." class="px-4 py-2 bg-gray-900 border border-gray-700 rounded text-white focus:outline-none focus:border-[#D4AF37] w-full md:w-64">
+                <select id="priorityFilter" class="px-4 py-2 bg-gray-900 border border-gray-700 rounded text-white focus:outline-none focus:border-[#D4AF37]">
+                    <option value="All">All Priorities</option>
+                    <option value="High">🔴 High Priority (No Website)</option>
+                    <option value="Medium">🟡 Medium Priority (Bad Website)</option>
+                    <option value="Low">🟢 Low Priority (Good Website)</option>
+                </select>
+                <select id="categoryFilter" class="px-4 py-2 bg-gray-900 border border-gray-700 rounded text-white focus:outline-none focus:border-[#D4AF37]">
+                    <option value="All">All Categories</option>
+                    <option value="Hotel">Hotels & Villas</option>
+                    <option value="Restaurant">Restaurants & Clubs</option>
+                    <option value="Wellness">Tours, Wellness & Schools</option>
+                    <option value="Real Estate">Real Estate</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Strategy Box -->
+        <div class="glass rounded-lg p-6 mb-8 text-sm md:text-base">
+            <h3 class="text-[#D4AF37] font-bold mb-2 text-lg">🚀 Post-Trip Digital Outreach Strategy</h3>
+            <p class="mb-4 text-gray-300">After the vacation, use these specific angles to reach out via Instagram DM, WhatsApp, or LinkedIn:</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="font-bold text-white">🏨 Hotels & Real Estate</h4>
+                    <p class="text-gray-400 text-sm italic mt-1">"Hey [Name], visited Las Terrenas recently and noticed your property. I saw you rely heavily on Booking.com/Airbnb. I build automated direct booking engines for boutique villas so you can keep the 20% commission. Have 5 mins to chat?"</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white">🍽️ Restaurants & Beach Clubs</h4>
+                    <p class="text-gray-400 text-sm italic mt-1">"Hey [Name], ate at your place last week - food was incredible. But I almost didn't come because I couldn't find your menu or book a table online! We build automated cinematic sites for high-end hospitality to capture more tourists. Open to a quick call?"</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white">🌴 Tours, Spas & Excursions</h4>
+                    <p class="text-gray-400 text-sm italic mt-1">"Hey [Name], tried to book an activity with you but noticed you do everything manually over WhatsApp. We build automated self-scheduling booking engines so you can collect deposits while you sleep. Are you open to upgrading your digital flow?"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-container w-full overflow-x-auto glass rounded-lg h-[800px]">
+            <table class="w-full text-left border-collapse min-w-[1200px]" id="leadsTable">
+                <thead>
+                    <tr>
+                        <th class="p-4 w-32" onclick="sortTable('priority')">Priority ↕</th>
+                        <th class="p-4 w-64" onclick="sortTable('name')">Business Name ↕</th>
+                        <th class="p-4 w-48" onclick="sortTable('category')">Category ↕</th>
+                        <th class="p-4">Digital Weakness / Post-Trip Pitch Angle</th>
+                        <th class="p-4 w-64">Contact / Social Links</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- JS will populate rows -->
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script>
+        const leadsData = [
+  {
+    "name": "Hotel Las Cayenas",
+    "category": "Boutique Hotel",
+    "website": null,
+    "social": "https://www.facebook.com/HotelLasCayenas",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "weakness": "Inactive/dead website (former lascayenas.com is down); entirely reliant on OTAs (Booking.com/TripAdvisor) and walk-ins, bleeding direct margin.",
+    "priority": "High"
+  },
+  {
+    "name": "Hotel Iguana",
+    "category": "Hotel",
+    "website": null,
+    "social": "None active",
+    "location": "Calle El Carmen, Las Terrenas Town Center",
+    "weakness": "Expired domain/defunct site (iguana-hotel.com); 100% reliant on third-party aggregators with zero direct booking capture.",
+    "priority": "High"
+  },
+  {
+    "name": "Hotel Boutique Casa Grande",
+    "category": "Boutique Hotel",
+    "website": null,
+    "social": "https://www.instagram.com/hotelboutiquecasagrande",
+    "location": "Playa Bonita, Las Terrenas",
+    "weakness": "No standalone website or direct booking engine; completely dependent on OTAs (Expedia, Hotels.com) paying 15-25% commissions.",
+    "priority": "High"
+  },
+  {
+    "name": "Beach Hotel Casa Nina",
+    "category": "Boutique Hotel",
+    "website": null,
+    "social": "https://www.facebook.com/BeachHotelCasaNina",
+    "location": "Playa Punta Popy, Las Terrenas",
+    "weakness": "No dedicated direct booking website; relies entirely on third-party aggregator listings and fragmented social pages.",
+    "priority": "High"
+  },
+  {
+    "name": "Hotel La Dolce Vita Residence",
+    "category": "Aparthotel",
+    "website": null,
+    "social": "None official",
+    "location": "Playa Las Ballenas / Pueblo de los Pescadores, Las Terrenas",
+    "weakness": "Zero independent website or direct booking system; bookings are captured exclusively via aggregators (Trivago, Expedia).",
+    "priority": "High"
+  },
+  {
+    "name": "Fata Morgana Eco Hotel",
+    "category": "Guesthouse / Eco-Lodge",
+    "website": null,
+    "social": "None official",
+    "location": "Calle Italia, Las Terrenas",
+    "weakness": "Highly rated budget eco-lodge with no standalone website or direct booking funnel; totally dependent on OTAs.",
+    "priority": "High"
+  },
+  {
+    "name": "Afreeka Beach Hostel & Music Bar",
+    "category": "Hostel / Guesthouse",
+    "website": null,
+    "social": "https://www.instagram.com/afreeka_beach_hostel",
+    "location": "Playa Punta Popy, Las Terrenas",
+    "weakness": "Popular youth/events hotspot operating strictly via social media and OTAs, lacking direct bed and event ticket reservation capabilities.",
+    "priority": "High"
+  },
+  {
+    "name": "Hotel Coco Plaza",
+    "category": "Boutique Hotel",
+    "website": "http://www.hotelcocoplaza.com",
+    "social": "https://www.facebook.com/hotelcocoplaza",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "weakness": "Outdated non-HTTPS (insecure) legacy site from the early 2010s; poor mobile layout and no integrated modern booking engine.",
+    "priority": "High"
+  },
+  {
+    "name": "PRIME Property Management",
+    "category": "Property Management",
+    "website": "https://primepropertydr.com",
+    "social": "https://www.instagram.com/primepropertydr",
+    "location": "Las Terrenas Town Center",
+    "weakness": "Built on basic Wix template; lacks automated property owner onboarding portal, multi-calendar synchronization, and direct booking engine.",
+    "priority": "High"
+  },
+  {
+    "name": "Paradise Holiday Las Terrenas",
+    "category": "Vacation Rentals & Real Estate",
+    "website": "https://www.paradiseholidaylt.com",
+    "social": "https://www.instagram.com/paradise.holiday.31",
+    "location": "Plaza El Paseo, Las Terrenas",
+    "weakness": "Non-responsive rental portal with poor mobile UX, slow page speeds, and no automated booking engine or instant quotation system.",
+    "priority": "High"
+  },
+  {
+    "name": "Los Nomadas Villa Rentals",
+    "category": "Villa Rental & Property Management",
+    "website": "https://www.losnomadaslasterrenas.com",
+    "social": "None dedicated (community tags only)",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "weakness": "Low-fidelity directory site representing multi-million dollar luxury villas; lacks modern 3D virtual tours, instant inquiry workflows, and high-res media.",
+    "priority": "High"
+  },
+  {
+    "name": "Carib Service",
+    "category": "Real Estate & Villa Rentals",
+    "website": "https://www.carib-service.com",
+    "social": "https://www.facebook.com/caribservice",
+    "location": "Residencial Los Nomadas, Playa Cos\u00f3n, Las Terrenas",
+    "weakness": "Extremely dated website architecture, non-mobile optimized tables, lack of modern SSL security, and no virtual walkthroughs.",
+    "priority": "High"
+  },
+  {
+    "name": "Villa Del Mar",
+    "category": "Villa Rental",
+    "website": "https://villadelmar.do",
+    "social": "https://www.instagram.com/villadelmarlasterrenas",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "weakness": "Single-page minimalist brochure site with no automated availability calendar, direct payment processing, or concierge upsells.",
+    "priority": "High"
+  },
+  {
+    "name": "Hublot Cara\u00efbes",
+    "category": "Real Estate Agency",
+    "website": "https://www.lasterrenasrealtyimmo.com",
+    "social": "https://www.facebook.com/hublotcaraibes",
+    "location": "Calle Principal, Las Terrenas",
+    "weakness": "Clunky CMS with broken multilingual selectors, poor mobile rendering, and no interactive search map for buyers.",
+    "priority": "High"
+  },
+  {
+    "name": "AIC Dominicana Real Estate",
+    "category": "Real Estate Agency & Vacation Rentals",
+    "website": "https://www.aic-dominicana-inmobiliaria.com",
+    "social": "https://www.facebook.com/aicdominicana",
+    "location": "Plaza Kreyol, Las Terrenas",
+    "weakness": "Cluttered web design from 2012; difficult mobile navigation, no WhatsApp direct-lead integration, and dated property listings display.",
+    "priority": "High"
+  },
+  {
+    "name": "Caraibes Horizons",
+    "category": "Real Estate Agency",
+    "website": "https://www.caraibeshorizons.com",
+    "social": "https://www.facebook.com/caraibeshorizons",
+    "location": "Calle Principal, Las Terrenas",
+    "weakness": "Very slow image loading times, non-responsive layout on smartphones, and absence of video walkthroughs or active lead capture popups.",
+    "priority": "High"
+  },
+  {
+    "name": "Takuma Boutik Hotel",
+    "category": "Boutique Hotel",
+    "website": "https://takumaboutikhotel.com",
+    "social": "https://www.instagram.com/takumaboutikhotel",
+    "location": "Playa Punta Popy, Las Terrenas",
+    "weakness": "Stylish concept with high ADR, but website lacks a high-converting direct booking engine with rate parity, forcing guests to OTAs.",
+    "priority": "Medium"
+  },
+  {
+    "name": "El Mambo Boutique Hotel",
+    "category": "Boutique Hotel",
+    "website": "https://elmambohotel.com",
+    "social": "https://www.instagram.com/elmambohotel",
+    "location": "Malec\u00f3n de Punta Popy, Las Terrenas",
+    "weakness": "Basic informational site with weak SEO ranking for English searches; lacks immersive video storytelling and automated activity booking.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Mahona Boutique Hotel",
+    "category": "Boutique Hotel",
+    "website": "https://mahona-lasterrenas.com",
+    "social": "https://www.instagram.com/mahonaboutiquehotel",
+    "location": "Near Pueblo de los Pescadores, Las Terrenas",
+    "weakness": "Clean Balinese aesthetic but site is minimal; lacks direct packages/experiences upsells, multi-language toggles, and dynamic currency conversions.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Punta Popy Boutique Hotel",
+    "category": "Boutique Hotel",
+    "website": "https://punta-popy-boutique-hotel.com",
+    "social": "https://www.instagram.com/puntapopyhotel",
+    "location": "Calle 27 de Febrero, Punta Popy, Las Terrenas",
+    "weakness": "Basic template website, lacks direct customer retention tools, instant chat widget, and local experience packaging.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Hotel La Tortuga",
+    "category": "Boutique Hotel",
+    "website": "http://www.hotel-la-tortuga.com",
+    "social": "https://www.instagram.com/hotellatortuga",
+    "location": "Av. Juan Pablo Duarte, Las Terrenas",
+    "weakness": "Legacy website layout with dated typography and poor mobile viewport scaling; lacks instant confirmation booking system.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Beach Hotel Casa Coson",
+    "category": "Boutique Hotel & Villas",
+    "website": "https://casacoson-beachhotel.com",
+    "social": "https://www.instagram.com/casacoson",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "weakness": "Slow media loading speeds, lacks 360-degree virtual beach tours, and event/wedding inquiry funnel is purely static text.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Hotel Atlantis",
+    "category": "Boutique Hotel & Restaurant",
+    "website": "https://hotel-atlantis-lasterrenas.com",
+    "social": "https://www.instagram.com/atlantislasterrenas",
+    "location": "Playa Bonita, Las Terrenas",
+    "weakness": "Historic beachfront culinary landmark with an outdated static website; no online table reservation or room package upsells.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Hotel Residence Playa Colibri",
+    "category": "Aparthotel / Vacation Rentals",
+    "website": "https://hotelplayacolibri.com",
+    "social": "https://www.facebook.com/hotelplayacolibri",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "weakness": "Dated visual design that does not reflect its prime beachfront setting; cumbersome multi-step booking engine on mobile devices.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Residencia El Paseo",
+    "category": "Aparthotel",
+    "website": "http://www.residenciadelpaseo.com",
+    "social": "https://www.facebook.com/ResidenciaDelPaseo",
+    "location": "Centro Comercial El Paseo, Las Terrenas Town Center",
+    "weakness": "Aging website structure with no live availability calendar or mobile-friendly instant booking checkout.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Puerto Plaza Las Terrenas",
+    "category": "Boutique Hotel & Aparthotel",
+    "website": "https://puertoplazalasterrenas.com",
+    "social": "https://www.facebook.com/puertoplazalasterrenas",
+    "location": "Calle 27 de Febrero, Pueblo de los Pescadores, Las Terrenas",
+    "weakness": "Unique boat-shaped architectural landmark with an underutilized website; lacks modern interactive room selection and upsell funnels.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Clave Verde Ecolodge",
+    "category": "Eco-Lodge / Guesthouse",
+    "website": "https://www.claveverde.com",
+    "social": "https://www.instagram.com/claveverde",
+    "location": "Loma La Barbacoa, Las Terrenas",
+    "weakness": "Basic template site with cumbersome manual booking inquiries via email/form; lacks automated instant reservation and retreat packaging.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Coson Bay Hotel & Residences",
+    "category": "Hotel & Residences",
+    "website": "http://www.cosonbay.com",
+    "social": "https://www.facebook.com/cosonbay",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "weakness": "Corporate template website with generic imagery and slow load times; lacks personalized experiential landing pages for weddings and groups.",
+    "priority": "Medium"
+  },
+  {
+    "name": "ZenRepublik",
+    "category": "Vacation Rentals & Property Management",
+    "website": "https://zenrepublik.com",
+    "social": "https://www.instagram.com/zenrepublik",
+    "location": "Las Terrenas Town Center",
+    "weakness": "Heavy reliance on Airbnb platform algorithms; standalone portal lacks local organic SEO authority and direct loyalty incentives.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Las Terrenas Villa Rentals",
+    "category": "Vacation Rentals",
+    "website": "https://lasterrenasrental.com",
+    "social": "None dedicated",
+    "location": "Playa Cos\u00f3n / Playa Las Ballenas, Las Terrenas",
+    "weakness": "Directory-style catalog requiring manual inquiry emails; no instant booking, date availability checks, or dynamic seasonal pricing.",
+    "priority": "Medium"
+  },
+  {
+    "name": "PlayaMax Real Estate",
+    "category": "Real Estate Agency",
+    "website": "https://playamax.com",
+    "social": "https://www.instagram.com/playamaxrealestate",
+    "location": "Calle Duarte, Las Terrenas",
+    "weakness": "Established firm with 17+ years in LT, but website is dated; lacks modern video walkthrough embeds, interactive map search, and automated CRM lead capture.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Beachtown Property Real Estate",
+    "category": "Real Estate Agency",
+    "website": "https://beachtownproperty.com",
+    "social": "https://www.instagram.com/beachtownproperty",
+    "location": "Calle El Carmen, Las Terrenas",
+    "weakness": "Older UI/UX that feels cramped on mobile; lacks automated property valuation calculator and interactive buyer guide downloads.",
+    "priority": "Medium"
+  },
+  {
+    "name": "FEDE Real Estate",
+    "category": "Real Estate Agency",
+    "website": "https://federealestate.com",
+    "social": "https://www.instagram.com/federealestate",
+    "location": "Calle Principal, Las Terrenas",
+    "weakness": "Standard template with limited SEO landing pages for high-intent search terms (e.g. 'villas for sale Playa Bonita'); minimal video content.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Leo Estate Group",
+    "category": "Real Estate Agency",
+    "website": "https://leo.estate",
+    "social": "https://www.instagram.com/leo.estate",
+    "location": "Plaza Paseo de la Costanera, Las Terrenas",
+    "weakness": "Modern minimalist site but very thin content; lacks in-depth legal/tax investment guides and organic search visibility.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Atlantique Sud",
+    "category": "Real Estate Agency & Development",
+    "website": "https://realestatelasterrenas.com",
+    "social": "https://www.instagram.com/real_estate_las_terrenas",
+    "location": "Calle Carmen, Las Terrenas",
+    "weakness": "Extensive listings and 25-year history, but homepage is visually overcrowded and desktop-centric; needs modern mobile-first visual revamp.",
+    "priority": "Medium"
+  },
+  {
+    "name": "El Mosquito Boutique Hotel",
+    "category": "Boutique Hotel",
+    "website": "https://mosquitoboutiquehotel.com",
+    "social": "https://www.instagram.com/elmosquitoboutiquehotel",
+    "location": "Playa Bonita, Las Terrenas",
+    "weakness": "High-vibe lifestyle hotel with solid branding, but site is slow to load and lacks seamless direct-booking upsells for surf/adventure packages.",
+    "priority": "Medium"
+  },
+  {
+    "name": "Hotel Alisei Restaurant & Spa",
+    "category": "Hotel & Spa",
+    "website": "https://aliseihotelspa.com",
+    "social": "https://www.facebook.com/aliseihotelspa",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "weakness": "Established property with decent web traffic, but booking flow redirects to third-party engine with clunky UX and no personalized add-on bundles.",
+    "priority": "Low"
+  },
+  {
+    "name": "Sublime Samana Hotel & Residences",
+    "category": "Luxury Boutique Resort",
+    "website": "https://sublimesamana.com",
+    "social": "https://www.instagram.com/sublimesamana",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "weakness": "High-end luxury property (member of Small Luxury Hotels) with a professional site; high reliance on luxury consortia/OTAs with potential for specialized VIP landing pages.",
+    "priority": "Low"
+  },
+  {
+    "name": "Navetta Properties",
+    "category": "Real Estate & Property Management",
+    "website": "https://navettaproperties.com",
+    "social": "https://www.instagram.com/navettaproperties",
+    "location": "Plaza Paseo de la Costanera, Las Terrenas",
+    "weakness": "Modern site with clean UI, but lacks interactive CONFOTUR tax exemption calculator and automated lead nurture funnel for foreign buyers.",
+    "priority": "Low"
+  },
+  {
+    "name": "Ocean Edge Real Estate",
+    "category": "Real Estate Agency",
+    "website": "https://oceanedge-realestate.com",
+    "social": "https://www.instagram.com/oceanedgerealestate",
+    "location": "Pueblo de los Pescadores, Las Terrenas",
+    "weakness": "Active YouTube channel and modern site; weakness is mainly lack of localized multi-language landing pages for French/German buyers and interactive ROI calculators.",
+    "priority": "Low"
+  },
+  {
+    "Name": "Yoga Life Villa & Exhale Yoga Studio",
+    "Category": "Wellness Studios & Yoga Retreats",
+    "Website": "Yes (https://yogalifevilla.com)",
+    "Social media": "Instagram: @theyogalifevilla | Facebook: Yoga Life Villa - Retreat Venue",
+    "Digital Weakness": "Relies heavily on third-party aggregators (BookRetreats, WeTravel) paying high commissions; lacks direct integrated booking engine for drop-in classes or day passes; English-only site ignores local French and Spanish-speaking expat community.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Shiva's Cave Yoga Retreat Center",
+    "Category": "Yoga Retreats & Wellness Studios",
+    "Website": "Yes (http://shivascaveyogaretreat.com)",
+    "Social media": "Facebook: Monte Placido & Shiva's Cave",
+    "Digital Weakness": "Outdated, non-responsive web design from early 2010s; unencrypted HTTP protocol; fragmented branding across vacation rental subdomains; no interactive retreat schedule or online payment gateway.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Yoga Las Terrenas (Nat & The Coconut)",
+    "Category": "Wellness Studios & Beach Yoga",
+    "Website": "Yes (https://natandthecoconut.framer.website)",
+    "Social media": "Instagram: @natandthecoconut | WhatsApp",
+    "Digital Weakness": "Hosted on a free/subdomain platform without a custom domain or structured SEO; zero automated booking or calendar integration; relies 100% on manual WhatsApp coordination.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "Kiteworld Las Terrenas",
+    "Category": "Kitesurfing Schools & Water Sports",
+    "Website": "Yes (https://www.kitesurflasterrenas.com)",
+    "Social media": "Instagram: @kiteworlddr | Facebook: kiteworldlt",
+    "Digital Weakness": "Cluttered legacy layout with slow loading speeds; no real-time wind/weather widgets or live beach webcam feed; lacks modern multi-currency checkout for high-ticket multi-day lesson packages.",
+    "Priority": "High"
+  },
+  {
+    "Name": "LT'KITE (Las Terrenas Kitesurf)",
+    "Category": "Kitesurfing Schools",
+    "Website": "Yes (http://www.lasterrenas-kitesurf.com)",
+    "Social media": "Facebook: LT'Kite - Las Terrenas Kitesurf",
+    "Digital Weakness": "Established in 2007 but still running on an insecure HTTP site with poor mobile optimization and security warnings; zero automated equipment rental reservation or course deposit system.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Kite Mecca & CUCUYO Retreats",
+    "Category": "Kitesurfing Schools & Active Retreats",
+    "Website": "Yes (https://kitemecca.com)",
+    "Social media": "Instagram: @kitemecca | Facebook: Kite Mecca",
+    "Digital Weakness": "Requires manual inquiry forms for retreat bookings; no dynamic room/session inventory checker; weak Google organic ranking for competitive international keywords ('kite camp Caribbean').",
+    "Priority": "High"
+  },
+  {
+    "Name": "RushMore Kite School",
+    "Category": "Kitesurfing Schools",
+    "Website": "Yes (https://www.rushmorekiteschool.com)",
+    "Social media": "Instagram: @rushmorekiteschool | Facebook: rushmorekiteschool",
+    "Digital Weakness": "Generic template site lacking video proof and student showcase reels; no instant booking widget; relies on static email contact forms instead of frictionless Stripe/PayPal checkout.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "Pirata Surf School",
+    "Category": "Surf Schools",
+    "Website": "Yes (https://piratasurfschool.com)",
+    "Social media": "Instagram: @piratasurfschool | Facebook: Pirata Surf School",
+    "Digital Weakness": "Single-language presentation neglecting the massive French expat demographic in Playa Bonita; lacks digital waiver signing and real-time surf lesson/board rental scheduler.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Carolina Surf School",
+    "Category": "Surf Schools",
+    "Website": "Yes (https://carolinasurfschooldr.com)",
+    "Social media": "Instagram: Carolina Surf School | Facebook: Carolina Surf School DR",
+    "Digital Weakness": "Very basic web presence with slow mobile speeds; lacks direct booking engine and relies heavily on physical hotel referrals (El Mosquito/Casa Grande) rather than capturing pre-trip search traffic.",
+    "Priority": "High"
+  },
+  {
+    "Name": "The Dive Academy Las Terrenas",
+    "Category": "Dive Shops & Boat Charters",
+    "Website": "Yes (https://tdalasterrenas.com)",
+    "Social media": "Facebook: The Dive Academy Las Terrenas | Instagram: @tdalasterrenas",
+    "Digital Weakness": "Lacks an interactive 3D dive site map or marine life guide; no e-commerce flow for PADI/SSI course certifications or rental equipment prepayment; under-optimized for North American diving search queries.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Turtle Dive Center",
+    "Category": "Dive Shops",
+    "Website": "Yes (http://www.turtledivecenter.com)",
+    "Social media": "Facebook: turtledivecenter.lasterrenas",
+    "Digital Weakness": "Severely dated web portal running on unencrypted HTTP; completely lacks an active Instagram strategy despite high visual appeal of diving; no online booking; relies on walk-ins at El Paseo.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Profundo Blue",
+    "Category": "Dive Shops & Snorkeling Tours",
+    "Website": "Yes (https://profundoblue.com)",
+    "Social media": "Facebook: Profundo Blue Las Terrenas | Instagram",
+    "Digital Weakness": "Minimalist landing page with thin text content, zero transparent pricing tables, and weak Google Business Profile optimization; all inquiries routed to WhatsApp with no automated quote tool.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "Jolie Playa",
+    "Category": "Boat Charters & Water Excursions",
+    "Website": "Yes (https://jolieplaya.com)",
+    "Social media": "Instagram: @jolieplaya | WhatsApp",
+    "Digital Weakness": "No real-time calendar availability for private catamaran and boat charters; no instant online deposit collection; forces international clients to message back-and-forth manually.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Whale Saman\u00e1 (Kim Beddall Legacy)",
+    "Category": "Whale Watching Tours",
+    "Website": "Yes (https://whalesamana.com)",
+    "Social media": "Facebook: Whale Samana / Kim Beddall",
+    "Digital Weakness": "Iconic regional pioneer operating an antiquated early-2000s website; clunky non-responsive mobile UI; no streamlined instant ticketing system during high season (Jan\u2013March); inactive Instagram.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Flora Tours Las Terrenas",
+    "Category": "Adventure Tour Companies & Hiking Guides",
+    "Website": "Yes (https://flora-tours.com)",
+    "Social media": "Facebook: Flora Tours Las Terrenas | Instagram: @floratours",
+    "Digital Weakness": "Heavy French bias in copy and structure; lacks multi-currency e-commerce checkout for excursions (Los Haitises, El Lim\u00f3n); forces potential clients through long inquiry forms and manual email confirmation.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Nano Vega Tours",
+    "Category": "Adventure Tour Companies & ATV/Buggy Rentals",
+    "Website": "Yes (https://nanovegatours.com)",
+    "Social media": "Facebook: Nano Vega Tours | Instagram: @nanovegatours",
+    "Digital Weakness": "Brochure-only website with no live fleet inventory display, no real-time rental availability system, and no online credit card deposit authorization.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Lucky Moto S.r.l.",
+    "Category": "Car, Scooter & Motorbike Rentals / ATV Tours",
+    "Website": "Yes (https://luckymotosrl.com)",
+    "Social media": "Facebook: Lucky Moto Rent Car, Motor & Tour Operator",
+    "Digital Weakness": "Legacy website with poor mobile UI/UX; lacks digital rental contract generation, insurance tier selection, and instant vehicle reservations; dormant social media channels.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Santi Lim\u00f3n Excursiones",
+    "Category": "Hiking Guides & Waterfall Tours",
+    "Website": "Yes (http://cascadalimonsamana.com)",
+    "Social media": "Facebook: Santi Lim\u00f3n Excursiones | TripAdvisor",
+    "Digital Weakness": "Old HTTP website with broken links and layout bugs; no online ticketing or advance reservation for hiking/horseback excursions to Salto El Lim\u00f3n; heavy revenue leakage to physical street intermediaries.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Parada La Manzana (Rancho Manzana)",
+    "Category": "Hiking Guides & Eco-Tours",
+    "Website": "No",
+    "Social media": "Facebook: Parada La Manzana Salto El Lim\u00f3n | Google Maps Profile",
+    "Digital Weakness": "Zero independent website presence; completely dependent on third-party aggregators (Viator/GetYourGuide) and drive-by traffic; losing up to 25-30% platform booking commissions.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Evy Spa (Takuma Boutik Hotel)",
+    "Category": "Spas & Massage Centers",
+    "Website": "Yes (https://evyspa.com)",
+    "Social media": "Instagram: @evyspalasterrenas | Facebook: Evy Spa",
+    "Digital Weakness": "Modern visual layout but lacks self-service scheduling (Calendly/Fresha style); forces every client through WhatsApp; missing gift card e-commerce and cross-promotional hotel room upsells.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "ZenVida Wellness & Aesthetics",
+    "Category": "Spas, Massage Centers & Medical Aesthetics",
+    "Website": "No (Relies solely on Linktree: linktr.ee/ZenVidaGroup)",
+    "Social media": "Instagram: @ZenVidaLT | WhatsApp",
+    "Digital Weakness": "No standalone branded website; zero SEO presence for high-value aesthetic and medical spa terms; relies exclusively on Instagram link-in-bio, limiting international search visibility.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Lourdes Massage & Mobile Beach Spa",
+    "Category": "Spas & Massage Centers",
+    "Website": "Yes (http://lasterrenasmassage.com)",
+    "Social media": "Facebook: Lourdes Massage Las Terrenas",
+    "Digital Weakness": "Basic single-page web presence without secure SSL; no interactive booking calendar or villa dispatch scheduling; lacks client reviews and treatment video showcases.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "Las Terrenas Dental Group",
+    "Category": "Dental Clinics for Medical Tourism",
+    "Website": "No",
+    "Social media": "Facebook: Las Terrenas Dental Group | Local directory listings",
+    "Digital Weakness": "Completely lacks a dedicated website despite massive dental tourism demand (implants/veneers at 70% US savings); entirely invisible to English/French medical tourists searching from abroad.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Odontohealth Consultorio Dental",
+    "Category": "Dental Clinics for Medical Tourism",
+    "Website": "No",
+    "Social media": "Facebook: Odontohealth Las Terrenas | Google Business Profile",
+    "Digital Weakness": "Zero digital footprint beyond a basic map pin and dormant Facebook page; no before/after clinical showcase, no bilingual pricing transparency, and no virtual consultation portal.",
+    "Priority": "High"
+  },
+  {
+    "Name": "ACT Rent Car",
+    "Category": "Car, Scooter & Motorbike Rentals",
+    "Website": "Yes (https://actrentcar.com)",
+    "Social media": "Facebook: ACT Rent Car Las Terrenas",
+    "Digital Weakness": "Static brochure website with no dynamic date/model selection or real-time availability; missing digital ID upload and automated credit card security deposit processing.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "Jessie Rent Cars",
+    "Category": "Car, Scooter & Quad Rentals",
+    "Website": "Yes (https://www.jessierentcars.com)",
+    "Social media": "Facebook: Jessie Rent Cars | Petit Fut\u00e9 Directory",
+    "Digital Weakness": "Outdated template site with slow mobile performance; unable to book or confirm reservations online; relies entirely on manual phone calls and WhatsApp chats.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "Com\u00fan CoWork",
+    "Category": "Coworking Spaces & Digital Nomad Services",
+    "Website": "Yes (https://comuncowork.com)",
+    "Social media": "Instagram: @comuncowork | Facebook: Comun CoWork",
+    "Digital Weakness": "One-page informational site lacking an automated desk/meeting room booking portal; nomads cannot purchase day passes or check live seat capacity before arriving.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Guzm\u00e1n Ariza Attorneys at Law (Las Terrenas)",
+    "Category": "Expat Lawyers & Notaries",
+    "Website": "Yes (https://drlawyer.com)",
+    "Social media": "LinkedIn: Guzman Ariza | Facebook: Guzman Ariza Law",
+    "Digital Weakness": "Large national corporate site is text-heavy and dense; lacks dedicated high-converting Las Terrenas expat landing pages for real estate title due diligence, residency packages, or online retainer intake.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "PAVPG & Asociados",
+    "Category": "Expat Lawyers & Notaries",
+    "Website": "Yes (https://pavpg.com)",
+    "Social media": "Facebook: PAVPG & Asociados | LinkedIn",
+    "Digital Weakness": "Sparse content with no downloadable legal guides for foreign investors; lacks bilingual residency eligibility assessment calculators and automated consultation scheduling.",
+    "Priority": "High"
+  },
+  {
+    "Name": "Lyc\u00e9e Fran\u00e7ais International de Las Terrenas (Th\u00e9odore Chass\u00e9riau)",
+    "Category": "International Schools",
+    "Website": "Yes (https://lfilt.com)",
+    "Social media": "Facebook: @lfilt | Instagram: Lyc\u00e9e Fran\u00e7ais International",
+    "Digital Weakness": "Cumbersome navigation relying on heavy PDF downloads; lacks an interactive virtual campus tour or digital admissions funnel; predominantly French with weak English orientation for new expat families.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "ISLA Academy (Las Terrenas Campus)",
+    "Category": "International Schools",
+    "Website": "Yes (https://islaacademy.com)",
+    "Social media": "Facebook: @ISLALasTerrenas | Instagram: @islaacademy",
+    "Digital Weakness": "Shared corporate site heavily centered on the Cabarete campus; Las Terrenas branch lacks dedicated local faculty profiles, program details, and automated campus tour scheduling.",
+    "Priority": "Medium"
+  },
+  {
+    "Name": "FACT (Future Academy of Critical Thinking)",
+    "Category": "International Schools & Nomad Education",
+    "Website": "Yes (https://www.factlasterrenas.com)",
+    "Social media": "Instagram: @factlasterrenas | Facebook: @FACT.LasTerrenas",
+    "Digital Weakness": "Basic DIY site builder architecture with weak organic SEO; lacks an interactive curriculum portal, parent testimonial videos, and streamlined digital tuition payments.",
+    "Priority": "High"
+  },
+  {
+    "name": "La Terrasse",
+    "category": "Fine Dining / French & Mediterranean",
+    "website": "No",
+    "social_handle": "Facebook: facebook.com/profile (La Terrasse Las Terrenas) | Phone: +1 809-240-6730",
+    "location": "Pueblo de los Pescadores, Las Terrenas",
+    "digital_weakness": "No website, no online booking, phone-only reservations, no multilingual digital menu",
+    "priority": "High"
+  },
+  {
+    "name": "Casa Azul Pizzeria",
+    "category": "Italian Pizzeria & Casual Beach Dining",
+    "website": "No",
+    "social_handle": "@casaazulpizzeria (Instagram) | Facebook: Casa Azul Pizzeria",
+    "location": "Pueblo de los Pescadores / Calle Libertad, Las Terrenas",
+    "digital_weakness": "No website, Instagram-only, no online table booking or takeout ordering",
+    "priority": "High"
+  },
+  {
+    "name": "ETNO Beach Club",
+    "category": "Beach Club, Cocktail Lounge & Restaurant",
+    "website": "Yes (https://www.etnobeachclub.com)",
+    "social_handle": "@etnobeachclub (Instagram) | Facebook: ETNO Beach Club",
+    "location": "Pueblo de los Pescadores (Calle Libertad 4), Las Terrenas",
+    "digital_weakness": "Basic static marketing site, no automated table/bed booking engine, WhatsApp manual booking only",
+    "priority": "Medium"
+  },
+  {
+    "name": "Onno's Las Terrenas",
+    "category": "Beach Bar, Tex-Mex & Nightclub",
+    "website": "Yes (https://onnosdr.com)",
+    "social_handle": "@onnoslasterrenas / @onnosbar (Instagram)",
+    "location": "Pueblo de los Pescadores, Las Terrenas",
+    "digital_weakness": "Part of regional corporate chain; generic multi-location site lacking local SEO and personalized booking",
+    "priority": "Low"
+  },
+  {
+    "name": "One Love Surf Shack",
+    "category": "Beach Bar & Grill / Surf Shack",
+    "website": "No",
+    "social_handle": "Facebook: One Love Surf Shack Las Terrenas",
+    "location": "Pueblo de los Pescadores, Las Terrenas",
+    "digital_weakness": "No website, no booking, Facebook-only, no digital event schedule or menu",
+    "priority": "High"
+  },
+  {
+    "name": "Pizza Playa",
+    "category": "Beachfront Pizzeria & Bar",
+    "website": "No",
+    "social_handle": "Facebook: Pizza Playa Las Terrenas | Phone: +1 809-240-6399",
+    "location": "Pueblo de los Pescadores, Las Terrenas",
+    "digital_weakness": "No website, no online ordering, Facebook-only, no multilingual presence",
+    "priority": "High"
+  },
+  {
+    "name": "La Yuca Caliente",
+    "category": "Traditional Dominican & Caribbean Restaurant",
+    "website": "No",
+    "social_handle": "@layucacaliente (Instagram) | Facebook: La Yuca Caliente",
+    "location": "Pueblo de los Pescadores area (Calle Libertad 26), Las Terrenas",
+    "digital_weakness": "No website, no online booking, Instagram-only, Spanish-only without multilingual menu for tourists",
+    "priority": "High"
+  },
+  {
+    "name": "Tropik Bowl",
+    "category": "Healthy Cafe / Poke Bowls & Smoothies",
+    "website": "No",
+    "social_handle": "@tropikbowl (Instagram) | Facebook: Tropik Bowl Las Terrenas",
+    "location": "Pueblo de los Pescadores area (Plaza Beach Garden, Calle Libertad 9), Las Terrenas",
+    "digital_weakness": "No website, Instagram/Facebook only, no direct online pre-ordering or pickup portal",
+    "priority": "Medium"
+  },
+  {
+    "name": "Le Tre Caravelle",
+    "category": "Fine Dining / Italian Seafood & Beachfront Restaurant",
+    "website": "No",
+    "social_handle": "Facebook: Le Tre Caravelle | Phone: +1 829-410-0232 / +1 809-240-5188",
+    "location": "Punta Popy (Avenida 27 de Febrero), Las Terrenas",
+    "digital_weakness": "No website, no booking engine, Facebook-only, high average check ($$$) without direct reservations",
+    "priority": "High"
+  },
+  {
+    "name": "Chez Sandro (O Grill by Sandro)",
+    "category": "Beachfront French Seafood & Grill",
+    "website": "No",
+    "social_handle": "Facebook: Chez Sandro / O Grill Las Terrenas",
+    "location": "Punta Popy, Las Terrenas",
+    "digital_weakness": "No website, no booking system, Facebook-only, fragmented dual branding (Chez Sandro vs. O Grill)",
+    "priority": "High"
+  },
+  {
+    "name": "Manda Popy",
+    "category": "Beachfront Cafe & Healthy Caribbean Dining",
+    "website": "No",
+    "social_handle": "Facebook: Manda Popy",
+    "location": "Punta Popy (Avenida 27 de Febrero, opposite Hotel Afreeka), Las Terrenas",
+    "digital_weakness": "No website, no direct reservation system, Facebook-only, reliant on 3rd-party delivery app (Komida)",
+    "priority": "High"
+  },
+  {
+    "name": "Campuno Beach Club",
+    "category": "Beach Club & Dominican Seafood Restaurant",
+    "website": "No",
+    "social_handle": "@campunobc (Instagram) | Facebook: Campuno Beach Club",
+    "location": "Punta Popy, Las Terrenas",
+    "digital_weakness": "No website, Instagram-only, no online sunbed or VIP cabana booking engine",
+    "priority": "High"
+  },
+  {
+    "name": "Ristorante La Dolce Vita",
+    "category": "Italian Trattoria & Pizzeria",
+    "website": "No",
+    "social_handle": "Facebook: LA DOLCE VITA Las Terrenas | Phone: +1 809-989-5766",
+    "location": "Punta Popy (Avenida 27 de Febrero), Las Terrenas",
+    "digital_weakness": "No website, Facebook-only, conflicting social media pages with condo rentals of same name, no online booking",
+    "priority": "High"
+  },
+  {
+    "name": "Pizzeria Raffaele",
+    "category": "Neapolitan Wood-Fired Pizzeria",
+    "website": "No",
+    "social_handle": "Facebook: Pizzeria Raffaele Las Terrenas | Phone: +1 829-791-2222",
+    "location": "Punta Popy (Calle 27 de Febrero), Las Terrenas",
+    "digital_weakness": "No website, no online ordering, Facebook-only, lacks multilingual menu and SEO presence",
+    "priority": "High"
+  },
+  {
+    "name": "El Lugar",
+    "category": "International Gastropub & Caribbean Fusion",
+    "website": "Yes (https://ellugarlasterrenas.com)",
+    "social_handle": "@ellugarlasterrenas (Instagram) | Facebook: El Lugar Las Terrenas",
+    "location": "Punta Popy / Calle 27 de Febrero, Las Terrenas",
+    "digital_weakness": "Basic single-page website without interactive live reservation system; relies on phone/walk-in",
+    "priority": "Medium"
+  },
+  {
+    "name": "Mosquito Beach Bar & Restaurant (Hotel El Mosquito)",
+    "category": "Beach Club, Cocktail Bar & Boutique Hotel Restaurant",
+    "website": "Yes (https://mosquitoboutiquehotel.com)",
+    "social_handle": "@mosquitobarart (Instagram) | Facebook: El Mosquito Boutique Hotel",
+    "location": "Playa Bonita, Las Terrenas",
+    "digital_weakness": "Hotel-centric website; no dedicated restaurant menu, table reservation or beach club day-pass engine",
+    "priority": "Medium"
+  },
+  {
+    "name": "Restaurant Atlantis",
+    "category": "Fine Dining / French & Caribbean Gastronomy",
+    "website": "Yes (https://hotel-atlantis-lasterrenas.com)",
+    "social_handle": "Facebook: Hotel Atlantis Las Terrenas | Phone: +1 809-240-6111",
+    "location": "Playa Bonita, Las Terrenas",
+    "digital_weakness": "Outdated legacy hotel website, no dedicated restaurant reservation flow, manual email booking only",
+    "priority": "Medium"
+  },
+  {
+    "name": "Beluga Beach Club (El Beluga)",
+    "category": "Beach Club & Gourmet Seafood Restaurant",
+    "website": "No",
+    "social_handle": "@beluga.rd (Instagram) | Facebook: Beluga Beach Club",
+    "location": "Playa Bonita (Costa Las Ballenas), Las Terrenas",
+    "digital_weakness": "No website, Instagram-only, no online booking for daybeds or sunset dining",
+    "priority": "High"
+  },
+  {
+    "name": "Hotel Casa Grande Restaurant",
+    "category": "Boutique Hotel Restaurant & Beach Bar",
+    "website": "Yes (https://casagrande.com.do)",
+    "social_handle": "@CasaGrandeRD (Instagram)",
+    "location": "Playa Bonita, Las Terrenas",
+    "digital_weakness": "Basic website with static PDF text menu, no interactive table booking or romantic dinner package booking",
+    "priority": "Medium"
+  },
+  {
+    "name": "El Cayuco de la Bonita",
+    "category": "Spanish Seafood & Paella Restaurant",
+    "website": "No",
+    "social_handle": "Facebook: Restaurante El Cayuco | Phone: +1 809-240-9444",
+    "location": "Playa Bonita, Las Terrenas",
+    "digital_weakness": "No website, no verified social media accounts, zero digital marketing, relies strictly on foot traffic",
+    "priority": "High"
+  },
+  {
+    "name": "Porto by Mosquito",
+    "category": "Upscale Beach Club & International Restaurant",
+    "website": "Yes (https://portobymosquito.com)",
+    "social_handle": "@portobymosquito / @crazydonkeyentertainment (Instagram)",
+    "location": "El Portillo (Balcones del Atl\u00e1ntico), Las Terrenas",
+    "digital_weakness": "Flashy showcase site but weak local organic search SEO, lacks automated multilingual reservation flow",
+    "priority": "Low"
+  },
+  {
+    "name": "Mosquito Sol de Arena",
+    "category": "Beach Club, Wood-Fired Pizza & Fusion Restaurant",
+    "website": "Yes (https://mosquitosoldearena.com)",
+    "social_handle": "@mosquitobarart (Instagram) | WhatsApp: +1 809-697-0504",
+    "location": "El Portillo (Residencial Sol de Arena), Las Terrenas",
+    "digital_weakness": "New establishment with low search ranking, WhatsApp-only manual booking, no multilingual menu translation",
+    "priority": "Low"
+  },
+  {
+    "name": "El Portillo Beach Residences Club",
+    "category": "Private Residential Beach Club & Restaurant",
+    "website": "No",
+    "social_handle": "Facebook: El Portillo Beach Club & Residences",
+    "location": "El Portillo, Las Terrenas",
+    "digital_weakness": "No independent website, no public digital booking, zero digital visibility outside gated community",
+    "priority": "Medium"
+  },
+  {
+    "name": "Restaurant Luis (Parrillada Luis)",
+    "category": "Rustic Dominican Seafood & Beach Grill",
+    "website": "No",
+    "social_handle": "Facebook: Restaurant Luis Playa Cos\u00f3n | @restaurantluisplayacoson",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "digital_weakness": "No website, no booking, zero digital menu, cash-only, massive international reputation with 0% digital capture",
+    "priority": "High"
+  },
+  {
+    "name": "Donde Valerio",
+    "category": "Casual Beachfront Seafood Shack",
+    "website": "No",
+    "social_handle": "None (No official page / Word-of-mouth only)",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "digital_weakness": "No website, no social media presence, no booking, cash-only, invisible online except on Google Maps",
+    "priority": "High"
+  },
+  {
+    "name": "Casa Cos\u00f3n (Caff\u00e9 Cos\u00f3n)",
+    "category": "Beachfront Hotel Restaurant, Grill & Cocktail Bar",
+    "website": "Yes (https://www.casacoson-beachhotel.com)",
+    "social_handle": "Facebook: Beach Hotel Casa Coson | @casacosonlt",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "digital_weakness": "Hotel-dominated website with outdated menu presentation, no dedicated restaurant booking engine",
+    "priority": "Medium"
+  },
+  {
+    "name": "Bistro & La Palapa at Sublime Saman\u00e1",
+    "category": "Luxury Resort Dining / Mediterranean-Dominican Fusion",
+    "website": "Yes (https://sublimesamana.com)",
+    "social_handle": "@sublimesamana (Instagram)",
+    "location": "Playa Cos\u00f3n, Las Terrenas",
+    "digital_weakness": "Hotel-managed corporate site with static menus; no OpenTable/SevenRooms integration for outside guests",
+    "priority": "Low"
+  },
+  {
+    "name": "Zu Ceviche and Grill by Alex",
+    "category": "Beachfront Cevicher\u00eda & Fresh Grill",
+    "website": "No",
+    "social_handle": "@zu_ceviche_grill (Instagram) | WhatsApp: +1 829-525-1782",
+    "location": "Playa Las Ballenas / Calle Duarte, Las Terrenas",
+    "digital_weakness": "No website, Instagram-only, no online booking, cash-only, lacks multilingual menu",
+    "priority": "High"
+  },
+  {
+    "name": "Eden Beach Club",
+    "category": "Beach Club, Cocktail Lounge & Restaurant",
+    "website": "No",
+    "social_handle": "Facebook: Eden Beach Club Las Terrenas | Phone: +1 829-470-8194",
+    "location": "Playa Las Ballenas (Av. Francisco Alberto Caama\u00f1o De\u00f1\u00f3), Las Terrenas",
+    "digital_weakness": "No website, no online booking for daybeds or dining, Facebook-only, no multilingual presence",
+    "priority": "High"
+  },
+  {
+    "name": "Restaurante Dulce Playa",
+    "category": "Dominican Seafood & Beach Kiosk",
+    "website": "No",
+    "social_handle": "None (No official page) | Phone: +1 829-771-5283",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "digital_weakness": "No website, zero social media presence, no digital footprint, cash-only",
+    "priority": "High"
+  },
+  {
+    "name": "Kiosko Bar & Restaurant (Hotel Playa Colibri)",
+    "category": "Beachfront Resort Restaurant & Bar",
+    "website": "Yes (https://hotelplayacolibri.com)",
+    "social_handle": "Facebook: Hotel Playa Colibri",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "digital_weakness": "No independent restaurant website, no table reservation system, basic static hotel page",
+    "priority": "Medium"
+  },
+  {
+    "name": "Hotel Las Cayenas Restaurant",
+    "category": "Beachfront Italian & Grill",
+    "website": "Yes (https://hotel-lascayenas.com)",
+    "social_handle": "Inactive Facebook | Phone: +1 809-240-6080",
+    "location": "Playa Las Ballenas, Las Terrenas",
+    "digital_weakness": "Basic outdated website, no online table reservations, abandoned social media",
+    "priority": "Medium"
+  },
+  {
+    "name": "Boulangerie Fran\u00e7aise",
+    "category": "French Bakery & Breakfast Cafe",
+    "website": "No",
+    "social_handle": "Facebook: Boulangerie Fran\u00e7aise Las Terrenas",
+    "location": "Las Terrenas Centro (Plaza Taina, Calle Duarte)",
+    "digital_weakness": "No website, no online preorder/pickup menu, Facebook-only, no multilingual digital presence",
+    "priority": "High"
+  },
+  {
+    "name": "La Bufala Pizzeria Contemporanea",
+    "category": "Contemporary Italian Pizzeria",
+    "website": "No",
+    "social_handle": "Facebook: La Bufala Pizzeria Contemporanea | Phone: +1 849-429-0002",
+    "location": "Las Terrenas Centro (Plaza El Paseo de la Costanera)",
+    "digital_weakness": "No website, Facebook-only, no online ordering or table reservation system",
+    "priority": "Medium"
+  },
+  {
+    "name": "Barrio Latino",
+    "category": "Urban Brasserie, Bar & International Bistro",
+    "website": "No",
+    "social_handle": "Facebook: Barrio Latino Las Terrenas",
+    "location": "Las Terrenas Centro (Plaza El Paseo)",
+    "digital_weakness": "No website, Facebook-only, no digital menu or table booking",
+    "priority": "Medium"
+  },
+  {
+    "name": "Empanadas y M\u00e1s",
+    "category": "Casual Latin / Empanadas & Ceviche Snack Bar",
+    "website": "No",
+    "social_handle": "Facebook: Empanadas y M\u00e1s Las Terrenas",
+    "location": "Las Terrenas Centro (Calle Mariano Vanderhorst)",
+    "digital_weakness": "No website, Facebook-only, cash-only, no digital takeout menu",
+    "priority": "Medium"
+  }
+];
+
+        let currentSortCol = '';
+        let sortAsc = true;
+
+        function getPriWeight(p) {
+            const lp = String(p).toLowerCase();
+            if (lp.includes('high')) return 3;
+            if (lp.includes('medium')) return 2;
+            return 1;
+        }
+
+        function getBadge(p) {
+            const lp = String(p).toLowerCase();
+            if (lp.includes('high')) return '<span class="px-2 py-1 rounded text-xs font-bold badge-high">🔴 HIGH</span>';
+            if (lp.includes('medium')) return '<span class="px-2 py-1 rounded text-xs font-bold badge-med">🟡 MED</span>';
+            return '<span class="px-2 py-1 rounded text-xs font-bold badge-low">🟢 LOW</span>';
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-gray-500">No matching businesses found.</td></tr>';
+                return;
+            }
+
+            data.forEach(lead => {
+                const name = lead.name || lead.Name || '';
+                const cat = lead.category || lead.Category || '';
+                const pri = lead.priority || lead.Priority || 'Low';
+                const weak = lead.weakness || lead.digital_weakness || lead.Digital_Weakness || lead['Digital Weakness'] || '';
+                const web = lead.website || lead.Website || '';
+                const soc = lead.social || lead.social_handle || lead['Social media'] || '';
+                
+                let linksHtml = '';
+                const isWebValid = web && String(web).toLowerCase() !== 'no' && String(web).toLowerCase() !== 'none' && String(web).toLowerCase() !== 'null';
+                if (isWebValid) {
+                    linksHtml += `<a href="${web}" target="_blank" class="text-blue-400 hover:text-blue-300 underline block mb-1 truncate max-w-[200px]">🌐 Website</a>`;
+                } else {
+                    linksHtml += `<span class="text-red-400 text-sm block mb-1 font-bold">⚠️ NO WEBSITE</span>`;
+                }
+                
+                if (soc && String(soc).toLowerCase() !== 'no' && !String(soc).toLowerCase().includes('none')) {
+                    linksHtml += `<div class="text-xs text-gray-400 break-words">${soc}</div>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-4 align-top border-b border-gray-800">${getBadge(pri)}</td>
+                    <td class="p-4 align-top border-b border-gray-800 font-bold text-[#D4AF37]">${name}</td>
+                    <td class="p-4 align-top border-b border-gray-800 text-sm text-gray-300">${cat}</td>
+                    <td class="p-4 align-top border-b border-gray-800 text-sm leading-relaxed">${weak}</td>
+                    <td class="p-4 align-top border-b border-gray-800">${linksHtml}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function applyFilters() {
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+            const priVal = document.getElementById('priorityFilter').value;
+            const catVal = document.getElementById('categoryFilter').value;
+
+            let filtered = leadsData.filter(L => {
+                const name = String(L.name || L.Name || '').toLowerCase();
+                const weak = String(L.weakness || L.digital_weakness || L['Digital Weakness'] || '').toLowerCase();
+                const pri = String(L.priority || L.Priority || '');
+                const cat = String(L.category || L.Category || '');
+                
+                // Search match
+                if (searchVal && !name.includes(searchVal) && !weak.includes(searchVal)) return false;
+                
+                // Priority match
+                if (priVal !== 'All' && !pri.toLowerCase().includes(priVal.toLowerCase())) return false;
+                
+                // Category match (fuzzy)
+                if (catVal !== 'All') {
+                    const c = cat.toLowerCase();
+                    if (catVal === 'Hotel' && !c.includes('hotel') && !c.includes('villa') && !c.includes('residence')) return false;
+                    if (catVal === 'Restaurant' && !c.includes('restaurant') && !c.includes('club') && !c.includes('pizzeria') && !c.includes('bar')) return false;
+                    if (catVal === 'Real Estate' && !c.includes('real estate') && !c.includes('property')) return false;
+                    if (catVal === 'Wellness' && c.includes('hotel') || c.includes('restaurant') || c.includes('real estate')) return false;
+                }
+                
+                return true;
+            });
+
+            renderTable(filtered);
+        }
+
+        function sortTable(col) {
+            if (currentSortCol === col) {
+                sortAsc = !sortAsc;
+            } else {
+                currentSortCol = col;
+                sortAsc = true;
+            }
+
+            leadsData.sort((a, b) => {
+                let valA, valB;
+                if (col === 'priority') {
+                    valA = getPriWeight(a.priority || a.Priority);
+                    valB = getPriWeight(b.priority || b.Priority);
+                } else if (col === 'name') {
+                    valA = String(a.name || a.Name || '').toLowerCase();
+                    valB = String(b.name || b.Name || '').toLowerCase();
+                } else if (col === 'category') {
+                    valA = String(a.category || a.Category || '').toLowerCase();
+                    valB = String(b.category || b.Category || '').toLowerCase();
+                }
+
+                if (valA < valB) return sortAsc ? -1 : 1;
+                if (valA > valB) return sortAsc ? 1 : -1;
+                return 0;
+            });
+
+            applyFilters();
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('priorityFilter').addEventListener('change', applyFilters);
+        document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+
+        // Initial render (sort by high priority first)
+        currentSortCol = 'priority';
+        sortAsc = false;
+        sortTable('priority');
+    </script>
 </body>
 </html>
