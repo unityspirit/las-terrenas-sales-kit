@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Pager - ZenRepublik</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A0F1E;
+    --gold: #D4AF37;
+    --gold-light: #F0D060;
+    --white: #FFFFFF;
+    --off-white: #F8F6F0;
+    --light-gray: #E8E4DC;
+    --mid-gray: #8A8070;
+  }
+
+  html, body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: #CCC;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 40px rgba(0,0,0,0.3);
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: var(--navy);
+    padding: 12mm 14mm 10mm;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 70%);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  }
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .brand-mark {
+    width: 36px; height: 36px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .brand-name {
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .brand-name span { color: var(--gold); }
+  .brand-tag {
+    color: var(--mid-gray);
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .header-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 8px 0;
+    opacity: 0.5;
+  }
+  .headline {
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 5px;
+    max-width: 155mm;
+  }
+  .headline em {
+    color: var(--gold);
+    font-style: normal;
+  }
+  .subheadline {
+    color: rgba(255,255,255,0.72);
+    font-size: 9.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+  }
+
+  /* ─── STATS STRIP ─── */
+  .stats-strip {
+    background: var(--gold);
+    display: flex;
+    flex-shrink: 0;
+  }
+  .stat-item {
+    flex: 1;
+    padding: 7px 10px;
+    text-align: center;
+    border-right: 1px solid rgba(10,15,30,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 6.5px;
+    font-weight: 600;
+    color: rgba(10,15,30,0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-top: 2px;
+    line-height: 1.3;
+  }
+
+  /* ─── BODY ─── */
+  .body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 10mm 14mm;
+    background: var(--white);
+  }
+
+  .col-left { padding-right: 8mm; border-right: 1px solid var(--light-gray); }
+  .col-right { padding-left: 8mm; }
+
+  .section-label {
+    font-size: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--light-gray);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  /* Pain Points */
+  .pain-list { list-style: none; }
+  .pain-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-bottom: 7px;
+    font-size: 8.5px;
+    color: #2A2A3A;
+    line-height: 1.45;
+  }
+  .pain-icon {
+    width: 16px; height: 16px;
+    background: #FFF0F0;
+    border: 1px solid #FFD0D0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 8px;
+    margin-top: 0px;
+  }
+
+  /* Solution Cards */
+  .solution-list { list-style: none; }
+  .solution-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-bottom: 7px;
+    font-size: 8.5px;
+    color: #2A2A3A;
+    line-height: 1.45;
+  }
+  .sol-icon {
+    width: 16px; height: 16px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 8px;
+    margin-top: 0px;
+  }
+
+  .mid-divider {
+    grid-column: 1 / -1;
+    display: none;
+  }
+
+  /* ─── MARKET SECTION ─── */
+  .market-section {
+    background: var(--off-white);
+    border-top: 1px solid var(--light-gray);
+    padding: 7mm 14mm;
+    flex-shrink: 0;
+  }
+  .market-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 10mm;
+  }
+  .market-text { flex: 1; }
+  .market-label {
+    font-size: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .market-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 5px;
+    line-height: 1.35;
+  }
+  .market-bullets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .market-bullet {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 7px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+  }
+  .market-bullet.gold {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .confotur-box {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 8px 12px;
+    min-width: 55mm;
+    text-align: center;
+    border: 1px solid rgba(212,175,55,0.3);
+  }
+  .confotur-label {
+    font-size: 6.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+  .confotur-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .confotur-sub {
+    font-size: 7px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.4;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--navy);
+    padding: 8mm 14mm;
+    display: flex;
+    align-items: center;
+    gap: 8mm;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .cta-main {
+    flex: 1;
+  }
+  .cta-tag {
+    font-size: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .cta-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .cta-sub {
+    font-size: 8px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+  .cta-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 8px;
+    color: rgba(255,255,255,0.85);
+  }
+  .contact-icon {
+    width: 20px; height: 20px;
+    background: rgba(212,175,55,0.15);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+  .contact-item strong { color: var(--gold); }
+  .cta-button {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 9px 16px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.3;
+    align-self: center;
+    flex-shrink: 0;
+    max-width: 38mm;
+    box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+  }
+
+  @media print {
+    html, body { background: none; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand-row">
+      <div class="brand-mark"></div>
+      <div>
+        <div class="brand-name">Unity Spirit <span>Partners</span> Inc.</div>
+        <div class="brand-tag">Digital Growth for Premium Real Estate</div>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="headline">
+      In a <em>$300,000</em> Market, Your Website<br>Is Your <em>#1 Sales Agent.</em>
+    </div>
+    <div class="subheadline">
+      Las Terrenas real estate is booming. Is your digital presence keeping up?
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">8–10%</div>
+      <div class="stat-label">Annual<br>Appreciation</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$180K</div>
+      <div class="stat-label">Entry-Level<br>Properties</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">$2M+</div>
+      <div class="stat-label">Luxury<br>Portfolio</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0%</div>
+      <div class="stat-label">Transfer Tax<br>CONFOTUR</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">2026</div>
+      <div class="stat-label">Year of<br>Samaná</div>
+    </div>
+  </div>
+
+  <!-- BODY: TWO COLUMNS -->
+  <div class="body">
+    <!-- LEFT: Pain Points -->
+    <div class="col-left">
+      <div class="section-label">The Problem</div>
+      <div class="section-title">What's Costing You<br>International Buyers</div>
+      <ul class="pain-list">
+        <li>
+          <div class="pain-icon">✕</div>
+          <span><strong>Outdated or amateur website</strong> — luxury buyers make a decision in 3 seconds. Yours isn't making it.</span>
+        </li>
+        <li>
+          <div class="pain-icon">✕</div>
+          <span><strong>No international lead capture</strong> — European and North American buyers browse at midnight their time. No one answers.</span>
+        </li>
+        <li>
+          <div class="pain-icon">✕</div>
+          <span><strong>Properties not showcased cinematically</strong> — static photos on a plain grid don't sell $300K+ villas.</span>
+        </li>
+        <li>
+          <div class="pain-icon">✕</div>
+          <span><strong>No CONFOTUR pages</strong> — your biggest selling point (0% transfer tax, 0% property tax) isn't being communicated online.</span>
+        </li>
+        <li>
+          <div class="pain-icon">✕</div>
+          <span><strong>Language barrier online</strong> — French, German, Italian buyers can't navigate your site, so they go elsewhere.</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: Solutions -->
+    <div class="col-right">
+      <div class="section-label">The Solution</div>
+      <div class="section-title">Your Premium Digital<br>Sales Package</div>
+      <ul class="solution-list">
+        <li>
+          <div class="sol-icon">✦</div>
+          <span><strong>Cinematic property showcase website</strong> — immersive galleries, video tours, full-screen hero layouts that convert browsers into buyers.</span>
+        </li>
+        <li>
+          <div class="sol-icon">✦</div>
+          <span><strong>International lead-gen landing pages</strong> — 24/7 automated inquiry forms, WhatsApp integration, and CRM-ready pipelines.</span>
+        </li>
+        <li>
+          <div class="sol-icon">✦</div>
+          <span><strong>CONFOTUR incentive explainer pages</strong> — dedicated, SEO-optimised pages explaining tax benefits to foreign investors.</span>
+        </li>
+        <li>
+          <div class="sol-icon">✦</div>
+          <span><strong>Multilingual support: EN / FR / ES / DE / IT</strong> — reach every buyer segment across Europe and North America.</span>
+        </li>
+        <li>
+          <div class="sol-icon">✦</div>
+          <span><strong>Integrated property search system</strong> — filterable listings by price, type, location, and CONFOTUR status.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MARKET SECTION -->
+  <div class="market-section">
+    <div class="market-inner">
+      <div class="market-text">
+        <div class="market-label">Market Intelligence — 2026</div>
+        <div class="market-title">The Samaná Opportunity Is Now</div>
+        <div class="market-bullets">
+          <div class="market-bullet">RD$2 Billion+ Infrastructure Investment</div>
+          <div class="market-bullet gold">2026: Year of Samaná</div>
+          <div class="market-bullet">New International Routes to El Catey Airport</div>
+          <div class="market-bullet">Rising Demand from French, German &amp; Italian Buyers</div>
+          <div class="market-bullet">Strong Rental Yields: 6–9% Annually</div>
+        </div>
+      </div>
+      <div class="confotur-box">
+        <div class="confotur-label">Law 158-01</div>
+        <div class="confotur-title">CONFOTUR</div>
+        <div class="confotur-sub">0% property transfer tax<br>0% annual property tax<br>15–20 year exemption period<br>Available NOW in Las Terrenas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER / CTA -->
+  <div class="footer">
+    <div class="cta-main">
+      <div class="cta-tag">Free — No Obligation</div>
+      <div class="cta-headline">Claim Your Free<br>Website Audit Today</div>
+      <div class="cta-sub">We'll analyse your current site vs. your top 3 competitors<br>and show you exactly what it's costing you in lost leads.</div>
+    </div>
+    <div class="cta-contacts">
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <span><strong>unityspiritpartners.com</strong></span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <span>WhatsApp: <strong>Available on site</strong></span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Based in <strong>Las Terrenas, Samaná</strong></span>
+      </div>
+    </div>
+    <div class="cta-button">
+      Get Your<br>Free Audit<br>→
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

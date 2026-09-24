@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Proposal - Yoga Las Terrenas (Nat & The Coconut)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700;490&display=swap');
+
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #131B35;
+    --navy-light: #1C2850;
+    --gold: #D4AF37;
+    --gold-light: #F0D472;
+    --gold-dim: rgba(212,175,55,0.15);
+    --white: #FFFFFF;
+    --off-white: #F4F0E8;
+    --muted: rgba(255,255,255,0.55);
+    --accent: #4A9EFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── DECK WRAPPER ── */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── SLIDES ── */
+  .slide {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+
+  .slide.prev {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  /* ── BG TEXTURES ── */
+  .bg-dark {
+    background: var(--navy);
+  }
+
+  .bg-grad {
+    background: linear-gradient(135deg, #050810 0%, #0A0F1E 50%, #0D1A30 100%);
+  }
+
+  .bg-accent {
+    background: linear-gradient(135deg, #08111E 0%, #0F1E40 60%, #0A1530 100%);
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .orb-gold-tl {
+    width: 50vw;
+    height: 50vw;
+    top: -20vw;
+    left: -15vw;
+    background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 60%);
+  }
+
+  .orb-gold-br {
+    width: 60vw;
+    height: 60vw;
+    bottom: -25vw;
+    right: -20vw;
+    background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 60%);
+  }
+
+  .orb-blue-c {
+    width: 40vw;
+    height: 40vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(74,158,255,0.04) 0%, transparent 65%);
+  }
+
+  .grid-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* ── SLIDE CONTENT ── */
+  .slide-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 6vh 8vw;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .slide-content.left {
+    text-align: left;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(9px, 1.1vw, 13px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: clamp(12px, 2vh, 22px);
+  }
+
+  .eyebrow-line {
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .slide-num {
+    position: absolute;
+    bottom: 3vh;
+    right: 4vw;
+    font-size: 10px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+    font-weight: 500;
+    z-index: 10;
+  }
+
+  /* TYPOGRAPHY */
+  h1.mega {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 90px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: clamp(10px, 1.5vh, 18px);
+  }
+
+  h1.mega em {
+    color: var(--gold);
+    font-style: normal;
+    display: block;
+  }
+
+  h2.slide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4.5vw, 58px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: clamp(8px, 1.5vh, 16px);
+  }
+
+  h2.slide-title em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  p.subtitle {
+    font-size: clamp(13px, 1.6vw, 19px);
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 640px;
+    margin: 0 auto clamp(16px, 2.5vh, 28px);
+    font-weight: 400;
+  }
+
+  p.subtitle.left-align {
+    margin: 0 0 clamp(16px, 2.5vh, 28px);
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    background: var(--gold-dim);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 30px;
+    padding: 5px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  /* CARDS */
+  .cards {
+    display: grid;
+    gap: clamp(8px, 1.5vw, 16px);
+    margin-top: clamp(16px, 2.5vh, 28px);
+  }
+
+  .cards-2 { grid-template-columns: 1fr 1fr; }
+  .cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .cards-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 12px;
+    padding: clamp(14px, 2vw, 22px);
+    text-align: left;
+    transition: border-color 0.3s;
+  }
+
+  .card:hover {
+    border-color: rgba(212,175,55,0.4);
+  }
+
+  .card-icon {
+    font-size: clamp(20px, 2.5vw, 30px);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .card-title {
+    font-size: clamp(12px, 1.3vw, 15px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .card-body {
+    font-size: clamp(10px, 1.1vw, 12px);
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* PAIN LIST */
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    margin-top: clamp(14px, 2vh, 22px);
+    max-width: 700px;
+  }
+
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(230,57,70,0.06);
+    border: 1px solid rgba(230,57,70,0.2);
+    border-left: 3px solid #E63946;
+    border-radius: 0 8px 8px 0;
+    padding: clamp(10px, 1.5vw, 14px) clamp(12px, 1.8vw, 18px);
+  }
+
+  .pain-em {
+    font-size: clamp(16px, 2vw, 22px);
+    flex-shrink: 0;
+  }
+
+  .pain-text {
+    font-size: clamp(11px, 1.25vw, 14px);
+    color: rgba(255,255,255,0.82);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  /* SOLUTION LIST */
+  .solution-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 12px);
+    margin-top: clamp(14px, 2vh, 22px);
+    max-width: 680px;
+  }
+
+  .solution-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(212,175,55,0.05);
+    border: 1px solid rgba(212,175,55,0.18);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: clamp(8px, 1.2vw, 12px) clamp(12px, 1.8vw, 18px);
+  }
+
+  .sol-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .sol-text {
+    font-size: clamp(11px, 1.25vw, 14px);
+    color: rgba(255,255,255,0.85);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+
+  .sol-sub {
+    font-size: clamp(9px, 1vw, 11px);
+    color: var(--muted);
+    display: block;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* STATS ROW */
+  .stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 4vw, 60px);
+    margin-top: clamp(20px, 3vh, 36px);
+  }
+
+  .stat-block {
+    text-align: center;
+  }
+
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-l {
+    font-size: clamp(10px, 1.1vw, 12px);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    display: block;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .stat-sep {
+    width: 1px;
+    height: 60px;
+    background: rgba(212,175,55,0.2);
+  }
+
+  /* PROCESS STEPS */
+  .process-steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    margin-top: clamp(20px, 3vh, 36px);
+    max-width: 900px;
+  }
+
+  .step {
+    flex: 1;
+    text-align: center;
+    padding: clamp(14px, 2vw, 20px) clamp(8px, 1.2vw, 14px);
+    position: relative;
+  }
+
+  .step::after {
+    content: '→';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: clamp(14px, 1.5vw, 18px);
+    opacity: 0.6;
+  }
+
+  .step:last-child::after { display: none; }
+
+  .step-num {
+    width: clamp(36px, 4vw, 48px);
+    height: clamp(36px, 4vw, 48px);
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto clamp(8px, 1.2vh, 12px);
+  }
+
+  .step-label {
+    font-size: clamp(11px, 1.2vw, 13px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-size: clamp(9px, 1vw, 11px);
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.8vw, 22px);
+    margin-top: clamp(20px, 3vh, 32px);
+    max-width: 900px;
+    width: 100%;
+  }
+
+  .price-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 16px;
+    padding: clamp(18px, 2.5vw, 28px) clamp(16px, 2vw, 22px);
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .price-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,175,55,0.4);
+  }
+
+  .price-card.featured {
+    background: rgba(212,175,55,0.08);
+    border-color: rgba(212,175,55,0.5);
+    border-width: 2px;
+  }
+
+  .price-tag {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 490;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .price-tier {
+    font-size: clamp(10px, 1.1vw, 13px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4.5vw, 52px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .price-period {
+    font-size: clamp(9px, 1vw, 11px);
+    color: var(--muted);
+    display: block;
+    margin-bottom: clamp(12px, 2vh, 18px);
+  }
+
+  .price-features {
+    list-style: none;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .price-features li {
+    font-size: clamp(10px, 1.1vw, 12px);
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+    line-height: 1.4;
+  }
+
+  .price-features li::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 900;
+    flex-shrink: 0;
+    font-size: 10px;
+    margin-top: 1px;
+  }
+
+  /* SPECIAL OFFER */
+  .special-banner {
+    background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.05));
+    border: 2px solid rgba(212,175,55,0.4);
+    border-radius: 20px;
+    padding: clamp(24px, 4vw, 44px) clamp(28px, 5vw, 60px);
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .special-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .special-percent {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 12vw, 140px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 0.9;
+    opacity: 0.15;
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .special-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 48px);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .special-title span {
+    color: var(--gold);
+  }
+
+  .special-sub {
+    font-size: clamp(13px, 1.5vw, 16px);
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+
+  .special-deadline {
+    display: inline-block;
+    background: rgba(212,175,55,0.15);
+    border: 1px solid rgba(212,175,55,0.35);
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: clamp(10px, 1.2vw, 13px);
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  /* CTA SLIDE */
+  .cta-slide-inner {
+    text-align: center;
+    max-width: 490px;
+    width: 100%;
+  }
+
+  .cta-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: clamp(20px, 3vh, 36px);
+  }
+
+  .cta-logo-mark {
+    width: clamp(40px, 5vw, 60px);
+    height: clamp(40px, 5vw, 60px);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cta-logo-mark svg {
+    width: 55%;
+    height: 55%;
+  }
+
+  .cta-tagline-block {
+    text-align: left;
+  }
+
+  .cta-company {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+  }
+
+  .cta-tagline {
+    font-size: clamp(9px, 1vw, 11px);
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: 3px;
+  }
+
+  .cta-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4.5vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: clamp(12px, 2vh, 20px);
+  }
+
+  .cta-main em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cta-contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 3vw, 36px);
+    flex-wrap: wrap;
+    margin-top: clamp(20px, 3vh, 32px);
+  }
+
+  .cta-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    padding: clamp(8px, 1.2vw, 12px) clamp(16px, 2.5vw, 24px);
+    color: var(--white);
+    text-decoration: none;
+    font-size: clamp(11px, 1.3vw, 14px);
+    font-weight: 500;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .cta-pill:hover {
+    border-color: rgba(212,175,55,0.4);
+    background: rgba(212,175,55,0.06);
+  }
+
+  .cta-pill.gold-pill {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .cta-pill.gold-pill:hover {
+    background: var(--gold-light);
+  }
+
+  .pill-icon { font-size: clamp(14px, 1.6vw, 18px); }
+
+  /* LANG TAGS */
+  .lang-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: clamp(14px, 2vh, 22px);
+  }
+
+  .lang-tag {
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: clamp(11px, 1.2vw, 13px);
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  /* ── NAVIGATION ── */
+  .nav {
+    position: fixed;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+    background: rgba(10,15,30,0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 50px;
+    padding: 10px 24px;
+  }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-btn:hover { background: rgba(212,175,55,0.1); }
+  .nav-btn:disabled { color: rgba(212,175,55,0.2); cursor: not-allowed; }
+
+  .nav-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(212,175,55,0.25);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  .nav-dot.active {
+    background: var(--gold);
+    transform: scale(1.4);
+  }
+
+  .nav-counter {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 1px;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gold);
+    z-index: 200;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 8px rgba(212,175,55,0.5);
+  }
+
+  /* ── DIVIDER ── */
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: clamp(10px, 1.8vh, 18px) 0;
+  }
+
+  .gold-line.center { margin: clamp(10px, 1.8vh, 18px) auto; }
+
+  /* SLIDE-SPECIFIC LAYOUTS */
+
+  /* S1 Cover */
+  #s1 { background: var(--navy); }
+  #s1 .cover-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .cover-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: clamp(20px, 3vh, 36px);
+  }
+
+  .cover-logo-mark {
+    width: clamp(36px, 4vw, 50px);
+    height: clamp(36px, 4vw, 50px);
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cover-logo-mark svg {
+    width: 55%;
+    height: 55%;
+  }
+
+  .cover-company {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(14px, 1.6vw, 18px);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .cover-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 8.5vw, 100px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-align: center;
+    margin-bottom: clamp(16px, 2.5vh, 28px);
+  }
+
+  .cover-headline .gold-word {
+    color: var(--gold);
+  }
+
+  .cover-headline .outline-word {
+    -webkit-text-stroke: 2px rgba(255,255,255,0.25);
+    color: transparent;
+  }
+
+  .cover-sub {
+    font-size: clamp(14px, 1.7vw, 20px);
+    color: var(--muted);
+    max-width: 560px;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: clamp(20px, 3vh, 36px);
+  }
+
+  .cover-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(10px, 1.1vw, 13px);
+    color: rgba(212,175,55,0.6);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+  }
+
+  /* S4 Who We Are */
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2.5vw, 28px);
+    margin-top: clamp(16px, 2.5vh, 28px);
+    max-width: 780px;
+    width: 100%;
+  }
+
+  .who-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 12px;
+    padding: clamp(16px, 2vw, 24px);
+  }
+
+  .who-icon {
+    font-size: clamp(22px, 2.8vw, 32px);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .who-label {
+    font-size: clamp(10px, 1.1vw, 12px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .who-desc {
+    font-size: clamp(11px, 1.2vw, 13px);
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress" class="progress-bar" style="width: 10%"></div>
+
+<div class="deck">
+
+  <!-- ═══════════════════════════════════ SLIDE 1: COVER ═══════ -->
+  <div class="slide active bg-dark" id="s1">
+    <div class="orb orb-gold-tl"></div>
+    <div class="orb orb-gold-br"></div>
+    <div class="grid-lines"></div>
+
+    <div class="slide-content">
+      <div class="cover-inner">
+        <div class="cover-logo-row">
+          <div class="cover-logo-mark">
+            <svg viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="#D4AF37" stroke-width="1.5"/>
+              <path d="M12 3 L12 21 M3 12 L21 12" stroke="#D4AF37" stroke-width="1" opacity="0.5"/>
+              <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+            </svg>
+          </div>
+          <span class="cover-company">Unity Spirit Partners Inc.</span>
+        </div>
+
+        <div class="cover-headline">
+          GET FOUND.<br>
+          <span class="gold-word">GET BOOKED.</span><br>
+          <span class="outline-word">GET PAID.</span>
+        </div>
+
+        <p class="cover-sub">
+          Digital solutions built specifically for<br>
+          Las Terrenas experiences — yoga, kite, eco-tours & wellness retreats.
+        </p>
+
+        <div class="cover-location">
+          <span>📍</span>
+          <span>Las Terrenas · Samaná · Dominican Republic</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">01 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 2: PROBLEM ═══════ -->
+  <div class="slide bg-grad" id="s2">
+    <div class="orb orb-gold-tl"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content left">
+      <div class="eyebrow"><div class="eyebrow-line"></div> The Problem</div>
+      <h2 class="slide-title">You have the best experience —<br><em>but international guests can't book you.</em></h2>
+      <div class="gold-line"></div>
+      <ul class="pain-list">
+        <li class="pain-item">
+          <span class="pain-em">📵</span>
+          <span class="pain-text">Only Instagram presence — no booking website for international visitors to convert on</span>
+        </li>
+        <li class="pain-item">
+          <span class="pain-em">🌐</span>
+          <span class="pain-text">No English or French booking path — foreign guests give up and book your competitor</span>
+        </li>
+        <li class="pain-item">
+          <span class="pain-em">🔍</span>
+          <span class="pain-text">Invisible on Google for "things to do Las Terrenas" — you're losing bookings right now</span>
+        </li>
+        <li class="pain-item">
+          <span class="pain-em">💳</span>
+          <span class="pain-text">No online payment or deposit system — international travelers won't wire money manually</span>
+        </li>
+      </ul>
+    </div>
+    <div class="slide-num">02 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 3: OPPORTUNITY ═══════ -->
+  <div class="slide bg-accent" id="s3">
+    <div class="orb orb-gold-br"></div>
+    <div class="orb orb-blue-c"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="eyebrow"><div class="eyebrow-line"></div> The Opportunity</div>
+      <h2 class="slide-title">Wellness + Adventure Tourism<br><em>Is Booming in Samaná.</em></h2>
+      <div class="gold-line center"></div>
+      <div class="stats-row">
+        <div class="stat-block">
+          <span class="stat-n">11.7M</span>
+          <span class="stat-l">Tourists to DR<br>in 2025</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-block">
+          <span class="stat-n">#1</span>
+          <span class="stat-l">Wellness & Digital Nomad<br>Fastest Growing Segment</span>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-block">
+          <span class="stat-n">70%+</span>
+          <span class="stat-l">Peak Capacity Possible<br>Dec–Apr Season</span>
+        </div>
+      </div>
+      <p class="subtitle" style="margin-top: clamp(16px,2.5vh,28px);">
+        El Limón waterfall. Playa Bonita. Las Terrenas kite beach. World-class yoga retreats.<br>
+        International travelers are searching for exactly what you offer — they just can't find you yet.
+      </p>
+    </div>
+    <div class="slide-num">03 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 4: WHO WE ARE ═══════ -->
+  <div class="slide bg-dark" id="s4">
+    <div class="orb orb-gold-tl"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="eyebrow"><div class="eyebrow-line"></div> Who We Are</div>
+      <h2 class="slide-title"><em>Unity Spirit Partners</em></h2>
+      <p class="subtitle">Experience-focused websites that turn international travelers into paying guests.</p>
+      <div class="who-grid">
+        <div class="who-card">
+          <span class="who-icon">🌎</span>
+          <span class="who-label">Local Expertise</span>
+          <p class="who-desc">We know Las Terrenas. We understand the peak seasons, the French and North American markets, and what makes tourists click "Book Now."</p>
+        </div>
+        <div class="who-card">
+          <span class="who-icon">⚡</span>
+          <span class="who-label">Fast Launch</span>
+          <p class="who-desc">From audit to live website in as little as 48 hours. No months-long projects — we launch before your peak season starts.</p>
+        </div>
+        <div class="who-card">
+          <span class="who-icon">💰</span>
+          <span class="who-label">Booking-First Design</span>
+          <p class="who-desc">Every page, every button, every headline is designed with one goal: getting international guests to confirm and pay.</p>
+        </div>
+        <div class="who-card">
+          <span class="who-icon">🤝</span>
+          <span class="who-label">Ongoing Partnership</span>
+          <p class="who-desc">We grow with your business — SEO, content updates, booking optimization, and seasonal campaigns.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">04 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 5: THE PACKAGE ═══════ -->
+  <div class="slide bg-grad" id="s5">
+    <div class="orb orb-gold-br"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="eyebrow"><div class="eyebrow-line"></div> The Solution</div>
+      <h2 class="slide-title">The <em>Experience Digital Package</em></h2>
+      <div class="gold-line center"></div>
+      <div class="cards cards-3" style="max-width: 900px; width: 100%; margin-top: clamp(16px,2.5vh,28px);">
+        <div class="card">
+          <span class="card-icon">🖥️</span>
+          <div class="card-title">Experience Showcase Website</div>
+          <div class="card-body">Cinematic, mobile-first. Designed to make your experience irresistible to international guests.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📅</span>
+          <div class="card-title">Online Booking + Payment</div>
+          <div class="card-body">Real-time availability, deposit collection, automatic confirmations. Fully automated.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🔍</span>
+          <div class="card-title">SEO — Las Terrenas Keywords</div>
+          <div class="card-body">Rank for "yoga Las Terrenas," "kite school Samaná," "tours El Limón" and more.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🌐</span>
+          <div class="card-title">Multilingual Content</div>
+          <div class="card-body">EN · FR · ES · DE — reach French, German, and North American markets without translation hassle.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📲</span>
+          <div class="card-title">Social Integration</div>
+          <div class="card-body">Connect your Instagram, TikTok and WhatsApp — turn followers into website visitors into bookings.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📍</span>
+          <div class="card-title">Google Business Profile</div>
+          <div class="card-body">Appear in local search and Google Maps — the #1 way tourists discover local experiences.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">05 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 6: INTL TRAVELERS ═══════ -->
+  <div class="slide bg-accent" id="s6">
+    <div class="orb orb-gold-tl"></div>
+    <div class="orb orb-blue-c"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content left">
+      <div class="eyebrow"><div class="eyebrow-line"></div> Built for International Travelers</div>
+      <h2 class="slide-title">Every touchpoint<br><em>designed to convert.</em></h2>
+      <div class="gold-line"></div>
+      <ul class="solution-list">
+        <li class="solution-item">
+          <div class="sol-check">✓</div>
+          <span class="sol-text">
+            EN / FR / ES / DE multilingual content
+            <span class="sol-sub">French Canadians, Europeans, and Americans all book in their language</span>
+          </span>
+        </li>
+        <li class="solution-item">
+          <div class="sol-check">✓</div>
+          <span class="sol-text">
+            Easy mobile booking in 3 taps
+            <span class="sol-sub">80% of travel bookings happen on mobile — we design for thumbs, not desktops</span>
+          </span>
+        </li>
+        <li class="solution-item">
+          <div class="sol-check">✓</div>
+          <span class="sol-text">
+            WhatsApp integration on every page
+            <span class="sol-sub">Instant connection for questions before they book — builds trust and closes sales</span>
+          </span>
+        </li>
+        <li class="solution-item">
+          <div class="sol-check">✓</div>
+          <span class="sol-text">
+            Stripe / PayPal deposit collection
+            <span class="sol-sub">Secure international payments in USD, EUR, CAD — the currencies your guests use</span>
+          </span>
+        </li>
+      </ul>
+      <div class="lang-tags" style="margin-top: clamp(14px,2.5vh,24px);">
+        <div class="lang-tag">🇺🇸 English</div>
+        <div class="lang-tag">🇫🇷 Français</div>
+        <div class="lang-tag">🇪🇸 Español</div>
+        <div class="lang-tag">🇩🇪 Deutsch</div>
+        <div class="lang-tag">📲 WhatsApp</div>
+        <div class="lang-tag">💳 Stripe · PayPal</div>
+      </div>
+    </div>
+    <div class="slide-num">06 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 7: PROCESS ═══════ -->
+  <div class="slide bg-dark" id="s7">
+    <div class="orb orb-gold-br"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="eyebrow"><div class="eyebrow-line"></div> How It Works</div>
+      <h2 class="slide-title">From audit to<br><em>live in 5 steps.</em></h2>
+      <div class="gold-line center"></div>
+      <div class="process-steps" style="margin: 0 auto;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-label">Free Audit</div>
+          <div class="step-desc">We review your current online presence and identify every missed booking opportunity</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-label">Design</div>
+          <div class="step-desc">Custom design tailored to your brand, your experience, and your target market</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-label">Build · 48h</div>
+          <div class="step-desc">Full website build with booking system, payments, and multilingual content</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-label">Launch</div>
+          <div class="step-desc">Go live before peak season — Google Business, SEO, and social all connected</div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-label">Grow</div>
+          <div class="step-desc">Ongoing optimization, seasonal campaigns, and content to keep bookings coming in</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">07 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 8: PRICING ═══════ -->
+  <div class="slide bg-grad" id="s8">
+    <div class="orb orb-gold-tl"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="eyebrow"><div class="eyebrow-line"></div> Investment</div>
+      <h2 class="slide-title">Simple, <em>transparent pricing.</em></h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <span class="price-tier">Starter</span>
+          <span class="price-amount">$490</span>
+          <span class="price-period">one-time setup</span>
+          <ul class="price-features">
+            <li>5-page showcase website</li>
+            <li>Mobile-responsive design</li>
+            <li>WhatsApp integration</li>
+            <li>Basic SEO setup</li>
+            <li>Google Business Profile</li>
+            <li>EN + ES content</li>
+          </ul>
+        </div>
+        <div class="price-card featured">
+          <div class="price-tag">⭐ Most Popular</div>
+          <span class="price-tier">Pro</span>
+          <span class="price-amount">$790</span>
+          <span class="price-period">one-time setup</span>
+          <ul class="price-features">
+            <li>Everything in Starter</li>
+            <li>Online booking system</li>
+            <li>Deposit + payment integration</li>
+            <li>EN + FR + ES content</li>
+            <li>Full SEO optimization</li>
+            <li>Instagram / social feed</li>
+            <li>Calendar sync</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <span class="price-tier">Premium</span>
+          <span class="price-amount">$1,290</span>
+          <span class="price-period">one-time setup</span>
+          <ul class="price-features">
+            <li>Everything in Pro</li>
+            <li>EN + FR + ES + DE</li>
+            <li>Ongoing monthly SEO</li>
+            <li>Email marketing setup</li>
+            <li>Seasonal campaigns</li>
+            <li>Priority support</li>
+            <li>Monthly analytics report</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">08 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 9: OCTOBER SPECIAL ═══════ -->
+  <div class="slide bg-accent" id="s9">
+    <div class="orb orb-gold-br"></div>
+    <div class="orb orb-blue-c"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="eyebrow"><div class="eyebrow-line"></div> Limited Time Offer</div>
+      <div class="special-banner">
+        <div class="special-percent">20%</div>
+        <h2 class="special-title">October Special:<br><span>20% Off</span> — All Packages</h2>
+        <p class="special-sub">
+          Peak season starts in December. Your website needs to be live, indexed by Google,
+          and ready to receive bookings <em>before</em> travelers start planning their trips.
+          Sign before peak season — save up to $500.
+        </p>
+        <div class="special-deadline">⏰ Sign before November 1 · Limited spots available</div>
+      </div>
+      <p class="subtitle" style="margin-top: clamp(14px,2vh,20px); font-size: clamp(11px,1.2vw,14px);">
+        Don't let another peak season pass with empty calendar slots while competitors fill theirs.
+      </p>
+    </div>
+    <div class="slide-num">09 / 10</div>
+  </div>
+
+  <!-- ═══════════════════════════════════ SLIDE 10: CTA ═══════ -->
+  <div class="slide bg-dark" id="s10">
+    <div class="orb orb-gold-tl"></div>
+    <div class="orb orb-gold-br"></div>
+    <div class="grid-lines"></div>
+    <div class="slide-content">
+      <div class="cta-logo">
+        <div class="cta-logo-mark">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#D4AF37" stroke-width="1.5"/>
+            <path d="M12 3 L12 21 M3 12 L21 12" stroke="#D4AF37" stroke-width="1" opacity="0.5"/>
+            <circle cx="12" cy="12" r="3" fill="#D4AF37"/>
+          </svg>
+        </div>
+        <div class="cta-tagline-block">
+          <span class="cta-company">Unity Spirit Partners Inc.</span>
+          <span class="cta-tagline">Digital Growth · Las Terrenas</span>
+        </div>
+      </div>
+
+      <h2 class="cta-main">
+        Let's meet<br>
+        <em>at the beach.</em>
+      </h2>
+
+      <div class="gold-line center"></div>
+
+      <p class="subtitle">
+        Free 20-minute audit. We'll show you exactly what's missing<br>
+        and what a full calendar looks like for your experience.
+      </p>
+
+      <div class="badge">🎁 Free Audit — No Commitment</div>
+
+      <div class="cta-contact-row">
+        <a class="cta-pill gold-pill" href="https://unityspiritpartners.com">
+          <span class="pill-icon">🌐</span>
+          unityspiritpartners.com
+        </a>
+        <a class="cta-pill" href="https://wa.me/message">
+          <span class="pill-icon">📲</span>
+          WhatsApp Us Now
+        </a>
+        <a class="cta-pill" href="mailto:hello@unityspiritpartners.com">
+          <span class="pill-icon">✉️</span>
+          hello@unityspiritpartners.com
+        </a>
+      </div>
+    </div>
+    <div class="slide-num">10 / 10</div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- ── NAVIGATION ── -->
+<nav class="nav" id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>‹</button>
+  <div class="nav-dots" id="dots"></div>
+  <div class="nav-counter" id="counter">1 / 10</div>
+  <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+</nav>
+
+<script>
+  const TOTAL = 10;
+  let current = 0;
+
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progress = document.getElementById('progress');
+
+  // Build dots
+  for (let i = 0; i < TOTAL; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  function goTo(n) {
+    if (n < 0 || n >= TOTAL) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('prev');
+    setTimeout(() => slides[current].classList.remove('prev'), 700);
+
+    current = n;
+    slides[current].classList.add('active');
+
+    // Update dots
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+
+    counter.textContent = (current + 1) + ' / ' + TOTAL;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === TOTAL - 1;
+    progress.style.width = ((current + 1) / TOTAL * 100) + '%';
+  }
+
+  function changeSlide(dir) {
+    goTo(current + dir);
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+      e.preventDefault();
+      changeSlide(1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      changeSlide(-1);
+    }
+  });
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) changeSlide(diff > 0 ? 1 : -1);
+  });
+
+  // Initialize progress
+  progress.style.width = (1 / TOTAL * 100) + '%';
+</script>
+
+</body>
+</html>

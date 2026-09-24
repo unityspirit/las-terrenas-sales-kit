@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Proposal - Ocean Edge Real Estate</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #141B30;
+    --navy-light: #1E2845;
+    --gold: #D4AF37;
+    --gold-light: #F0D060;
+    --gold-pale: rgba(212,175,55,0.12);
+    --white: #FFFFFF;
+    --off-white: #F0EBE0;
+    --muted: rgba(255,255,255,0.55);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: #000;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ─── DECK CONTAINER ─── */
+  .deck {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ─── SLIDES ─── */
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+  .slide.prev {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+
+  /* ─── SLIDE INNER ─── */
+  .slide-inner {
+    width: 100%; height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 8vw;
+    overflow: hidden;
+  }
+
+  /* ─── SHARED DECORATIVE ELEMENTS ─── */
+  .geo-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.15);
+    pointer-events: none;
+  }
+  .gold-bar {
+    width: 48px; height: 3px;
+    background: var(--gold);
+    margin-bottom: 20px;
+  }
+  .gold-bar.tall { height: 100%; width: 2px; }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .brand-hex {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .brand-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.5px;
+  }
+  .brand-text span { color: var(--gold); }
+  .slide-num {
+    position: absolute;
+    bottom: 32px;
+    right: 48px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* ─── NAVIGATION ─── */
+  .nav {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .dot.active {
+    background: var(--gold);
+    width: 22px;
+    border-radius: 3px;
+  }
+  .arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px; height: 42px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s;
+    color: var(--white);
+    font-size: 16px;
+    backdrop-filter: blur(8px);
+  }
+  .arrow:hover { background: rgba(212,175,55,0.2); border-color: var(--gold); }
+  .arrow.left { left: 24px; }
+  .arrow.right { right: 24px; }
+
+  /* ─── SLIDE 1: COVER ─── */
+  #s1 .slide-inner {
+    background: var(--navy);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(212,175,55,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(30,40,80,0.8) 0%, transparent 60%);
+    align-items: flex-start;
+    justify-content: center;
+  }
+  #s1 .geo-circle:nth-child(1) { width: 500px; height: 500px; top: -100px; right: -100px; }
+  #s1 .geo-circle:nth-child(2) { width: 300px; height: 300px; top: 50px; right: 50px; }
+  #s1 .geo-circle:nth-child(3) { width: 150px; height: 150px; top: 125px; right: 175px; }
+  #s1 .content { position: relative; z-index: 2; max-width: 700px; }
+  #s1 .cover-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  #s1 h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  #s1 h1 em { color: var(--gold); font-style: normal; }
+  #s1 .cover-sub {
+    font-size: 18px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+  #s1 .cover-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #s1 .pill {
+    background: rgba(212,175,55,0.1);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 30px;
+  }
+  #s1 .cover-img-area {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38vw;
+    height: 75vh;
+    background: linear-gradient(145deg, var(--navy-light) 0%, rgba(10,15,30,0.4) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(212,175,55,0.15);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .palm-art {
+    font-size: 90px;
+    opacity: 0.15;
+    user-select: none;
+  }
+  .cover-stat-row {
+    position: absolute;
+    bottom: 60px;
+    right: 8vw;
+    width: 38vw;
+    display: flex;
+    gap: 0;
+    background: rgba(10,15,30,0.85);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  .cover-stat {
+    flex: 1;
+    padding: 14px 16px;
+    text-align: center;
+    border-right: 1px solid rgba(212,175,55,0.1);
+  }
+  .cover-stat:last-child { border-right: none; }
+  .cstat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 900;
+    color: var(--gold);
+  }
+  .cstat-l { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+
+  /* ─── SLIDE 2: PROBLEM ─── */
+  #s2 .slide-inner {
+    background: #080C18;
+    background-image: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(180,20,20,0.06) 0%, transparent 70%);
+    align-items: center;
+    text-align: center;
+  }
+  #s2 .content { max-width: 900px; }
+  #s2 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4.5vw, 60px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  #s2 h2 em { color: var(--gold); font-style: normal; }
+  #s2 .prob-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 560px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.6;
+  }
+  #s2 .prob-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .prob-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-align: left;
+    transition: border-color 0.3s;
+  }
+  .prob-card:hover { border-color: rgba(212,175,55,0.3); }
+  .prob-card .icon { font-size: 28px; margin-bottom: 12px; }
+  .prob-card h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .prob-card p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.55;
+  }
+  .prob-big-stat {
+    position: absolute;
+    top: 32px; right: 8vw;
+    text-align: right;
+  }
+  .prob-big-stat .n {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(212,175,55,0.12);
+    line-height: 1;
+  }
+  .prob-big-stat .l {
+    font-size: 11px;
+    color: rgba(212,175,55,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ─── SLIDE 3: MARKET OPPORTUNITY ─── */
+  #s3 .slide-inner {
+    background: var(--navy);
+    background-image: radial-gradient(ellipse 70% 70% at 80% 30%, rgba(212,175,55,0.07) 0%, transparent 60%);
+    flex-direction: row;
+    gap: 6vw;
+    padding: 6vh 8vw;
+  }
+  #s3 .left { flex: 1; }
+  #s3 .right { width: 42%; }
+  #s3 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.8vw, 52px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  #s3 h2 em { color: var(--gold); font-style: normal; }
+  #s3 .mkt-intro {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 420px;
+  }
+  .mkt-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mkt-stat-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+  .mkt-stat-row .n {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    min-width: 90px;
+  }
+  .mkt-stat-row .l {
+    font-size: 13px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .mkt-stat-row .l small { display: block; font-size: 11px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  .confotur-feature {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8960A 100%);
+    border-radius: 12px;
+    padding: 32px 28px;
+    margin-bottom: 16px;
+  }
+  .confotur-feature .cf-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(10,15,30,0.65);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .confotur-feature h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .confotur-feature ul {
+    list-style: none;
+  }
+  .confotur-feature ul li {
+    font-size: 13px;
+    color: rgba(10,15,30,0.8);
+    font-weight: 600;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .confotur-feature ul li::before { content: '✓'; color: var(--navy); font-weight: 900; }
+  .year-samana {
+    background: rgba(10,15,30,0.8);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 10px;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    backdrop-filter: blur(10px);
+  }
+  .ys-flag { font-size: 32px; }
+  .ys-text h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .ys-text p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  /* ─── SLIDE 4: WHO WE ARE ─── */
+  #s4 .slide-inner {
+    background: var(--navy);
+    background-image:
+      radial-gradient(ellipse 50% 80% at 15% 50%, rgba(212,175,55,0.06) 0%, transparent 60%);
+    flex-direction: row;
+    gap: 6vw;
+  }
+  #s4 .left {
+    width: 45%;
+    border-right: 1px solid rgba(212,175,55,0.1);
+    padding-right: 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #s4 .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  #s4 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.8vw, 52px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  #s4 h2 em { color: var(--gold); font-style: normal; }
+  #s4 .who-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .who-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .who-tag {
+    background: var(--gold-pale);
+    border: 1px solid rgba(212,175,55,0.25);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+  .who-quote {
+    background: var(--gold);
+    border-radius: 8px;
+    padding: 18px 22px;
+    color: var(--navy);
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .value-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .value-card:hover { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.04); }
+  .value-icon { font-size: 24px; flex-shrink: 0; }
+  .value-card h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .value-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ─── SLIDE 5: THE PACKAGE ─── */
+  #s5 .slide-inner {
+    background: #060A14;
+    background-image: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(212,175,55,0.05) 0%, transparent 70%);
+    align-items: center;
+    text-align: center;
+  }
+  #s5 .content { max-width: 1000px; }
+  #s5 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  #s5 h2 em { color: var(--gold); font-style: normal; }
+  #s5 .pkg-sub {
+    font-size: 16px; color: var(--muted);
+    margin-bottom: 40px; line-height: 1.6;
+  }
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    text-align: left;
+  }
+  .pkg-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pkg-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .pkg-card:hover { border-color: rgba(212,175,55,0.25); background: rgba(212,175,55,0.04); }
+  .pkg-card:hover::after { transform: scaleX(1); }
+  .pkg-icon { font-size: 30px; }
+  .pkg-card h3 { font-size: 13px; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .pkg-card p { font-size: 11px; color: var(--muted); line-height: 1.55; }
+  .pkg-badge {
+    background: var(--gold-pale);
+    border: 1px solid rgba(212,175,55,0.3);
+    color: var(--gold);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  /* ─── SLIDE 6: RESULTS ─── */
+  #s6 .slide-inner {
+    background: var(--navy);
+    background-image: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,120,60,0.06) 0%, transparent 70%);
+    align-items: center;
+    text-align: center;
+  }
+  #s6 .content { max-width: 960px; }
+  #s6 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+  #s6 h2 em { color: var(--gold); font-style: normal; }
+  #s6 .res-sub { font-size: 16px; color: var(--muted); margin-bottom: 44px; line-height: 1.6; }
+  .res-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .res-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 30px 24px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+  }
+  .res-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .res-card .big-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .res-card h3 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .res-card p { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .vs-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .vs-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .vs-box.bad { background: rgba(180,30,30,0.1); border: 1px solid rgba(180,30,30,0.2); }
+  .vs-box.good { background: rgba(30,160,80,0.1); border: 1px solid rgba(30,160,80,0.2); }
+  .vs-icon { font-size: 22px; }
+  .vs-box .vt { font-size: 13px; font-weight: 600; }
+  .vs-box.bad .vt { color: rgba(255,120,120,0.9); }
+  .vs-box.good .vt { color: rgba(80,220,130,0.9); }
+  .vs-box p { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ─── SLIDE 7: PROCESS ─── */
+  #s7 .slide-inner {
+    background: #070B17;
+    background-image: radial-gradient(ellipse 60% 40% at 50% 60%, rgba(212,175,55,0.04) 0%, transparent 70%);
+    align-items: center;
+    text-align: center;
+  }
+  #s7 .content { max-width: 900px; }
+  #s7 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+  #s7 h2 em { color: var(--gold); font-style: normal; }
+  #s7 .proc-sub { font-size: 16px; color: var(--muted); margin-bottom: 48px; }
+  .process-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+  }
+  .proc-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+  .proc-circle {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 2px solid rgba(212,175,55,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .proc-num {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 20px; height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    color: var(--navy);
+  }
+  .proc-label { font-size: 13px; font-weight: 700; color: var(--white); }
+  .proc-sublabel { font-size: 11px; color: var(--muted); max-width: 110px; line-height: 1.4; }
+  .proc-arrow {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(212,175,55,0.3), rgba(212,175,55,0.6));
+    flex-shrink: 0;
+    position: relative;
+    top: -30px;
+  }
+  .proc-arrow::after {
+    content: '›';
+    position: absolute;
+    right: -8px;
+    top: -10px;
+    color: rgba(212,175,55,0.6);
+    font-size: 18px;
+  }
+  .proc-timeline {
+    margin-top: 40px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .timeline-item { text-align: center; }
+  .timeline-item .td { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); }
+  .timeline-item .tl { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .timeline-div { width: 1px; height: 30px; background: rgba(255,255,255,0.1); }
+
+  /* ─── SLIDE 8: PRICING ─── */
+  #s8 .slide-inner {
+    background: var(--navy);
+    background-image: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(212,175,55,0.06) 0%, transparent 70%);
+    align-items: center;
+    text-align: center;
+  }
+  #s8 .content { max-width: 920px; }
+  #s8 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+  #s8 h2 em { color: var(--gold); font-style: normal; }
+  #s8 .price-sub { font-size: 16px; color: var(--muted); margin-bottom: 40px; }
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+  }
+  .price-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 30px 26px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .price-card.featured {
+    background: linear-gradient(145deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.04) 100%);
+    border-color: rgba(212,175,55,0.4);
+  }
+  .price-card.featured::before {
+    content: 'MOST POPULAR';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+  .price-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .price-amount sup { font-size: 22px; vertical-align: super; }
+  .price-desc { font-size: 12px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+  .price-features { list-style: none; }
+  .price-features li {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .price-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+  .price-features li:last-child { border-bottom: none; }
+  .price-note {
+    margin-top: 24px;
+    background: rgba(212,175,55,0.06);
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    text-align: center;
+  }
+  .price-note strong { color: var(--gold); }
+
+  /* ─── SLIDE 9: SPECIAL OFFER ─── */
+  #s9 .slide-inner {
+    background: linear-gradient(135deg, #0A0F1E 0%, #1a1200 50%, #0A0F1E 100%);
+    background-image: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(212,175,55,0.12) 0%, transparent 70%);
+    align-items: center;
+    text-align: center;
+  }
+  #s9 .geo-circle:nth-child(1) { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  #s9 .geo-circle:nth-child(2) { width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  #s9 .content { max-width: 700px; position: relative; z-index: 2; }
+  #s9 .offer-tag {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 7px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 28px;
+  }
+  #s9 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 70px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  #s9 h2 .pct { color: var(--gold); font-size: clamp(50px, 7vw, 100px); }
+  #s9 .offer-sub {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+  .offer-boxes {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  .offer-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 10px;
+    padding: 18px 24px;
+    text-align: center;
+    flex: 1;
+    max-width: 180px;
+  }
+  .offer-box .ob-icon { font-size: 28px; margin-bottom: 8px; }
+  .offer-box .ob-label { font-size: 12px; font-weight: 600; color: var(--white); line-height: 1.4; }
+  .offer-box .ob-sub { font-size: 10px; color: var(--muted); margin-top: 4px; }
+  #s9 .offer-expires {
+    margin-top: 28px;
+    font-size: 12px;
+    color: rgba(212,175,55,0.6);
+    letter-spacing: 1px;
+  }
+
+  /* ─── SLIDE 10: CTA ─── */
+  #s10 .slide-inner {
+    background: var(--navy);
+    background-image:
+      radial-gradient(ellipse 50% 60% at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(10,15,30,0.9) 0%, transparent 60%);
+    flex-direction: row;
+    gap: 8vw;
+  }
+  #s10 .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #s10 .right {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+  }
+  #s10 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4.5vw, 62px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  #s10 h2 em { color: var(--gold); font-style: italic; }
+  #s10 .cta-desc {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 440px;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 14px;
+    padding: 16px 32px;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    box-shadow: 0 8px 30px rgba(212,175,55,0.3);
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.25);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .contact-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+  }
+  .contact-card:hover { border-color: rgba(212,175,55,0.3); background: rgba(212,175,55,0.04); }
+  .contact-card .cc-icon {
+    width: 44px; height: 44px;
+    background: var(--gold-pale);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .contact-card .cc-label { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .contact-card .cc-value { font-size: 15px; color: var(--white); font-weight: 600; margin-top: 2px; }
+  .audit-badge {
+    background: linear-gradient(135deg, var(--gold) 0%, #B8960A 100%);
+    border-radius: 12px;
+    padding: 22px 24px;
+    text-align: center;
+  }
+  .audit-badge .ab-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(10,15,30,0.7); font-weight: 700; margin-bottom: 6px; }
+  .audit-badge h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--navy); margin-bottom: 6px; line-height: 1.2; }
+  .audit-badge p { font-size: 12px; color: rgba(10,15,30,0.7); line-height: 1.4; }
+
+  /* ─── KEYBOARD HINT ─── */
+  .key-hint {
+    position: fixed;
+    bottom: 72px;
+    right: 32px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 1px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .key {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 9px;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ══════════════════════════════
+       SLIDE 1 — COVER
+  ══════════════════════════════ -->
+  <div class="slide active" id="s1">
+    <div class="slide-inner">
+      <div class="geo-circle"></div>
+      <div class="geo-circle"></div>
+      <div class="geo-circle"></div>
+
+      <div class="content">
+        <div class="brand-logo">
+          <div class="brand-hex"></div>
+          <div class="brand-text">Unity Spirit <span>Partners</span> Inc.</div>
+        </div>
+        <div class="cover-tag">⚡ Digital Real Estate Solutions — Las Terrenas, Samaná</div>
+        <h1>The Digital Sales Agent<br>That Works <em>24/7</em></h1>
+        <p class="cover-sub">Premium web presence for Las Terrenas real estate agencies — designed to attract international buyers and generate leads while you sleep.</p>
+        <div class="cover-pills">
+          <div class="pill">Property Showcase</div>
+          <div class="pill">Lead Generation</div>
+          <div class="pill">CONFOTUR Pages</div>
+          <div class="pill">EN / FR / ES / DE / IT</div>
+        </div>
+      </div>
+
+      <div class="cover-img-area">
+        <div class="palm-art">🌴</div>
+      </div>
+      <div class="cover-stat-row">
+        <div class="cover-stat">
+          <div class="cstat-n">8–10%</div>
+          <div class="cstat-l">Annual Growth</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cstat-n">$2M+</div>
+          <div class="cstat-l">Luxury Market</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cstat-n">0%</div>
+          <div class="cstat-l">CONFOTUR Tax</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cstat-n">2026</div>
+          <div class="cstat-l">Year of Samaná</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">01 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 2 — THE PROBLEM
+  ══════════════════════════════ -->
+  <div class="slide" id="s2">
+    <div class="slide-inner">
+      <div class="prob-big-stat">
+        <div class="n">3s</div>
+        <div class="l">Decision Time</div>
+      </div>
+      <div class="content">
+        <div class="eyebrow">The Challenge</div>
+        <div class="gold-bar"></div>
+        <h2>Luxury Buyers Judge Your Agency<br>In <em>3 Seconds</em> Flat</h2>
+        <p class="prob-sub">Before they ever call you, international buyers have already visited your website. If it doesn't impress — they move on to your competitor.</p>
+        <div class="prob-grid">
+          <div class="prob-card">
+            <div class="icon">🖥️</div>
+            <h3>Outdated Website</h3>
+            <p>A template site from 2019 signals you're not serious about the premium market. Buyers equate website quality with service quality.</p>
+          </div>
+          <div class="prob-card">
+            <div class="icon">🌍</div>
+            <h3>No International Lead Capture</h3>
+            <p>European buyers browse at midnight their time. If you have no automated system, you're losing inquiries while you sleep.</p>
+          </div>
+          <div class="prob-card">
+            <div class="icon">📸</div>
+            <h3>Static, Uninspiring Listings</h3>
+            <p>Static photos on a plain grid don't sell $300K+ villas. Buyers expect cinematic presentation — video, immersive galleries, lifestyle content.</p>
+          </div>
+          <div class="prob-card">
+            <div class="icon">📋</div>
+            <h3>No CONFOTUR Pages</h3>
+            <p>Your biggest selling point — 0% transfer tax, 0% property tax — isn't clearly explained online. Buyers don't know to ask.</p>
+          </div>
+          <div class="prob-card">
+            <div class="icon">🗣️</div>
+            <h3>Language Barrier</h3>
+            <p>French, German, and Italian buyers can't navigate an English-only site. They go to an agency that speaks their language.</p>
+          </div>
+          <div class="prob-card">
+            <div class="icon">💸</div>
+            <h3>Platform Dependency</h3>
+            <p>Rightmove and Zillow take 15–25% of your value. Every lead that comes through your own site saves you thousands in fees.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">02 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 3 — MARKET OPPORTUNITY
+  ══════════════════════════════ -->
+  <div class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="left">
+        <div class="eyebrow">Market Intelligence</div>
+        <div class="gold-bar"></div>
+        <h2>Las Terrenas Is<br>a <em>Boom Market</em></h2>
+        <p class="mkt-intro">The numbers tell the story. Las Terrenas and the Samaná peninsula are experiencing a sustained real estate boom driven by international demand, infrastructure investment, and exceptional tax incentives.</p>
+        <div class="mkt-stats">
+          <div class="mkt-stat-row">
+            <div class="n">8–10%</div>
+            <div class="l">Annual price appreciation <small>Consistent growth outpacing other Caribbean markets</small></div>
+          </div>
+          <div class="mkt-stat-row">
+            <div class="n">$180K</div>
+            <div class="l">Entry-level properties <small>With luxury segments reaching $2M+</small></div>
+          </div>
+          <div class="mkt-stat-row">
+            <div class="n">6–9%</div>
+            <div class="l">Annual rental yield <small>Strong income potential for buyer investors</small></div>
+          </div>
+          <div class="mkt-stat-row">
+            <div class="n">RD$2B+</div>
+            <div class="l">Government infrastructure investment <small>Roads, marina, airport — 2025–2026</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="confotur-feature">
+          <div class="cf-tag">Law 158-01</div>
+          <h3>CONFOTUR</h3>
+          <ul>
+            <li>0% property transfer tax</li>
+            <li>0% annual property tax</li>
+            <li>15–20 year exemption period</li>
+            <li>Available to foreign buyers</li>
+            <li>Properties in Las Terrenas qualify NOW</li>
+          </ul>
+        </div>
+        <div class="year-samana">
+          <div class="ys-flag">🇩🇴</div>
+          <div class="ys-text">
+            <h4>2026: Year of Samaná</h4>
+            <p>Government designated — RD$2B+ in tourism & infrastructure. New international routes to El Catey Airport. This is the moment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">03 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 4 — WHO WE ARE
+  ══════════════════════════════ -->
+  <div class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="left">
+        <div class="brand-logo">
+          <div class="brand-hex"></div>
+          <div class="brand-text">Unity Spirit <span>Partners</span> Inc.</div>
+        </div>
+        <div class="eyebrow">Who We Are</div>
+        <div class="gold-bar"></div>
+        <h2>We Build Websites That<br><em>Sell Real Estate</em></h2>
+        <p class="who-desc">Unity Spirit Partners is a boutique digital agency specialised in premium real estate web experiences. We're not generalists — every tool, every template, every strategy is built specifically for high-value property markets.</p>
+        <div class="who-tag-row">
+          <div class="who-tag">Real Estate Focused</div>
+          <div class="who-tag">Multilingual</div>
+          <div class="who-tag">CONFOTUR Experts</div>
+          <div class="who-tag">Based in Las Terrenas</div>
+        </div>
+        <div class="who-quote">"We don't build websites. We build your #1 international sales agent."</div>
+      </div>
+      <div class="right">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <div>
+            <h3>Real Estate Specialisation</h3>
+            <p>Every feature we build — property search, lead capture, CONFOTUR pages — is designed specifically for real estate conversion, not adapted from generic templates.</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🌐</div>
+          <div>
+            <h3>International Buyer DNA</h3>
+            <p>We build for European buyers. French, German, Italian, English — multilingual at the core, not as an afterthought.</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📍</div>
+          <div>
+            <h3>Local Presence, Global Reach</h3>
+            <p>We're here in Las Terrenas. We know the market, the agencies, the properties — and we know what international buyers want to see.</p>
+          </div>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <div>
+            <h3>Fast Delivery, Real Results</h3>
+            <p>From audit to live website in 6–8 weeks. No long agency timelines — we move at the speed of the market.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">04 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 5 — THE PACKAGE
+  ══════════════════════════════ -->
+  <div class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="content">
+        <div class="eyebrow">What We Deliver</div>
+        <div class="gold-bar" style="margin:0 auto 20px;"></div>
+        <h2>The Real Estate<br><em>Digital Package</em></h2>
+        <p class="pkg-sub">Everything a Las Terrenas real estate agency needs to compete for international buyers — built as one integrated system.</p>
+        <div class="pkg-grid">
+          <div class="pkg-card">
+            <div class="pkg-icon">🏛️</div>
+            <h3>Cinematic Property Showcase</h3>
+            <p>Full-screen immersive galleries, video tour integration, aerial drone embeds, and lifestyle photography layout — designed to sell at first sight.</p>
+            <div class="pkg-badge">Core Feature</div>
+          </div>
+          <div class="pkg-card">
+            <div class="pkg-icon">🎯</div>
+            <h3>International Lead Capture</h3>
+            <p>24/7 automated inquiry forms, WhatsApp click-to-chat, email sequences, and CRM-ready pipelines so no lead goes unanswered.</p>
+            <div class="pkg-badge">Revenue Driver</div>
+          </div>
+          <div class="pkg-card">
+            <div class="pkg-icon">📋</div>
+            <h3>CONFOTUR Explainer Pages</h3>
+            <p>Dedicated, SEO-optimised pages explaining the full CONFOTUR tax incentive in plain language — your #1 competitive advantage, explained clearly.</p>
+            <div class="pkg-badge">Unique to DR</div>
+          </div>
+          <div class="pkg-card">
+            <div class="pkg-icon">🌍</div>
+            <h3>Multilingual Platform</h3>
+            <p>Full site in EN, FR, ES, DE, and IT. Reach French second-home buyers, German investors, and Italian lifestyle seekers in their own language.</p>
+            <div class="pkg-badge">5 Languages</div>
+          </div>
+          <div class="pkg-card">
+            <div class="pkg-icon">🔍</div>
+            <h3>Property Search System</h3>
+            <p>Filterable listings by price range, property type, location, bedrooms, and CONFOTUR status. Fast, elegant, IDX-ready for future MLS integration.</p>
+            <div class="pkg-badge">IDX-Ready</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">05 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 6 — RESULTS
+  ══════════════════════════════ -->
+  <div class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="content">
+        <div class="eyebrow">What Changes</div>
+        <div class="gold-bar" style="margin:0 auto 20px;"></div>
+        <h2>More Leads. Higher Value.<br><em>Zero Platform Fees.</em></h2>
+        <p class="res-sub">A premium digital presence doesn't just look better — it fundamentally changes how buyers find you, trust you, and buy from you.</p>
+        <div class="res-grid">
+          <div class="res-card">
+            <div class="big-num">3×</div>
+            <h3>More International Inquiries</h3>
+            <p>Multilingual sites with automated lead capture generate significantly more inbound inquiries from European and North American buyers — especially outside business hours.</p>
+          </div>
+          <div class="res-card">
+            <div class="big-num">↑</div>
+            <h3>Higher Perceived Value</h3>
+            <p>A cinematic, premium website signals that you deal in premium properties. Buyers form trust before ever speaking to you — and they're willing to pay more from agencies they trust.</p>
+          </div>
+          <div class="res-card">
+            <div class="big-num">$0</div>
+            <h3>No Portal Commission Fees</h3>
+            <p>Every lead that comes direct through your site saves you 15–25% in platform fees. On a $300K property, that's $45,000–$75,000 in commission that stays with you.</p>
+          </div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-box bad">
+            <div class="vs-icon">❌</div>
+            <div>
+              <div class="vt">Before: Portal Dependent</div>
+              <p>Rightmove, Zillow, OLX fees eating your margins. No brand. Competing on price alone. Losing leads to platform algorithms.</p>
+            </div>
+          </div>
+          <div class="vs-box good">
+            <div class="vs-icon">✅</div>
+            <div>
+              <div class="vt">After: Direct Lead Machine</div>
+              <p>Your own pipeline. Your brand. International buyers find you first. CONFOTUR pages convert hesitant buyers. 24/7 lead capture while you sleep.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">06 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 7 — PROCESS
+  ══════════════════════════════ -->
+  <div class="slide" id="s7">
+    <div class="slide-inner">
+      <div class="content">
+        <div class="eyebrow">How We Work</div>
+        <div class="gold-bar" style="margin:0 auto 20px;"></div>
+        <h2>From First Meeting to<br><em>Live Website</em> in 6 Weeks</h2>
+        <p class="proc-sub">A clear, proven process — no surprises, no delays, no agency jargon.</p>
+        <div class="process-row">
+          <div class="proc-step">
+            <div class="proc-circle">
+              🔍
+              <div class="proc-num">1</div>
+            </div>
+            <div class="proc-label">Audit</div>
+            <div class="proc-sublabel">Free competitive analysis of your current site</div>
+          </div>
+          <div class="proc-arrow"></div>
+          <div class="proc-step">
+            <div class="proc-circle">
+              🗺️
+              <div class="proc-num">2</div>
+            </div>
+            <div class="proc-label">Strategy</div>
+            <div class="proc-sublabel">Custom blueprint for your market position</div>
+          </div>
+          <div class="proc-arrow"></div>
+          <div class="proc-step">
+            <div class="proc-circle">
+              🔨
+              <div class="proc-num">3</div>
+            </div>
+            <div class="proc-label">Build</div>
+            <div class="proc-sublabel">Design, develop, content — you approve every step</div>
+          </div>
+          <div class="proc-arrow"></div>
+          <div class="proc-step">
+            <div class="proc-circle">
+              🚀
+              <div class="proc-num">4</div>
+            </div>
+            <div class="proc-label">Launch</div>
+            <div class="proc-sublabel">Go live with full testing and SEO setup</div>
+          </div>
+          <div class="proc-arrow"></div>
+          <div class="proc-step">
+            <div class="proc-circle">
+              📈
+              <div class="proc-num">5</div>
+            </div>
+            <div class="proc-label">Optimize</div>
+            <div class="proc-sublabel">Monthly reports, A/B testing, conversion improvements</div>
+          </div>
+        </div>
+        <div class="proc-timeline">
+          <div class="timeline-item">
+            <div class="td">Week 1</div>
+            <div class="tl">Audit & Brief</div>
+          </div>
+          <div class="timeline-div"></div>
+          <div class="timeline-item">
+            <div class="td">Week 2</div>
+            <div class="tl">Strategy & Design Approval</div>
+          </div>
+          <div class="timeline-div"></div>
+          <div class="timeline-item">
+            <div class="td">Weeks 3–5</div>
+            <div class="tl">Build & Content</div>
+          </div>
+          <div class="timeline-div"></div>
+          <div class="timeline-item">
+            <div class="td">Week 6</div>
+            <div class="tl">Launch & Handover</div>
+          </div>
+          <div class="timeline-div"></div>
+          <div class="timeline-item">
+            <div class="td">Ongoing</div>
+            <div class="tl">Optimisation & Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">07 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 8 — PRICING
+  ══════════════════════════════ -->
+  <div class="slide" id="s8">
+    <div class="slide-inner">
+      <div class="content">
+        <div class="eyebrow">Investment</div>
+        <div class="gold-bar" style="margin:0 auto 20px;"></div>
+        <h2>Clear Pricing.<br><em>No Surprises.</em></h2>
+        <p class="price-sub">Choose the package that fits your agency. All include full ownership of your website — no monthly platform fees.</p>
+        <div class="price-grid">
+          <div class="price-card">
+            <div class="price-tier">Starter</div>
+            <div class="price-amount"><sup>$</sup>1,290</div>
+            <div class="price-desc">For agencies ready to upgrade their digital presence with a professional, lead-generating foundation.</div>
+            <ul class="price-features">
+              <li>Cinematic property showcase</li>
+              <li>Up to 20 property listings</li>
+              <li>Lead capture forms</li>
+              <li>WhatsApp integration</li>
+              <li>EN + 1 additional language</li>
+              <li>CONFOTUR overview page</li>
+              <li>Mobile responsive</li>
+              <li>Basic SEO setup</li>
+            </ul>
+          </div>
+          <div class="price-card featured">
+            <div class="price-tier">Professional</div>
+            <div class="price-amount"><sup>$</sup>1,990</div>
+            <div class="price-desc">The complete package for agencies serious about international lead generation and brand authority.</div>
+            <ul class="price-features">
+              <li>Everything in Starter</li>
+              <li>Unlimited property listings</li>
+              <li>Full multilingual: EN/FR/ES/DE/IT</li>
+              <li>Property search & filter system</li>
+              <li>Full CONFOTUR explainer section</li>
+              <li>CRM integration</li>
+              <li>Email automation sequences</li>
+              <li>Analytics & conversion tracking</li>
+            </ul>
+          </div>
+          <div class="price-card">
+            <div class="price-tier">Premium</div>
+            <div class="price-amount"><sup>$</sup>3,490</div>
+            <div class="price-desc">The flagship solution for leading agencies — full property database, IDX integration, and ongoing growth management.</div>
+            <ul class="price-features">
+              <li>Everything in Professional</li>
+              <li>Full property database system</li>
+              <li>IDX / MLS integration ready</li>
+              <li>Virtual tour embedding</li>
+              <li>Custom investment calculator</li>
+              <li>Investor ROI tools</li>
+              <li>6 months of optimisation included</li>
+              <li>Priority support & monthly reports</li>
+            </ul>
+          </div>
+        </div>
+        <div class="price-note">
+          <strong>All packages include:</strong> Domain setup, hosting configuration, SSL, Google Analytics, 30 days post-launch support, and full source code ownership. No lock-in.
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">08 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 9 — SPECIAL OFFER
+  ══════════════════════════════ -->
+  <div class="slide" id="s9">
+    <div class="slide-inner">
+      <div class="geo-circle"></div>
+      <div class="geo-circle"></div>
+      <div class="content">
+        <div class="offer-tag">🏖️ Limited — We're Here Now in Las Terrenas</div>
+        <h2>
+          <span class="pct">20%</span><br>
+          Off All Packages<br>This October
+        </h2>
+        <p class="offer-sub">We're on the ground in Las Terrenas right now. For agencies that move this month, we're offering a 20% discount across all packages — because we'd rather build relationships than just projects.</p>
+        <div class="offer-boxes">
+          <div class="offer-box">
+            <div class="ob-icon">☕</div>
+            <div class="ob-label">Free Coffee Meeting</div>
+            <div class="ob-sub">No sales pitch. Just an honest conversation about your goals.</div>
+          </div>
+          <div class="offer-box">
+            <div class="ob-icon">🔍</div>
+            <div class="ob-label">Free Competitor Audit</div>
+            <div class="ob-sub">We analyse your site vs. top 3 competing agencies — free.</div>
+          </div>
+          <div class="offer-box">
+            <div class="ob-icon">✍️</div>
+            <div class="ob-label">No Commitment</div>
+            <div class="ob-sub">The audit and meeting are free. Decide after you've seen the data.</div>
+          </div>
+          <div class="offer-box">
+            <div class="ob-icon">⚡</div>
+            <div class="ob-label">Fast Start</div>
+            <div class="ob-sub">Sign in October, go live before peak January buyer season.</div>
+          </div>
+        </div>
+        <div class="offer-expires">✦ Offer valid for October 2026 sign-ups only &nbsp;·&nbsp; unityspiritpartners.com ✦</div>
+      </div>
+    </div>
+    <div class="slide-num">09 / 10</div>
+  </div>
+
+  <!-- ══════════════════════════════
+       SLIDE 10 — CTA
+  ══════════════════════════════ -->
+  <div class="slide" id="s10">
+    <div class="slide-inner">
+      <div class="left">
+        <div class="brand-logo">
+          <div class="brand-hex"></div>
+          <div class="brand-text">Unity Spirit <span>Partners</span> Inc.</div>
+        </div>
+        <div class="eyebrow">Let's Talk</div>
+        <div class="gold-bar"></div>
+        <h2>Let's Have a<br><em>Coffee</em> and Build<br>Something Real</h2>
+        <p class="cta-desc">We'll show you exactly how your current website compares to your top competitors — and what it would take to become the #1 digital agency in Las Terrenas. Free. No pressure. Just results.</p>
+        <div class="cta-btns">
+          <div class="btn-primary">☕ Book a Free Meeting</div>
+          <div class="btn-ghost">🔍 Get Free Site Audit</div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="audit-badge">
+          <div class="ab-label">Free — No Obligation</div>
+          <h3>Competitive Website Audit</h3>
+          <p>Your agency vs. the top 3 in Las Terrenas. Side by side. Honest. Free.</p>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">🌐</div>
+          <div>
+            <div class="cc-label">Website</div>
+            <div class="cc-value">unityspiritpartners.com</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">💬</div>
+          <div>
+            <div class="cc-label">WhatsApp — Fastest Response</div>
+            <div class="cc-value">Available via website</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">📍</div>
+          <div>
+            <div class="cc-label">Location</div>
+            <div class="cc-value">Las Terrenas, Samaná, DR</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="cc-icon">🗓️</div>
+          <div>
+            <div class="cc-label">October Special</div>
+            <div class="cc-value">20% off — Sign this month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">10 / 10</div>
+  </div>
+
+</div>
+
+<!-- ─── NAVIGATION ─── -->
+<div class="arrow left" id="prevBtn">‹</div>
+<div class="arrow right" id="nextBtn">›</div>
+
+<div class="nav" id="navDots"></div>
+
+<div class="key-hint">
+  <span class="key">←</span>
+  <span class="key">→</span>
+  <span>navigate</span>
+  &nbsp;|&nbsp;
+  <span class="key">Space</span>
+  <span>next</span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const navDots = document.getElementById('navDots');
+  let current = 0;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    navDots.appendChild(dot);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    slides[current].classList.add('prev');
+    setTimeout(() => slides[current === n ? n : current].classList.remove('prev'), 650);
+
+    if (n !== current) {
+      const prev = current;
+      current = n;
+      slides[current].classList.add('active');
+
+      // Update dots
+      document.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+
+      // Clean prev class on old slide after animation
+      setTimeout(() => slides[prev].classList.remove('prev'), 650);
+    }
+  }
+
+  function next() { if (current < slides.length - 1) goTo(current + 1); }
+  function prev() { if (current > 0) goTo(current - 1); }
+
+  document.getElementById('nextBtn').addEventListener('click', next);
+  document.getElementById('prevBtn').addEventListener('click', prev);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+  });
+</script>
+
+</body>
+</html>

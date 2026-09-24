@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Pager - Mahona Boutique Hotel</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A0F1E;
+    --navy-mid: #111827;
+    --gold: #D4AF37;
+    --gold-light: #E8C84A;
+    --white: #FFFFFF;
+    --off-white: #F8F6F0;
+    --light-gray: #E5E2D8;
+    --text-dark: #1A1A2E;
+    --text-mid: #4A4A6A;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    font-size: 10px;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    background: var(--navy);
+    padding: 7mm 12mm 6mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .logo-block { display: flex; flex-direction: column; gap: 1mm; }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .logo-icon {
+    width: 10mm;
+    height: 10mm;
+    border: 0.8mm solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .logo-icon::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 5mm;
+    line-height: 1;
+  }
+
+  .logo-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 5.5mm;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.3mm;
+    line-height: 1.1;
+  }
+
+  .logo-sub {
+    font-size: 2.8mm;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1.5mm;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-top: 0.5mm;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .header-tag {
+    font-size: 2.5mm;
+    color: var(--gold);
+    letter-spacing: 0.8mm;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+
+  .header-location {
+    font-size: 2.2mm;
+    color: rgba(255,255,255,0.5);
+    margin-top: 1mm;
+    letter-spacing: 0.3mm;
+  }
+
+  /* ─── HERO HEADLINE ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #0D1530 60%, #151F3E 100%);
+    padding: 6mm 12mm 5mm;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -8mm;
+    top: -8mm;
+    width: 45mm;
+    height: 45mm;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.4mm;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-eyebrow {
+    font-size: 2.4mm;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1.5mm;
+    font-weight: 600;
+    margin-bottom: 2mm;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 8.5mm;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    max-width: 155mm;
+  }
+
+  .hero-headline .accent { color: var(--gold); }
+
+  .hero-sub {
+    font-size: 3mm;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2.5mm;
+    font-weight: 300;
+    letter-spacing: 0.2mm;
+  }
+
+  /* ─── BODY ─── */
+  .body {
+    flex: 1;
+    background: var(--off-white);
+    padding: 5mm 12mm;
+    display: flex;
+    flex-direction: column;
+    gap: 4mm;
+    overflow: hidden;
+  }
+
+  /* ─── TWIN COLUMNS ─── */
+  .twin {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION TITLES ─── */
+  .section-title {
+    font-size: 2.6mm;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1mm;
+    color: var(--navy);
+    margin-bottom: 2.5mm;
+    padding-bottom: 1mm;
+    border-bottom: 0.5mm solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 1.5mm;
+  }
+
+  .section-title .dot {
+    width: 2mm;
+    height: 2mm;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ─── PAIN POINTS ─── */
+  .pain-card {
+    background: var(--white);
+    border-radius: 1.5mm;
+    padding: 3mm 3.5mm;
+    border-left: 0.8mm solid #C0392B;
+    box-shadow: 0 0.5mm 3mm rgba(0,0,0,0.06);
+    display: flex;
+    gap: 2.5mm;
+    align-items: flex-start;
+  }
+
+  .pain-icon {
+    font-size: 4.5mm;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.3mm;
+  }
+
+  .pain-title {
+    font-size: 3mm;
+    font-weight: 700;
+    color: #C0392B;
+    margin-bottom: 0.8mm;
+  }
+
+  .pain-desc {
+    font-size: 2.5mm;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+
+  /* ─── SOLUTIONS ─── */
+  .solution-card {
+    background: var(--navy);
+    border-radius: 1.5mm;
+    padding: 3mm 3.5mm;
+    box-shadow: 0 0.5mm 4mm rgba(10,15,30,0.15);
+    display: flex;
+    gap: 2.5mm;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0.6mm;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .sol-icon {
+    font-size: 4.5mm;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.3mm;
+  }
+
+  .sol-title {
+    font-size: 3mm;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.8mm;
+  }
+
+  .sol-desc {
+    font-size: 2.5mm;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.4;
+  }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar {
+    background: var(--navy);
+    border-radius: 1.5mm;
+    padding: 3.5mm 4mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 0.4mm;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0 3mm;
+    position: relative;
+  }
+
+  .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 10%; bottom: 10%;
+    width: 0.2mm;
+    background: rgba(212,175,55,0.3);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 6.5mm;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 2.2mm;
+    color: rgba(255,255,255,0.65);
+    margin-top: 1mm;
+    line-height: 1.3;
+  }
+
+  /* ─── CASE STUDY ─── */
+  .case-study {
+    background: linear-gradient(135deg, #F0EAD2 0%, #FAF7EE 100%);
+    border-radius: 1.5mm;
+    padding: 3.5mm 4mm;
+    border: 0.3mm solid rgba(212,175,55,0.4);
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    flex-shrink: 0;
+  }
+
+  .case-icon {
+    font-size: 7mm;
+    flex-shrink: 0;
+  }
+
+  .case-body { flex: 1; }
+
+  .case-label {
+    font-size: 2.2mm;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.8mm;
+    margin-bottom: 0.8mm;
+  }
+
+  .case-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5mm;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .case-sub {
+    font-size: 2.5mm;
+    color: var(--text-mid);
+    margin-top: 0.8mm;
+  }
+
+  .case-cta {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 2mm 4mm;
+    border-radius: 1mm;
+    font-size: 2.5mm;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.3mm;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: linear-gradient(135deg, var(--gold) 0%, #C9A227 100%);
+    border-radius: 1.5mm;
+    padding: 3.5mm 4mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .cta-left { }
+
+  .cta-offer {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 4mm;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .cta-sub {
+    font-size: 2.5mm;
+    color: rgba(10,15,30,0.7);
+    margin-top: 0.8mm;
+  }
+
+  .cta-contacts {
+    display: flex;
+    gap: 4mm;
+    align-items: center;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .contact-icon { font-size: 4mm; margin-bottom: 0.5mm; }
+
+  .contact-label {
+    font-size: 2mm;
+    color: rgba(10,15,30,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5mm;
+    font-weight: 600;
+  }
+
+  .contact-value {
+    font-size: 2.5mm;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 0.3mm;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--navy);
+    padding: 2.5mm 12mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .footer-left {
+    font-size: 2.2mm;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.3mm;
+  }
+
+  .footer-center {
+    font-size: 2.2mm;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.5mm;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 2.2mm;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ─── PRINT ─── */
+  @media print {
+    html, body { margin: 0; }
+    .page { page-break-after: always; }
+    @page { size: A4; margin: 0; }
+  }
+
+  @media screen {
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background: #888;
+      padding: 10px;
+      width: auto;
+    }
+    .page {
+      box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+      border-radius: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-block">
+      <div class="logo-mark">
+        <div class="logo-icon"></div>
+        <div>
+          <div class="logo-text">Unity Spirit Partners</div>
+          <div class="logo-sub">Inc.</div>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-tag">Boutique Hospitality Digital</div>
+      <div class="header-location">unityspiritpartners.com</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">For Boutique Hotel Owners · Las Terrenas, Samaná</div>
+    <div class="hero-headline">Stop Losing <span class="accent">20%</span> to<br>Booking.com. Own<br>Your Bookings.</div>
+    <div class="hero-sub">Cinematic websites &amp; direct booking systems built for boutique hospitality in the Dominican Republic.</div>
+  </section>
+
+  <!-- BODY -->
+  <main class="body">
+
+    <!-- TWIN: Pain + Solutions -->
+    <div class="twin">
+
+      <!-- PAIN POINTS -->
+      <div>
+        <div class="section-title"><span class="dot"></span>The Problem</div>
+
+        <div style="display:flex; flex-direction:column; gap:2mm;">
+          <div class="pain-card">
+            <div class="pain-icon">🚫</div>
+            <div>
+              <div class="pain-title">No Direct Booking Engine</div>
+              <div class="pain-desc">OTAs collect 15–25% commission on every reservation you worked hard to earn.</div>
+            </div>
+          </div>
+
+          <div class="pain-card">
+            <div class="pain-icon">👁️</div>
+            <div>
+              <div class="pain-title">Invisible on Google</div>
+              <div class="pain-desc">Without SEO &amp; Google Business, guests never discover your property organically.</div>
+            </div>
+          </div>
+
+          <div class="pain-card">
+            <div class="pain-icon">📷</div>
+            <div>
+              <div class="pain-title">Amateur Online Image</div>
+              <div class="pain-desc">A weak website signals low value — driving guests toward competitors who look premium.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOLUTIONS -->
+      <div>
+        <div class="section-title"><span class="dot"></span>Our Solution</div>
+
+        <div style="display:flex; flex-direction:column; gap:2mm;">
+          <div class="solution-card">
+            <div class="sol-icon">🎬</div>
+            <div>
+              <div class="sol-title">Cinematic Website in 48h</div>
+              <div class="sol-desc">Multilingual (EN/FR/ES), mobile-first, built to convert lookers into bookers.</div>
+            </div>
+          </div>
+
+          <div class="solution-card">
+            <div class="sol-icon">📍</div>
+            <div>
+              <div class="sol-title">Google Business Profile Setup</div>
+              <div class="sol-desc">Be found first. Full optimization, photos, reviews strategy &amp; local SEO.</div>
+            </div>
+          </div>
+
+          <div class="solution-card">
+            <div class="sol-icon">💳</div>
+            <div>
+              <div class="sol-title">Direct Booking System</div>
+              <div class="sol-desc">Commission-free reservations. Keep 100% of what your guests pay you.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Peak occupancy at top<br>Las Terrenas properties<br>with pro web presence</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">11.7M</div>
+        <div class="stat-label">Tourists visited the<br>Dominican Republic<br>in 2025</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">+8%</div>
+        <div class="stat-label">Annual property<br>appreciation across<br>Samaná corridor</div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY -->
+    <div class="case-study">
+      <div class="case-icon">🏨</div>
+      <div class="case-body">
+        <div class="case-label">Client Success Story</div>
+        <div class="case-headline">"El Mambo Boutique Hotel doubled direct bookings<br>within 90 days of launching their new site."</div>
+        <div class="case-sub">Zero OTA commission loss · +42% revenue per booking · Full brand control</div>
+      </div>
+      <a class="case-cta" href="https://unityspiritpartners.com">Read Case Study →</a>
+    </div>
+
+    <!-- CTA BAND -->
+    <div class="cta-band">
+      <div class="cta-left">
+        <div class="cta-offer">🎯 Free Niche Audit — No Obligation</div>
+        <div class="cta-sub">We analyze your current digital presence &amp; show exactly what you're losing per month.</div>
+      </div>
+      <div class="cta-contacts">
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">+1 (xxx) xxx-xxxx</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div class="contact-label">Website</div>
+          <div class="contact-value">unityspiritpartners.com</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-left">Las Terrenas, Samaná · Dominican Republic</div>
+    <div class="footer-center">✦ 2026 — Year of Samaná ✦</div>
+    <div class="footer-right">Unity Spirit Partners Inc. © 2026</div>
+  </footer>
+
+</div>
+</body>
+</html>

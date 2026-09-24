@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Proposal - Boulangerie Française</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,490;1,400;1,700&family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0A0F1E;
+      --navy-mid: #111827;
+      --navy-light: #1C2740;
+      --gold: #D4AF37;
+      --gold-light: #E8C84A;
+      --gold-pale: rgba(212,175,55,0.15);
+      --white: #FFFFFF;
+      --cream: #FDF8EE;
+      --red: #C0392B;
+      --text-muted: rgba(255,255,255,0.55);
+    }
+
+    html, body {
+      width: 100vw; height: 100vh;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+    }
+
+    .deck {
+      width: 100%; height: 100%;
+      position: relative;
+    }
+
+    /* ── SLIDES ── */
+    .slide {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: translateX(40px);
+      padding: 6vh 8vw;
+      overflow: hidden;
+    }
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+    .slide.leaving {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    /* BACKGROUNDS */
+    .bg-navy { background: var(--navy); }
+    .bg-dark { background: #07090F; }
+    .bg-mid { background: var(--navy-mid); }
+    .bg-light { background: var(--navy-light); }
+    .bg-gold-accent {
+      background: linear-gradient(135deg, #08111F 0%, #0D1A2D 60%, #0A1020 100%);
+    }
+    .bg-warm {
+      background: linear-gradient(135deg, #0A0F1E 0%, #1a1000 60%, #0A0F1E 100%);
+    }
+    .bg-cta {
+      background: linear-gradient(135deg, #0A0F1E 0%, #0D1520 100%);
+    }
+
+    /* Common decorative */
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .glow-gold-tl {
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(212,175,55,0.10) 0%, transparent 70%);
+      top: -10vw; left: -10vw;
+    }
+    .glow-gold-br {
+      width: 35vw; height: 35vw;
+      background: radial-gradient(circle, rgba(212,175,55,0.07) 0%, transparent 70%);
+      bottom: -8vw; right: -8vw;
+    }
+    .glow-gold-center {
+      width: 60vw; height: 60vh;
+      background: radial-gradient(ellipse, rgba(212,175,55,0.08) 0%, transparent 65%);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .gold-line-h {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.5) 30%, rgba(232,200,74,0.7) 50%, rgba(212,175,55,0.5) 70%, transparent 100%);
+    }
+
+    /* ── SLIDE 1: COVER ── */
+    #s1 { text-align: center; }
+    #s1 .cover-eyebrow {
+      font-size: clamp(9px, 1.1vw, 13px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 3.5vh;
+      opacity: 0.85;
+    }
+    #s1 .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5.5vw, 72px);
+      font-weight: 490;
+      color: var(--white);
+      line-height: 1.08;
+      max-width: 75vw;
+      margin: 0 auto 3vh;
+    }
+    #s1 .cover-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+    #s1 .cover-sub {
+      font-size: clamp(13px, 1.6vw, 20px);
+      color: var(--text-muted);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 5vh;
+    }
+    #s1 .cover-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(212,175,55,0.1);
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 40px;
+      padding: 10px 24px;
+    }
+    #s1 .cover-brand-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    #s1 .cover-brand-name {
+      font-size: clamp(11px, 1.2vw, 15px);
+      color: var(--gold-light);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    #s1 .cover-location {
+      font-size: clamp(10px, 1vw, 13px);
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+    .cover-deco-grid {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ── SLIDE 2: REALITY ── */
+    .slide-label {
+      position: absolute;
+      top: 5vh; left: 8vw;
+      font-size: clamp(8px, 0.85vw, 11px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      opacity: 0.7;
+    }
+    .slide-number {
+      position: absolute;
+      bottom: 5vh; right: 8vw;
+      font-size: clamp(11px, 1.1vw, 14px);
+      color: rgba(255,255,255,0.15);
+      font-weight: 200;
+      letter-spacing: 0.1em;
+    }
+
+    .slide-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 4vw, 56px);
+      font-weight: 490;
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 2.5vh;
+    }
+    .slide-h1 em { color: var(--gold); font-style: italic; }
+    .slide-h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3.2vw, 44px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 2vh;
+    }
+    .slide-h2 em { color: var(--gold); font-style: italic; }
+    .slide-body {
+      font-size: clamp(13px, 1.3vw, 17px);
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.65;
+      max-width: 62vw;
+      text-align: center;
+    }
+
+    /* Pain cards */
+    .pain-cards {
+      display: flex;
+      gap: 2vw;
+      margin-top: 4vh;
+      width: 100%;
+      max-width: 84vw;
+    }
+    .pain-card {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(192,57,43,0.4);
+      border-top: 3px solid var(--red);
+      border-radius: 8px;
+      padding: 3vh 2vw;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .pain-card:hover { transform: translateY(-4px); }
+    .pain-card .pc-icon { font-size: clamp(22px, 3vw, 38px); margin-bottom: 1.5vh; }
+    .pain-card .pc-title {
+      font-size: clamp(12px, 1.2vw, 16px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1vh;
+      line-height: 1.3;
+    }
+    .pain-card .pc-desc {
+      font-size: clamp(10px, 0.95vw, 13px);
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    /* ── SLIDE 3: SCENE ── */
+    .scene-stats {
+      display: flex;
+      gap: 3vw;
+      margin-top: 4vh;
+      width: 100%;
+      max-width: 82vw;
+    }
+    .scene-stat {
+      flex: 1;
+      text-align: center;
+      padding: 3vh 2vw;
+      background: rgba(212,175,55,0.06);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .scene-stat::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .scene-stat .ss-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 4vw, 56px);
+      font-weight: 490;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .scene-stat .ss-label {
+      font-size: clamp(10px, 0.95vw, 13px);
+      color: var(--text-muted);
+      margin-top: 1.2vh;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+    .scene-detail {
+      max-width: 62vw;
+      font-size: clamp(12px, 1.2vw, 16px);
+      color: var(--text-muted);
+      line-height: 1.65;
+      text-align: center;
+      margin-top: 3vh;
+    }
+    .scene-detail strong { color: var(--gold-light); font-weight: 600; }
+
+    /* ── SLIDE 4: WHO WE ARE ── */
+    .who-layout {
+      display: flex;
+      gap: 6vw;
+      width: 100%;
+      max-width: 82vw;
+      align-items: flex-start;
+      margin-top: 3vh;
+    }
+    .who-left { flex: 1; }
+    .who-right { flex: 1.3; }
+    .who-desc {
+      font-size: clamp(13px, 1.35vw, 18px);
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 3vh;
+    }
+    .who-desc strong { color: var(--gold); font-weight: 600; }
+    .who-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5vh;
+    }
+    .who-pillar {
+      display: flex;
+      align-items: center;
+      gap: 1.5vw;
+      font-size: clamp(11px, 1.1vw, 15px);
+      color: rgba(255,255,255,0.75);
+    }
+    .who-pillar-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .who-card {
+      background: linear-gradient(145deg, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0.04) 100%);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 10px;
+      padding: 3.5vh 2.5vw;
+      text-align: center;
+    }
+    .who-card-icon { font-size: clamp(32px, 5vw, 64px); margin-bottom: 2vh; }
+    .who-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(15px, 1.8vw, 24px);
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1.5vh;
+    }
+    .who-card-body {
+      font-size: clamp(10px, 1vw, 14px);
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── SLIDE 5: PACKAGE ── */
+    .package-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2vh 2.5vw;
+      width: 100%;
+      max-width: 80vw;
+      margin-top: 3.5vh;
+    }
+    .pkg-item {
+      display: flex;
+      gap: 1.5vw;
+      padding: 2.5vh 2vw;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 8px;
+      align-items: flex-start;
+      transition: background 0.3s;
+    }
+    .pkg-item:hover { background: rgba(212,175,55,0.07); }
+    .pkg-icon {
+      font-size: clamp(18px, 2.2vw, 30px);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .pkg-text .pkg-title {
+      font-size: clamp(12px, 1.15vw, 16px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5vh;
+    }
+    .pkg-text .pkg-desc {
+      font-size: clamp(10px, 0.9vw, 13px);
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    /* ── SLIDE 6: MULTILINGUAL ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2vh 3vw;
+      width: 100%;
+      max-width: 72vw;
+      margin-top: 4vh;
+    }
+    .lang-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 10px;
+      padding: 3vh 2.5vw;
+      display: flex;
+      align-items: center;
+      gap: 2vw;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .lang-card:hover {
+      transform: translateX(6px);
+      background: rgba(212,175,55,0.07);
+    }
+    .lang-flag { font-size: clamp(24px, 3vw, 40px); flex-shrink: 0; }
+    .lang-info {}
+    .lang-name {
+      font-size: clamp(13px, 1.4vw, 18px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5vh;
+    }
+    .lang-visitors {
+      font-size: clamp(10px, 0.9vw, 13px);
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ── SLIDE 7: PROCESS ── */
+    .process-steps {
+      display: flex;
+      width: 100%;
+      max-width: 82vw;
+      margin-top: 4vh;
+      position: relative;
+      align-items: flex-start;
+      gap: 0;
+    }
+    .process-step {
+      flex: 1;
+      text-align: center;
+      padding: 3vh 1.5vw;
+      position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: calc(3vh + 24px);
+      right: -10px;
+      width: 20px; height: 1px;
+      background: rgba(212,175,55,0.4);
+    }
+    .step-num {
+      width: clamp(36px, 3.5vw, 48px);
+      height: clamp(36px, 3.5vw, 48px);
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 490;
+      font-size: clamp(14px, 1.4vw, 18px);
+      margin: 0 auto 2vh;
+      box-shadow: 0 0 20px rgba(212,175,55,0.4);
+    }
+    .step-title {
+      font-size: clamp(12px, 1.2vw, 16px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1vh;
+    }
+    .step-desc {
+      font-size: clamp(9px, 0.9vw, 12px);
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .step-arrow {
+      position: absolute;
+      right: 0; top: calc(3vh + 20px);
+      transform: translateX(50%);
+      font-size: 14px;
+      color: var(--gold);
+      opacity: 0.5;
+      z-index: 2;
+    }
+
+    /* ── SLIDE 8: PRICING ── */
+    .pricing-cards {
+      display: flex;
+      gap: 2.5vw;
+      margin-top: 4vh;
+      width: 100%;
+      max-width: 84vw;
+      align-items: stretch;
+    }
+    .price-card {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 10px;
+      padding: 3.5vh 2vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .price-card:hover { transform: translateY(-6px); }
+    .price-card.featured {
+      background: linear-gradient(145deg, rgba(212,175,55,0.14) 0%, rgba(212,175,55,0.05) 100%);
+      border-color: rgba(212,175,55,0.5);
+      border-width: 2px;
+    }
+    .price-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: 14px; right: -22px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 30px;
+      transform: rotate(45deg);
+    }
+    .price-tier {
+      font-size: clamp(9px, 0.85vw, 11px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 1.5vh;
+    }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 54px);
+      font-weight: 490;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.5vh;
+    }
+    .price-amount sup { font-size: 0.45em; vertical-align: top; margin-top: 0.4em; }
+    .price-period {
+      font-size: clamp(9px, 0.85vw, 11px);
+      color: var(--text-muted);
+      margin-bottom: 2.5vh;
+    }
+    .price-features {
+      list-style: none;
+      text-align: left;
+      flex: 1;
+    }
+    .price-features li {
+      font-size: clamp(9px, 0.9vw, 12px);
+      color: rgba(255,255,255,0.7);
+      padding: 0.8vh 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+      font-weight: 300;
+    }
+    .price-features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .price-features li:last-child { border-bottom: none; }
+
+    /* ── SLIDE 9: OFFER ── */
+    #s9 { text-align: center; }
+    .offer-badge-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 4vh;
+    }
+    .offer-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), #B8790F);
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 72px);
+      font-weight: 490;
+      padding: 4vh 5vw;
+      border-radius: 50%;
+      width: clamp(160px, 20vw, 260px);
+      height: clamp(160px, 20vw, 260px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 0 60px rgba(212,175,55,0.35);
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100% { box-shadow: 0 0 40px rgba(212,175,55,0.3); }
+      50% { box-shadow: 0 0 80px rgba(212,175,55,0.55); }
+    }
+    .offer-badge .off-pct { font-size: clamp(36px, 6vw, 80px); }
+    .offer-badge .off-word { font-size: clamp(14px, 1.6vw, 22px); font-weight: 400; }
+    .offer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.8vw, 38px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2vh;
+    }
+    .offer-sub {
+      font-size: clamp(13px, 1.3vw, 17px);
+      color: var(--text-muted);
+      font-weight: 300;
+      max-width: 55vw;
+      line-height: 1.6;
+      margin: 0 auto 3vh;
+    }
+    .offer-sub strong { color: var(--gold-light); font-weight: 600; }
+    .offer-deadline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(192,57,43,0.15);
+      border: 1px solid rgba(192,57,43,0.4);
+      border-radius: 30px;
+      padding: 8px 20px;
+      font-size: clamp(10px, 1vw, 14px);
+      color: #E74C3C;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SLIDE 10: CTA ── */
+    #s10 { text-align: center; }
+    .cta-wrap { max-width: 65vw; }
+    .cta-emoji { font-size: clamp(40px, 6vw, 80px); margin-bottom: 3vh; }
+    .cta-main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.8vw, 52px);
+      font-weight: 490;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 2vh;
+    }
+    .cta-main-title em { color: var(--gold); font-style: italic; }
+    .cta-sub {
+      font-size: clamp(12px, 1.2vw, 16px);
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 4vh;
+      line-height: 1.6;
+    }
+    .cta-contact-grid {
+      display: flex;
+      gap: 2vw;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3vh;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 6px;
+      font-size: clamp(11px, 1.1vw, 15px);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); }
+    .cta-btn.primary {
+      background: linear-gradient(135deg, var(--gold), #B8790F);
+      color: var(--navy);
+      box-shadow: 0 4px 24px rgba(212,175,55,0.35);
+    }
+    .cta-btn.primary:hover { box-shadow: 0 8px 32px rgba(212,175,55,0.5); }
+    .cta-btn.secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .cta-audit-line {
+      font-size: clamp(11px, 1.05vw, 14px);
+      color: rgba(255,255,255,0.35);
+    }
+    .cta-audit-line strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .cta-logo-line {
+      position: absolute;
+      bottom: 4vh;
+      font-size: clamp(9px, 0.9vw, 12px);
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ── NAVIGATION ── */
+    .nav {
+      position: fixed;
+      bottom: 4vh;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      background: rgba(10,15,30,0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+    .nav-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.35);
+      background: transparent;
+      color: var(--gold);
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: rgba(212,175,55,0.15); }
+    .nav-btn:disabled { opacity: 0.25; cursor: default; }
+    .nav-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(212,175,55,0.25);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .nav-dot.active {
+      background: var(--gold);
+      width: 20px;
+      border-radius: 3px;
+    }
+    .nav-count {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      min-width: 32px;
+      text-align: center;
+    }
+
+    /* ── KEYBOARD HINT ── */
+    .key-hint {
+      position: fixed;
+      top: 3vh;
+      right: 3vw;
+      font-size: 10px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.08em;
+      z-index: 100;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transition: width 0.5s ease;
+      z-index: 200;
+      box-shadow: 0 0 8px rgba(212,175,55,0.6);
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="key-hint">← → Arrow Keys to Navigate</div>
+
+<div class="deck" id="deck">
+
+  <!-- ─── SLIDE 1: COVER ─── -->
+  <div class="slide bg-navy active" id="s1">
+    <div class="cover-deco-grid"></div>
+    <div class="glow glow-gold-tl"></div>
+    <div class="glow glow-gold-br"></div>
+    <div class="slide-number">01 / 10</div>
+
+    <div class="cover-eyebrow">Unity Spirit Partners Inc. &nbsp;·&nbsp; Las Terrenas, Samaná, DR</div>
+    <div class="cover-title">
+      Fill <em>Every Table,</em><br>Every Night.
+    </div>
+    <div class="cover-sub">Digital Presence Solutions for Las Terrenas Restaurants &amp; Beach Clubs</div>
+
+    <div class="cover-brand">
+      <div class="cover-brand-dot"></div>
+      <div class="cover-brand-name">Unity Spirit Partners</div>
+      <div style="width:1px; height:14px; background: rgba(212,175,55,0.3);"></div>
+      <div class="cover-location">unityspiritpartners.com</div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 2: REALITY ─── -->
+  <div class="slide bg-dark" id="s2">
+    <div class="glow glow-gold-tl" style="opacity:0.5;"></div>
+    <div class="slide-label">The Problem</div>
+    <div class="slide-number">02 / 10</div>
+
+    <div class="slide-h1" style="text-align:center;">3 Invisible Problems<br>Costing You <em>Covers Every Night</em></div>
+
+    <div class="pain-cards">
+      <div class="pain-card">
+        <div class="pc-icon">📵</div>
+        <div class="pc-title">No Website.<br>Just Instagram.</div>
+        <div class="pc-desc">Tourists Google "best restaurant Las Terrenas" from their hotel. If you're not on page one, you don't exist to them.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pc-icon">🗺️</div>
+        <div class="pc-title">Invisible on<br>Google Maps</div>
+        <div class="pc-desc">Wrong hours. No photos. Missing menu. Unmanaged reviews. Your competitor shows up — you don't.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pc-icon">🌍</div>
+        <div class="pc-title">Language<br>Barrier = Lost Covers</div>
+        <div class="pc-desc">French, Italian &amp; North American visitors won't walk in without seeing a menu in their language. Period.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 3: LAS TERRENAS SCENE ─── -->
+  <div class="slide bg-gold-accent" id="s3">
+    <div class="glow glow-gold-center"></div>
+    <div class="slide-label">The Opportunity</div>
+    <div class="slide-number">03 / 10</div>
+
+    <div class="slide-h1" style="text-align:center; max-width:70vw;">The Las Terrenas<br><em>Dining Scene Is Booming</em></div>
+
+    <div class="scene-stats">
+      <div class="scene-stat">
+        <div class="ss-num">50+</div>
+        <div class="ss-label">nationalities visit Las Terrenas annually — French, Italian, North American, German, Swiss &amp; more</div>
+      </div>
+      <div class="scene-stat">
+        <div class="ss-num">87%</div>
+        <div class="ss-label">of diners research restaurants online before visiting — mobile-first, Google-first</div>
+      </div>
+      <div class="scene-stat">
+        <div class="ss-num">2025<span style="font-size:0.5em">/26</span></div>
+        <div class="ss-label">Pueblo de los Pescadores is newly renovated — set to attract record visitor numbers</div>
+      </div>
+    </div>
+
+    <div class="scene-detail">
+      The competition for covers is intensifying. <strong>The restaurants that own their digital space NOW will dominate for years.</strong> The ones that don't will watch tourists walk past to whoever shows up on Google first.
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 4: WHO WE ARE ─── -->
+  <div class="slide bg-mid" id="s4">
+    <div class="glow glow-gold-br"></div>
+    <div class="slide-label">Who We Are</div>
+    <div class="slide-number">04 / 10</div>
+
+    <div class="slide-h1" style="text-align:center; margin-bottom:3vh;">Unity Spirit Partners</div>
+
+    <div class="who-layout">
+      <div class="who-right">
+        <div class="who-desc">
+          We build <strong>digital experiences for restaurants</strong> that make people hungry before they ever arrive. We understand Las Terrenas — the culture, the tourists, the competition — and we know how to position your venue to win online.
+        </div>
+        <div class="who-pillars">
+          <div class="who-pillar"><div class="who-pillar-dot"></div>Local market expertise — Las Terrenas &amp; Samaná</div>
+          <div class="who-pillar"><div class="who-pillar-dot"></div>Multilingual content creation (EN, FR, ES, IT)</div>
+          <div class="who-pillar"><div class="who-pillar-dot"></div>Fast delivery — websites live in 48 hours</div>
+          <div class="who-pillar"><div class="who-pillar-dot"></div>Ongoing digital management &amp; support</div>
+          <div class="who-pillar"><div class="who-pillar-dot"></div>Results-driven — more covers, more revenue</div>
+        </div>
+      </div>
+      <div class="who-left">
+        <div class="who-card">
+          <div class="who-card-icon">🍽️</div>
+          <div class="who-card-title">We Make Restaurants<br>Unforgettable Online</div>
+          <div class="who-card-body">From the first Google search to the reservation confirmation — we own every touchpoint so your guests arrive hungry, excited, and ready to spend.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 5: PACKAGE ─── -->
+  <div class="slide bg-navy" id="s5">
+    <div class="glow glow-gold-tl" style="opacity:0.6;"></div>
+    <div class="glow glow-gold-br" style="opacity:0.4;"></div>
+    <div class="slide-label">The Package</div>
+    <div class="slide-number">05 / 10</div>
+
+    <div class="slide-h1" style="text-align:center;">The Restaurant<br><em>Digital Package</em></div>
+
+    <div class="package-grid">
+      <div class="pkg-item">
+        <div class="pkg-icon">🌐</div>
+        <div class="pkg-text">
+          <div class="pkg-title">Custom Restaurant Website</div>
+          <div class="pkg-desc">Cinematic design showcasing your atmosphere, cuisine &amp; story. Mobile-optimized, fast, beautiful — live in 48 hours.</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-icon">📍</div>
+        <div class="pkg-text">
+          <div class="pkg-title">Google Business Profile</div>
+          <div class="pkg-desc">Full optimization — hours, photos, menu, review management. Appear at the top when tourists search.</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-icon">📋</div>
+        <div class="pkg-text">
+          <div class="pkg-title">Multilingual Digital Menu</div>
+          <div class="pkg-desc">EN / FR / ES / IT. QR-code enabled. Updated instantly. No more printing costs.</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-icon">📅</div>
+        <div class="pkg-text">
+          <div class="pkg-title">Online Reservation System</div>
+          <div class="pkg-desc">Let guests book from their hotel room. Reduce no-shows with automated reminders.</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-icon">📱</div>
+        <div class="pkg-text">
+          <div class="pkg-title">Social Media Integration</div>
+          <div class="pkg-desc">Instagram &amp; Facebook connected to your website. Content strategy for the tourist season.</div>
+        </div>
+      </div>
+      <div class="pkg-item">
+        <div class="pkg-icon">📊</div>
+        <div class="pkg-text">
+          <div class="pkg-title">Monthly Analytics Report</div>
+          <div class="pkg-desc">See exactly how many people found you, where they came from, and what they clicked.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 6: MULTILINGUAL ─── -->
+  <div class="slide bg-dark" id="s6">
+    <div class="glow glow-gold-center"></div>
+    <div class="slide-label">Multilingual Power</div>
+    <div class="slide-number">06 / 10</div>
+
+    <div class="slide-h1" style="text-align:center; margin-bottom:1vh;">Reach Every Visitor<br>in <em>Their Language</em></div>
+    <div class="slide-body" style="margin-bottom:0;">Las Terrenas draws diners from across Europe and the Americas. Language is the #1 barrier to a first visit — and the easiest one to remove.</div>
+
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-flag">🇫🇷</div>
+        <div class="lang-info">
+          <div class="lang-name">Français</div>
+          <div class="lang-visitors">France &amp; French Canada — largest expat &amp; visitor group in Las Terrenas</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇬🇧</div>
+        <div class="lang-info">
+          <div class="lang-name">English</div>
+          <div class="lang-visitors">USA, Canada, UK — high-spend travelers who book ahead and review publicly</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇪🇸</div>
+        <div class="lang-info">
+          <div class="lang-name">Español</div>
+          <div class="lang-visitors">Dominican Republic &amp; Spanish-speaking tourists — your local foundation</div>
+        </div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇮🇹</div>
+        <div class="lang-info">
+          <div class="lang-name">Italiano</div>
+          <div class="lang-visitors">Italy — significant presence in Samaná region, passionate about authentic dining</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 7: PROCESS ─── -->
+  <div class="slide bg-mid" id="s7">
+    <div class="glow glow-gold-tl"></div>
+    <div class="slide-label">How It Works</div>
+    <div class="slide-number">07 / 10</div>
+
+    <div class="slide-h1" style="text-align:center;">From Zero to <em>Fully Live</em><br>in Days — Not Months</div>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <div class="step-title">Free Audit</div>
+        <div class="step-desc">We review your current online presence and identify exactly what's costing you covers. No cost, no obligation.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <div class="step-title">Strategy &amp; Design</div>
+        <div class="step-desc">We craft a custom digital strategy and show you design concepts tailored to your restaurant's personality.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <div class="step-title">Build</div>
+        <div class="step-desc">Website built, menus translated, Google optimized. Done in 48 hours — you review and approve.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <div class="step-title">Launch</div>
+        <div class="step-desc">Go live. Your restaurant appears on Google. Reservations start flowing in. Tourists find you first.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <div class="step-title">Manage</div>
+        <div class="step-desc">We handle updates, review responses, content &amp; analytics monthly so you focus on the food.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 8: PRICING ─── -->
+  <div class="slide bg-navy" id="s8">
+    <div class="glow glow-gold-br"></div>
+    <div class="slide-label">Pricing</div>
+    <div class="slide-number">08 / 10</div>
+
+    <div class="slide-h1" style="text-align:center; margin-bottom:1vh;">Simple, Transparent <em>Pricing</em></div>
+    <div class="slide-body" style="margin-bottom:0; font-size:clamp(11px, 1.05vw, 14px);">One-time setup. No hidden fees. More covers from week one.</div>
+
+    <div class="pricing-cards">
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount"><sup>$</sup>490</div>
+        <div class="price-period">one-time setup</div>
+        <ul class="price-features">
+          <li>5-page restaurant website</li>
+          <li>Google Business Profile setup</li>
+          <li>Digital menu (2 languages)</li>
+          <li>Mobile optimized</li>
+          <li>Basic SEO</li>
+          <li>1 month support</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tier">Pro</div>
+        <div class="price-amount"><sup>$</sup>890</div>
+        <div class="price-period">one-time setup</div>
+        <ul class="price-features">
+          <li>Full custom website</li>
+          <li>Google Business + review mgmt</li>
+          <li>Menu in 4 languages (EN/FR/ES/IT)</li>
+          <li>Online reservation system</li>
+          <li>Social media integration</li>
+          <li>3 months management</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Premium</div>
+        <div class="price-amount"><sup>$</sup>2,490</div>
+        <div class="price-period">one-time setup</div>
+        <ul class="price-features">
+          <li>Everything in Pro</li>
+          <li>Professional food photography (½ day)</li>
+          <li>Monthly analytics reports</li>
+          <li>Paid ads setup (Google/Meta)</li>
+          <li>Email marketing system</li>
+          <li>6 months management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 9: OCTOBER OFFER ─── -->
+  <div class="slide bg-warm" id="s9">
+    <div class="glow glow-gold-center"></div>
+    <div class="slide-label">Limited Time Offer</div>
+    <div class="slide-number">09 / 10</div>
+
+    <div style="display:flex; gap:5vw; align-items:center; max-width:80vw; width:100%;">
+      <div style="flex-shrink:0;">
+        <div class="offer-badge">
+          <div class="off-pct">20%</div>
+          <div class="off-word">OFF</div>
+        </div>
+      </div>
+      <div style="flex:1; text-align:left;">
+        <div class="offer-title" style="text-align:left;">October 2026<br>Special Offer</div>
+        <div class="offer-sub" style="text-align:left; max-width:100%;">
+          Every Las Terrenas restaurant or beach club that <strong>signs in October 2026</strong> receives 20% off their chosen package. Pueblo de los Pescadores season is arriving — and so is your opportunity.
+        </div>
+        <div class="offer-deadline">
+          🗓️ &nbsp;Offer expires October 31, 2026 — Limited spots available
+        </div>
+        <div style="margin-top:2.5vh; font-size:clamp(10px, 0.95vw, 13px); color: rgba(255,255,255,0.35);">
+          Savings: Starter saves $180 · Pro saves $360 · Premium saves $580
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SLIDE 10: CTA ─── -->
+  <div class="slide bg-cta" id="s10">
+    <div class="glow glow-gold-center"></div>
+    <div class="slide-label">Let's Talk</div>
+    <div class="slide-number">10 / 10</div>
+
+    <div class="cta-wrap">
+      <div class="cta-emoji">🍷</div>
+      <div class="cta-main-title">Let's Grab <em>Dinner</em><br>and Talk.</div>
+      <div class="cta-sub">Your free digital audit is on us. We'll sit down, walk through exactly what's holding your restaurant back online, and show you the path to a full table — every night.</div>
+
+      <div class="cta-contact-grid">
+        <a href="https://wa.me/18449000000" class="cta-btn primary">
+          💬 &nbsp;WhatsApp Us Now
+        </a>
+        <a href="https://unityspiritpartners.com" class="cta-btn secondary">
+          🌐 &nbsp;unityspiritpartners.com
+        </a>
+      </div>
+
+      <div class="cta-audit-line">
+        <strong>★ Free Digital Audit Included</strong> — No cost. No obligation. Just clarity.
+      </div>
+    </div>
+
+    <div class="cta-logo-line">Unity Spirit Partners Inc. &nbsp;·&nbsp; Las Terrenas, Samaná, Dominican Republic</div>
+  </div>
+
+</div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav class="nav">
+  <button class="nav-btn" id="prevBtn" disabled onclick="navigate(-1)">←</button>
+  <div class="nav-dots" id="navDots"></div>
+  <div class="nav-count" id="navCount">1 / 10</div>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">→</button>
+</nav>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const navDotsEl = document.getElementById('navDots');
+  const navCount = document.getElementById('navCount');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressBar = document.getElementById('progressBar');
+  const total = slides.length;
+  let current = 0;
+
+  // Build nav dots
+  for (let i = 0; i < total; i++) {
+    const d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    navDotsEl.appendChild(d);
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    const old = current;
+    slides[old].classList.remove('active');
+    slides[old].classList.add('leaving');
+    setTimeout(() => slides[old].classList.remove('leaving'), 700);
+
+    current = idx;
+    slides[current].classList.add('active');
+
+    // Update dots
+    document.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    navCount.textContent = `${current + 1} / ${total}`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+    progressBar.style.width = `${((current + 1) / total) * 100}%`;
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); navigate(-1); }
+    if (e.key === 'Home') goTo(0);
+    if (e.key === 'End') goTo(total - 1);
+  });
+
+  // Touch / swipe
+  let touchX = null;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+    touchX = null;
+  });
+
+  // Init progress
+  progressBar.style.width = `${(1 / total) * 100}%`;
+</script>
+</body>
+</html>
